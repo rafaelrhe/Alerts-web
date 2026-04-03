@@ -4,19 +4,45 @@ async function loadJson(path) {
   return res.json();
 }
 
+function formatUtcDate(value) {
+  if (!value) return 'n/d';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  const day = new Intl.DateTimeFormat('es-ES', { day: 'numeric', timeZone: 'UTC' }).format(date);
+  const month = new Intl.DateTimeFormat('es-ES', { month: 'short', timeZone: 'UTC' }).format(date).replace('.', '');
+  const year = new Intl.DateTimeFormat('es-ES', { year: 'numeric', timeZone: 'UTC' }).format(date);
+  const hour = new Intl.DateTimeFormat('es-ES', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'UTC',
+  }).format(date);
+  return `${day} ${month} ${year} · ${hour} UTC`;
+}
+
 function renderStatus(status) {
   const container = document.getElementById('status-grid');
-  const pairs = [
-    ['Último run', status.last_run_at || 'n/d'],
+  const primary = [
+    ['Alertas 24h', status.alerts_last_24h ?? 'n/d', 'kpi-alerts'],
+    ['Episodios activos', status.active_episodes_count ?? 'n/d', 'kpi-episodes'],
+    ['Pendientes', status.pending_events_count ?? 'n/d', 'kpi-pending'],
+    ['Feeds OK / total', `${status.feeds_ok ?? 'n/d'} / ${status.total_feeds ?? 'n/d'}`, 'kpi-feeds'],
+  ];
+  const secondary = [
+    ['Último run', formatUtcDate(status.last_run_at)],
     ['Modo', status.run_mode || 'n/d'],
     ['Coverage degraded', status.coverage_degraded ? 'Sí' : 'No'],
-    ['Feeds OK / total', `${status.feeds_ok ?? 'n/d'} / ${status.total_feeds ?? 'n/d'}`],
-    ['Alertas 24h', status.alerts_last_24h],
-    ['Episodios activos', status.active_episodes_count],
-    ['Pendientes', status.pending_events_count],
-    ['Activos alertados', status.active_alerted_events_count],
+    ['Activos alertados', status.active_alerted_events_count ?? 'n/d'],
   ];
-  container.innerHTML = pairs.map(([k, v]) => `<div class="kpi"><span>${k}</span><strong>${v}</strong></div>`).join('');
+
+  container.innerHTML = `
+    <div class="kpi-primary-grid">
+      ${primary.map(([k, v, tone]) => `<div class="kpi kpi-primary ${tone}"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+    </div>
+    <div class="kpi-secondary-grid">
+      ${secondary.map(([k, v]) => `<div class="kpi kpi-secondary"><span>${k}</span><strong title="${v}">${v}</strong></div>`).join('')}
+    </div>
+  `;
 }
 
 function listToHtml(items) {

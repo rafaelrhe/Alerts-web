@@ -27,6 +27,23 @@ header, main {
   margin-bottom: 1rem;
 }
 
+.status-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.kpi-primary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.kpi-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -35,17 +52,58 @@ header, main {
 
 .kpi {
   background: rgba(255, 255, 255, 0.04);
-  padding: 0.7rem;
+  padding: 0.55rem 0.65rem;
   border-radius: 8px;
+  min-height: 70px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .kpi span {
   color: var(--muted);
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.76rem;
+  line-height: 1.15;
+  margin-bottom: 0.24rem;
 }
 
-.kpi strong { font-size: 1.1rem; }
+.kpi strong {
+  font-size: 1.14rem;
+  line-height: 1.1;
+}
+
+.kpi-primary {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.kpi-alerts {
+  border-left: 3px solid #ff8f85;
+}
+
+.kpi-episodes {
+  border-left: 3px solid #f0b56a;
+}
+
+.kpi-feeds {
+  border-left: 3px solid #73e2a7;
+}
+
+.kpi-pending {
+  border-left: 3px solid #97acc8;
+}
+
+.kpi-secondary {
+  min-height: auto;
+  padding: 0.48rem 0.58rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.kpi-secondary strong {
+  font-size: 0.92rem;
+  color: #d9e2f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .columns {
   display: grid;
@@ -60,7 +118,7 @@ header, main {
 }
 
 .list li {
-  padding: 0.6rem;
+  padding: 0.52rem;
   border-bottom: 1px solid rgba(255,255,255,0.09);
 }
 
@@ -72,4 +130,14 @@ header, main {
   margin-right: 0.45rem;
   color: #c8e2ff;
   font-size: 0.82rem;
+}
+
+@media (min-width: 760px) {
+  .kpi-primary-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .kpi-secondary-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
