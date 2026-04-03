@@ -2,10 +2,10 @@
   {
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-03T19:32:09.413256+00:00",
-    "latest_event_at": "2026-04-03T22:31:58.947086+00:00",
+    "latest_event_at": "2026-04-03T22:40:51.486357+00:00",
     "status": "confirmed_material",
     "alert_count": 4,
-    "pending_count": 1,
+    "pending_count": 0,
     "active_alerted_count": 0,
     "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli"
   },
