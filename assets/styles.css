@@ -7,7 +7,7 @@
   --muted: #5a6780;
   --accent: #2457b2;
   --accent-soft: #edf2fb;
-  --shadow: 0 4px 14px rgba(20, 33, 57, 0.05);
+  --shadow: 0 4px 14px rgba(20, 33, 57, 0.04);
 }
 
 * {
@@ -44,8 +44,8 @@ header h1 {
   background: var(--card);
   border: 1px solid var(--card-border);
   border-radius: 14px;
-  padding: 1rem 1.05rem;
-  margin-bottom: 0.95rem;
+  padding: 0.92rem 1rem;
+  margin-bottom: 0.82rem;
   box-shadow: var(--shadow);
 }
 
@@ -62,12 +62,18 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
-.card-hero {
-  border-color: #d4deef;
+.card-primary {
+  border-color: #cfdcf4;
+  box-shadow: 0 8px 20px rgba(15, 36, 70, 0.08);
 }
 
-.card-summary .situation-list li {
-  padding: 0.46rem 0.15rem;
+.card-secondary {
+  background: #fbfcff;
+}
+
+.card-editorial {
+  background: #fcfdff;
+  border-color: #e4e9f2;
 }
 
 .eyebrow {
@@ -80,13 +86,13 @@ header h1 {
 }
 
 .exec-summary {
-  margin: 0.15rem 0 0.55rem;
+  margin: 0.15rem 0 0.5rem;
   color: #263954;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
 }
 
 .exec-points {
-  margin: 0.2rem 0 0.6rem;
+  margin: 0.15rem 0 0.55rem;
   padding-left: 1rem;
 }
 
@@ -96,18 +102,23 @@ header h1 {
 }
 
 .exec-main-front {
-  margin: 0;
+  margin: 0 0 0.35rem;
   color: #2a4369;
   font-weight: 600;
   font-size: 0.92rem;
 }
 
-#situation-headline {
-  color: #1f355e;
-  background: #f7f9fc;
-  border: 1px solid #e2e8f2;
-  border-radius: 10px;
-  padding: 0.7rem 0.85rem;
+.exec-status {
+  margin: 0 0 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.14rem 0.5rem;
+  border-radius: 999px;
+  background: #eff4ff;
+  border: 1px solid #d8e3f7;
+  color: #22406d;
+  font-size: 0.79rem;
+  font-weight: 640;
 }
 
 .status-grid {
@@ -285,7 +296,7 @@ header h1 {
   grid-template-columns: auto auto 1fr;
   align-items: start;
   column-gap: 0.45rem;
-  padding: 0.36rem 0;
+  padding: 0.34rem 0;
   border-bottom: 1px solid #e6ecf8;
 }
 
@@ -319,13 +330,19 @@ header h1 {
 }
 
 .episode-meta {
-  margin: 0.2rem 0;
+  margin: 0.26rem 0 0.1rem;
   color: #304767;
-  font-size: 0.9rem;
+  font-size: 0.87rem;
 }
 
 #episodes-list li {
-  padding: 0.48rem 0.58rem;
+  padding: 0.48rem 0.54rem;
+}
+
+.episode-brief {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #4a5f81;
 }
 
 .daily-meta {
@@ -405,14 +422,47 @@ header h1 {
 }
 
 .card-technical {
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
 small {
   color: var(--muted);
 }
 
+.hero-subtitle {
+  margin: 0.38rem 0 0.24rem;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #3f5780;
+}
+
+.hero-watch {
+  border-top: 1px solid #e3e9f5;
+  padding-top: 0.42rem;
+}
+
+.hero-watch-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-watch-list li {
+  font-size: 0.88rem;
+  color: #344b70;
+  padding: 0.22rem 0;
+}
+
 @media (min-width: 760px) {
+  .card {
+    padding: 1rem 1.08rem;
+  }
+
+  .card-primary {
+    padding: 1.12rem 1.2rem;
+  }
+
   .kpi-primary-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -421,7 +471,4 @@ small {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .columns {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }

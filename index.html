@@ -17,50 +17,32 @@
       <div id="status-grid" class="status-grid"></div>
     </section>
 
-    <section class="card card-summary">
-      <h2>Resumen ejecutivo</h2>
-      <ul id="executive-summary-lines" class="situation-list"></ul>
-    </section>
-
-    <section id="executive-hero" class="card card-hero" hidden>
-      <p class="eyebrow">Contexto diario</p>
+    <section id="executive-hero" class="card card-hero card-primary" hidden>
+      <p class="eyebrow">Lectura principal</p>
       <h2 id="exec-title">Situación actual</h2>
-      <p id="exec-summary" class="exec-summary"></p>
-      <ul id="exec-points" class="exec-points"></ul>
       <p id="exec-main-front" class="exec-main-front" hidden></p>
-    </section>
-
-    <section class="card card-situation">
-      <h2>Qué está pasando</h2>
-      <h3 id="situation-headline"></h3>
-      <div class="columns">
-        <div>
-          <h4>Movimientos clave</h4>
-          <ul id="what-changed" class="situation-list"></ul>
-        </div>
-        <div>
-          <h4>Frentes activos</h4>
-          <ul id="what-open" class="situation-list"></ul>
-        </div>
-        <div>
-          <h4>Qué vigilar ahora</h4>
-          <ul id="what-watch" class="situation-list"></ul>
-        </div>
+      <p id="exec-status" class="exec-status" hidden></p>
+      <p id="exec-summary" class="exec-summary"></p>
+      <h3 class="hero-subtitle">Claves del momento</h3>
+      <ul id="exec-points" class="exec-points"></ul>
+      <div class="hero-watch">
+        <h3 class="hero-subtitle">Qué vigilar</h3>
+        <ul id="hero-watch-list" class="hero-watch-list"></ul>
       </div>
     </section>
 
-    <section id="front-story-card" class="card" hidden>
+    <section id="front-story-card" class="card card-secondary" hidden>
       <h2>Historia reciente del frente</h2>
       <p id="front-story-title" class="front-story-title"></p>
       <ul id="front-story-list" class="timeline-list"></ul>
     </section>
 
-    <section class="card">
+    <section class="card card-secondary">
       <h2>Frentes abiertos</h2>
       <ul id="episodes-list" class="list"></ul>
     </section>
 
-    <section id="daily-report-card" class="card" hidden>
+    <section id="daily-report-card" class="card card-editorial" hidden>
       <h2>Último informe diario</h2>
       <div id="daily-report-content"></div>
     </section>

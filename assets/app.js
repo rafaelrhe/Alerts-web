@@ -178,7 +178,7 @@ function buildFrontTimeline(mainFrontKey, latestDaily, situation, episodes) {
     }
   });
 
-  return dedup.slice(0, 5);
+  return dedup.slice(0, 4);
 }
 
 function parseChangedEvent(raw) {
@@ -222,42 +222,6 @@ function dedupeChangedItems(changedItems = []) {
   });
 
   return Array.from(grouped.values());
-}
-
-function extractImpactLine(episodes = []) {
-  const text = (episodes || [])
-    .map((ep) => String(ep?.short_summary || '').toLowerCase())
-    .join(' ');
-  if (!text) return 'Sin impacto confirmado en energía o supply chain';
-  const hasImpact = /impact|disrupt|disruption|infraestructura|infrastructure|energ|supply chain|shipping/.test(text);
-  const hasNegative = /(no impact|sin impacto|sin disrupci|no direct operational disruption|not a material operational event)/.test(text);
-  if (hasImpact && !hasNegative) {
-    return 'Impacto operativo con señales en energía o supply chain';
-  }
-  return 'Sin impacto confirmado en energía o supply chain';
-}
-
-function buildExecutiveSummary(episodes = []) {
-  if (!episodes.length) {
-    return ['Sin señales materiales activas', 'Riesgo distribuido sin concentración clara', 'Sin impacto confirmado en energía o supply chain'];
-  }
-
-  const principal = pickPrincipalFront(episodes);
-  const principalStatus = String(principal?.status || '').toLowerCase();
-  let line1 = `Seguimiento activo en ${cleanEpisodeLabel(principal?.key || 'frente principal')}`;
-  if (principal?.key && principalStatus === 'confirmed_material') {
-    line1 = `Escalada confirmada en ${cleanEpisodeLabel(principal.key)}`;
-  } else if (principal?.key && principalStatus === 'partially_confirmed') {
-    line1 = `Escalada parcial en ${cleanEpisodeLabel(principal.key)}`;
-  }
-
-  const topPriorityCount = episodes.filter((episode) => statusPriority(episode.status) === 3).length;
-  const line2 = topPriorityCount <= 1
-    ? 'Riesgo concentrado en un solo frente'
-    : `Riesgo repartido en ${topPriorityCount} frentes confirmados`;
-
-  const line3 = extractImpactLine(episodes);
-  return [line1, line2, line3].slice(0, 3);
 }
 
 function renderStatus(status) {
@@ -332,29 +296,54 @@ function listToHtml(items, type = '') {
   return items.map((item) => `<li>${renderSituationItem(item, type)}</li>`).join('');
 }
 
-function renderExecutiveHero(dailyData, mainFront) {
+function renderExecutiveHero(dailyData, situation, mainFront, episodes) {
   const card = document.getElementById('executive-hero');
   const summaryNode = document.getElementById('exec-summary');
   const pointsNode = document.getElementById('exec-points');
+  const watchNode = document.getElementById('hero-watch-list');
   const frontNode = document.getElementById('exec-main-front');
+  const statusNode = document.getElementById('exec-status');
   const titleNode = document.getElementById('exec-title');
 
-  if (!dailyData) {
-    card.hidden = true;
-    return;
-  }
+  const changedItems = dedupeChangedItems(situation?.what_changed || []).slice(0, 2);
+  const changedTexts = changedItems.map((item) => {
+    const episode = cleanEpisodeLabel(item.eventId || '');
+    if (!episode) return item.detail;
+    return `${episode}: ${item.detail}`;
+  });
+  const basePoints = normalizeList(dailyData?.points || []);
+  const heroPoints = [...basePoints, ...changedTexts].slice(0, 3);
 
-  titleNode.textContent = dailyData.title || 'Situación actual';
-  summaryNode.textContent = dailyData.summary || 'Resumen diario disponible para seguimiento ejecutivo.';
-  pointsNode.innerHTML = dailyData.points.length
-    ? dailyData.points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')
+  const watchItems = normalizeList(situation?.what_to_watch_now);
+  const compactWatch = watchItems
+    .map((item) => item.replace(/^Confirmar señales pendientes en\s+/i, 'Confirmar '))
+    .slice(0, 3);
+
+  const mainEpisode = (episodes || []).find((episode) => episode.episode_key === mainFront?.key);
+  const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || '');
+
+  titleNode.textContent = 'Qué está pasando ahora';
+  summaryNode.textContent = dailyData?.summary || situation?.headline || 'Sin resumen diario disponible.';
+  pointsNode.innerHTML = heroPoints.length
+    ? heroPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join('')
     : '<li>Sin puntos clave adicionales.</li>';
+
+  watchNode.innerHTML = compactWatch.length
+    ? compactWatch.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
+    : '<li>Sin focos críticos inmediatos.</li>';
 
   if (mainFront?.key) {
     frontNode.textContent = `Frente principal: ${cleanEpisodeLabel(mainFront.key)}`;
     frontNode.hidden = false;
   } else {
     frontNode.hidden = true;
+  }
+
+  if (statusText) {
+    statusNode.textContent = `Estado: ${statusText}`;
+    statusNode.hidden = false;
+  } else {
+    statusNode.hidden = true;
   }
 
   card.hidden = false;
@@ -403,30 +392,6 @@ function renderFrontStory(mainFront, timelineItems) {
   card.hidden = false;
 }
 
-function renderSituation(situation, dailyData, mainFront) {
-  const dailySummary = dailyData?.summary;
-  document.getElementById('situation-headline').textContent = dailySummary || situation.headline || 'Sin resumen';
-  const changedItems = dedupeChangedItems(situation.what_changed).slice(0, 4);
-  const openItems = normalizeList(situation.what_is_open);
-  document.getElementById('what-changed').innerHTML = changedItems.map((item) => `<li>${renderSituationItem(item, 'changed')}</li>`).join('') || '<li>Sin datos recientes.</li>';
-  document.getElementById('what-open').innerHTML = openItems.map((item) => `<li>${renderSituationItem(item, 'open', { principalFrontKey: mainFront?.key })}</li>`).join('') || '<li>Sin datos recientes.</li>';
-
-  const watchItems = normalizeList(situation.what_to_watch_now);
-  const conciseWatch = watchItems
-    .map((item) => item.replace(/^Confirmar señales pendientes en\s+/i, 'Confirmación de '))
-    .slice(0, 3);
-  if (mainFront?.key && conciseWatch.length < 3) {
-    conciseWatch.unshift(`Evolución de ${cleanEpisodeLabel(mainFront.key)}`);
-  }
-  document.getElementById('what-watch').innerHTML = listToHtml(conciseWatch.slice(0, 3));
-}
-
-function renderExecutiveSummary(episodes) {
-  const list = document.getElementById('executive-summary-lines');
-  const lines = buildExecutiveSummary(episodes);
-  list.innerHTML = lines.map((line) => `<li>${escapeHtml(line)}</li>`).join('');
-}
-
 function renderAlerts(alerts) {
   const list = document.getElementById('alerts-list');
   if (!alerts.length) {
@@ -460,13 +425,21 @@ function renderEpisodes(episodes, mainFront) {
 
   list.innerHTML = ordered.slice(0, 25).map((e) => {
     const isMain = mainFront?.key && e.episode_key === mainFront.key;
+    const summaryLine = String(e.short_summary || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const briefSummary = summaryLine.length > 110
+      ? `${summaryLine.slice(0, 107)}...`
+      : summaryLine || 'Sin resumen breve disponible.';
     return `
       <li>
         <div class="episode-row">
           <strong>${escapeHtml(cleanEpisodeLabel(e.episode_key))}</strong>
           ${isMain ? '<span class="tag tag-main">PRINCIPAL</span>' : ''}
+          <span class="tag">${escapeHtml(cleanEpisodeLabel(e.status || 'n/d'))}</span>
         </div>
-        <p class="episode-meta">Estado: ${escapeHtml(cleanEpisodeLabel(e.status || 'n/d'))} · Alertas: ${escapeHtml(e.alert_count ?? 'n/d')}</p>
+        <p class="episode-meta">Alertas: ${escapeHtml(e.alert_count ?? 'n/d')} · Pendientes: ${escapeHtml(e.pending_count ?? 'n/d')}</p>
+        <p class="episode-brief">${escapeHtml(briefSummary)}</p>
       </li>
     `;
   }).join('');
@@ -497,10 +470,8 @@ function renderReview(review) {
     const mainFront = pickMainFront(latestDaily, episodes);
     const frontTimeline = buildFrontTimeline(mainFront?.key, latestDaily, situation, episodes);
 
-    renderExecutiveHero(dailyData, mainFront);
+    renderExecutiveHero(dailyData, situation, mainFront, episodes);
     renderStatus(status);
-    renderExecutiveSummary(episodes);
-    renderSituation(situation, dailyData, mainFront);
     renderFrontStory(mainFront, frontTimeline);
     renderEpisodes(episodes, mainFront);
     renderDailyReport(dailyData);
