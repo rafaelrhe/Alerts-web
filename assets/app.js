@@ -4,26 +4,11 @@ async function loadJson(path) {
   return res.json();
 }
 
-function formatUtcDate(value) {
-  if (!value) return 'n/d';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  const day = new Intl.DateTimeFormat('es-ES', { day: 'numeric', timeZone: 'UTC' }).format(date);
-  const month = new Intl.DateTimeFormat('es-ES', { month: 'short', timeZone: 'UTC' }).format(date).replace('.', '');
-  const year = new Intl.DateTimeFormat('es-ES', { year: 'numeric', timeZone: 'UTC' }).format(date);
-  const hour = new Intl.DateTimeFormat('es-ES', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-    timeZone: 'UTC',
-  }).format(date);
-  return `${day} ${month} ${year} · ${hour} UTC`;
-}
-
 function formatUtcDateParts(value) {
   if (!value) return { date: 'n/d', time: '' };
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return { date: value, time: '' };
+
   const datePart = new Intl.DateTimeFormat('es-ES', {
     day: 'numeric',
     month: 'short',
@@ -36,6 +21,7 @@ function formatUtcDateParts(value) {
     hour12: false,
     timeZone: 'UTC',
   }).format(date);
+
   return { date: datePart, time: `${timePart} UTC` };
 }
 
@@ -85,7 +71,7 @@ function renderSituationItem(raw, type) {
       const episode = match[2].replace(/_/g, ' ');
       const detail = match[3] && match[3].toLowerCase() !== 'sin detalle'
         ? match[3]
-        : 'Sin detalle operativo disponible por ahora.';
+        : 'Sin más detalle confirmado por ahora.';
       return `
         <div class="situation-item-row">
           <span class="situation-badge">${escapeHtml(badge)}</span>
@@ -122,7 +108,33 @@ function normalizeLine(line) {
   return line.replace(/^[\-•\s]+/, '').trim();
 }
 
+function stripHtmlToText(value) {
+  return String(value || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function parseDailyMessage(message) {
+  if (!message) return null;
+
+  if (String(message).includes('<')) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(String(message), 'text/html');
+
+    const title = doc.querySelector('h2')?.textContent?.trim() || '';
+    const summary = doc.querySelector('section:nth-of-type(2) p')?.textContent?.trim()
+      || doc.querySelector('p')?.textContent?.trim()
+      || '';
+    const points = Array.from(doc.querySelectorAll('section:nth-of-type(1) li, section:nth-of-type(5) li'))
+      .map((item) => item.textContent?.trim())
+      .filter(Boolean)
+      .slice(0, 3);
+
+    const fullText = stripHtmlToText(message);
+    return { title, summary, points, fullText };
+  }
+
   const lines = String(message || '')
     .split('\n')
     .map((line) => normalizeLine(line))
@@ -132,6 +144,7 @@ function parseDailyMessage(message) {
   const summary = lines[0];
   const points = lines.filter((line) => line.includes(':') || line.length > 36).slice(1, 4);
   return {
+    title: 'Informe diario ejecutivo',
     summary,
     points: points.slice(0, 3),
     fullText: lines.join(' '),
@@ -147,13 +160,16 @@ function renderDailyReport(dailyContext) {
   }
 
   const parsed = parseDailyMessage(dailyContext.message);
-  const dateLabel = formatUtcDate(dailyContext.sent_at || dailyContext.generated_at || '');
+  const dateParts = formatUtcDateParts(dailyContext.sent_at || dailyContext.generated_at || '');
+  const title = (parsed && parsed.title) || 'Informe diario ejecutivo';
+  const summary = (parsed && parsed.summary) || 'Resumen diario disponible.';
 
   container.innerHTML = `
-    <p class="daily-meta">${escapeHtml(dateLabel)}</p>
-    <p class="daily-summary">${escapeHtml((parsed && parsed.summary) || 'Resumen diario disponible.')}</p>
+    <p class="daily-meta"><span>${escapeHtml(dateParts.date)}</span><span>${escapeHtml(dateParts.time)}</span></p>
+    <h3 class="daily-title">${escapeHtml(title)}</h3>
+    <p class="daily-summary">${escapeHtml(summary)}</p>
     ${parsed && parsed.points.length ? `<ul class="daily-points">${parsed.points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}
-    ${dailyContext.message ? `<details><summary class="daily-link">Ver informe completo</summary><p class="daily-summary">${escapeHtml((parsed && parsed.fullText) || dailyContext.message)}</p></details>` : ''}
+    ${dailyContext.message ? `<details><summary class="daily-link">Ver informe completo</summary><p class="daily-summary">${escapeHtml((parsed && parsed.fullText) || stripHtmlToText(dailyContext.message))}</p></details>` : ''}
   `;
   card.hidden = false;
 }
