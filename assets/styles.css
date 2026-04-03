@@ -30,8 +30,8 @@ main {
 }
 
 header {
-  padding-top: 1.75rem;
-  padding-bottom: 0.35rem;
+  padding-top: 1.6rem;
+  padding-bottom: 0.2rem;
 }
 
 header h1 {
@@ -53,13 +53,49 @@ header h1 {
   margin-top: 0;
   margin-bottom: 0.75rem;
   color: #111b30;
-  font-size: 1.15rem;
+  font-size: 1.12rem;
 }
 
 .card h3,
 .card h4 {
   margin-top: 0.4rem;
   margin-bottom: 0.5rem;
+}
+
+.card-hero {
+  border-color: #d4deef;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #4e648a;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 650;
+}
+
+.exec-summary {
+  margin: 0.15rem 0 0.55rem;
+  color: #263954;
+  font-size: 0.98rem;
+}
+
+.exec-points {
+  margin: 0.2rem 0 0.6rem;
+  padding-left: 1rem;
+}
+
+.exec-points li {
+  margin-bottom: 0.24rem;
+  color: #223654;
+}
+
+.exec-main-front {
+  margin: 0;
+  color: #2a4369;
+  font-weight: 600;
+  font-size: 0.92rem;
 }
 
 #situation-headline {
@@ -110,7 +146,6 @@ header h1 {
 }
 
 .kpi-primary {
-  background: #f8fafd;
   padding: 0.7rem 0.78rem;
   min-height: 86px;
 }
@@ -156,18 +191,12 @@ header h1 {
   overflow-wrap: anywhere;
 }
 
-.kpi-secondary.run-kpi strong {
-  white-space: normal;
-  word-break: keep-all;
-  line-height: 1.35;
-}
-
-.kpi-secondary.run-kpi .run-date {
+.kpi-secondary.run-kpi .run-date,
+.kpi-secondary.run-kpi .run-time {
   display: block;
 }
 
 .kpi-secondary.run-kpi .run-time {
-  display: block;
   color: #4a5f85;
 }
 
@@ -229,6 +258,62 @@ header h1 {
   font-size: 0.9rem;
 }
 
+.front-story-title {
+  margin: 0 0 0.6rem;
+  color: #243b61;
+  font-weight: 600;
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-list li {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: start;
+  column-gap: 0.45rem;
+  padding: 0.36rem 0;
+  border-bottom: 1px solid #e6ecf8;
+}
+
+.timeline-list li:last-child {
+  border-bottom: none;
+}
+
+.timeline-date {
+  color: #5e7191;
+  font-size: 0.84rem;
+  min-width: 3.7rem;
+}
+
+.timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #436799;
+  margin-top: 0.38rem;
+}
+
+.timeline-text {
+  color: #233856;
+  font-size: 0.92rem;
+}
+
+.episode-row {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.episode-meta {
+  margin: 0.2rem 0;
+  color: #304767;
+  font-size: 0.9rem;
+}
+
 .daily-meta {
   color: #4b5f82;
   font-weight: 600;
@@ -261,13 +346,13 @@ header h1 {
 
 .daily-link {
   display: inline-block;
-  text-decoration: none;
   color: #234d95;
   background: #f3f6fc;
   border: 1px solid #dbe4f2;
   padding: 0.38rem 0.65rem;
   border-radius: 8px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .list {
@@ -295,6 +380,18 @@ header h1 {
   font-size: 0.78rem;
   font-weight: 600;
   border: 1px solid #cfe0ff;
+}
+
+.tag-main {
+  background: #eef5e9;
+  border-color: #d6e6ca;
+  color: #2d5e2d;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.card-technical {
+  opacity: 0.92;
 }
 
 small {

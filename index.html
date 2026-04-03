@@ -12,6 +12,14 @@
   </header>
 
   <main>
+    <section id="executive-hero" class="card card-hero" hidden>
+      <p class="eyebrow">Resumen ejecutivo</p>
+      <h2 id="exec-title">Situación actual</h2>
+      <p id="exec-summary" class="exec-summary"></p>
+      <ul id="exec-points" class="exec-points"></ul>
+      <p id="exec-main-front" class="exec-main-front" hidden></p>
+    </section>
+
     <section class="card">
       <h2>Estado del radar</h2>
       <div id="status-grid" class="status-grid"></div>
@@ -22,18 +30,29 @@
       <h3 id="situation-headline"></h3>
       <div class="columns">
         <div>
-          <h4>Cambios clave</h4>
+          <h4>Movimientos clave</h4>
           <ul id="what-changed" class="situation-list"></ul>
         </div>
         <div>
-          <h4>Frentes en seguimiento</h4>
+          <h4>Frentes activos</h4>
           <ul id="what-open" class="situation-list"></ul>
         </div>
         <div>
-          <h4>Foco inmediato</h4>
+          <h4>Qué vigilar ahora</h4>
           <ul id="what-watch" class="situation-list"></ul>
         </div>
       </div>
+    </section>
+
+    <section id="front-story-card" class="card" hidden>
+      <h2>Historia reciente del frente</h2>
+      <p id="front-story-title" class="front-story-title"></p>
+      <ul id="front-story-list" class="timeline-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Frentes abiertos</h2>
+      <ul id="episodes-list" class="list"></ul>
     </section>
 
     <section id="daily-report-card" class="card" hidden>
@@ -46,13 +65,8 @@
       <ul id="alerts-list" class="list"></ul>
     </section>
 
-    <section class="card">
-      <h2>Episodios / frentes abiertos</h2>
-      <ul id="episodes-list" class="list"></ul>
-    </section>
-
-    <section class="card">
-      <h2>Review reciente</h2>
+    <section class="card card-technical">
+      <h2>Estado técnico</h2>
       <ul id="review-list" class="list"></ul>
     </section>
   </main>
