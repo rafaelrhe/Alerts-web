@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-04-03T15:01:57.271342+00:00",
+  "generated_at": "2026-04-03T15:31:52.711430+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
+    "update en iran_war: sin detalle",
     "update en iran_war: sin detalle",
     "alerta en iran_israel_war: sin detalle"
   ],
   "what_is_open": [
-    "iran_war: estado=confirmed_material alertas=1 pendientes=0",
+    "iran_war: estado=confirmed_material alertas=2 pendientes=0",
     "iran_us_tensions: estado=partially_confirmed alertas=0 pendientes=1",
     "iran_israel_war: estado=confirmed_material alertas=1 pendientes=1"
   ],
