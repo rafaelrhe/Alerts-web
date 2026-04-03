@@ -532,6 +532,46 @@ small {
   text-transform: none;
 }
 
+.views-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.view-block {
+  border: 1px solid #e1e8f5;
+  border-radius: 10px;
+  background: #f9fbff;
+  padding: 0.58rem 0.65rem;
+}
+
+.view-block h3 {
+  margin: 0 0 0.28rem;
+  font-size: 0.95rem;
+  color: #1d355a;
+}
+
+.view-meta {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  color: #486088;
+}
+
+.view-list {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.view-list li {
+  margin-bottom: 0.35rem;
+}
+
+.view-list p {
+  margin: 0.08rem 0 0;
+  color: #405778;
+  font-size: 0.85rem;
+}
+
 @media (min-width: 760px) {
   .card {
     padding: 1rem 1.08rem;
@@ -555,6 +595,10 @@ small {
 
   .change-profile-summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .views-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
 }
