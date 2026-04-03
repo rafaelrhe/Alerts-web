@@ -61,6 +61,20 @@ function normalizeList(value) {
     .filter(Boolean);
 }
 
+function normalizeIdentityList(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (typeof item === 'string') return item.trim();
+      if (item && typeof item === 'object') {
+        const candidate = item.name || item.label || item.value || '';
+        return String(candidate).trim();
+      }
+      return '';
+    })
+    .filter(Boolean);
+}
+
 function asArray(value) {
   return Array.isArray(value) ? value : [];
 }
@@ -76,6 +90,62 @@ function cleanEpisodeLabel(value) {
   return String(value || '')
     .replace(/_/g, ' ')
     .trim();
+}
+
+function compactIdentityItems(items, maxItems) {
+  const safeItems = normalizeIdentityList(items);
+  return {
+    shown: safeItems.slice(0, maxItems),
+    extraCount: Math.max(0, safeItems.length - maxItems),
+  };
+}
+
+function buildGeoHierarchy(identity = {}) {
+  const geo = identity && typeof identity === 'object' ? identity.geo : null;
+  if (!geo || typeof geo !== 'object') return '';
+  const country = String(geo.country || '').trim();
+  const region = String(geo.region || '').trim();
+  const strategicNodes = normalizeIdentityList(geo.strategic_nodes);
+  const strategicNode = strategicNodes[0] || '';
+  const parts = [country, region, strategicNode].filter(Boolean);
+  return parts.join(' → ');
+}
+
+function renderIdentityTagList(label, items, maxItems) {
+  const { shown, extraCount } = compactIdentityItems(items, maxItems);
+  if (!shown.length) return '';
+  const chips = shown
+    .map((item) => `<span class="identity-chip">${escapeHtml(item)}</span>`)
+    .join('');
+  const overflow = extraCount > 0 ? `<span class="identity-chip identity-chip-more">+${extraCount}</span>` : '';
+  return `
+    <div class="identity-row">
+      <span class="identity-label">${escapeHtml(label)}</span>
+      <div class="identity-chip-list">${chips}${overflow}</div>
+    </div>
+  `;
+}
+
+function renderEventContext(identity) {
+  if (!identity || typeof identity !== 'object') return '';
+  const entitiesRow = renderIdentityTagList('Entities', identity.entities, 3);
+  const assetsRow = renderIdentityTagList('Assets', identity.assets, 2);
+  const keywordsRow = renderIdentityTagList('Keywords', identity.event_terms || identity.keywords, 3);
+  const geoPath = buildGeoHierarchy(identity);
+  const geoRow = geoPath ? `
+    <div class="identity-row identity-row-geo">
+      <span class="identity-label">Geo</span>
+      <p class="identity-geo-path">${escapeHtml(geoPath)}</p>
+    </div>
+  ` : '';
+  const rows = [entitiesRow, geoRow, assetsRow, keywordsRow].filter(Boolean).join('');
+  if (!rows) return '';
+  return `
+    <section class="event-context" aria-label="Event context">
+      <h4>Event context</h4>
+      ${rows}
+    </section>
+  `;
 }
 
 function statusPriority(status) {
@@ -428,6 +498,7 @@ function renderEpisodes(episodes, mainFront) {
     const briefSummary = summaryLine.length > 110
       ? `${summaryLine.slice(0, 107)}...`
       : summaryLine || 'Sin resumen breve disponible.';
+    const contextHtml = renderEventContext(e.event_identity);
     return `
       <li>
         <div class="episode-row">
@@ -437,6 +508,7 @@ function renderEpisodes(episodes, mainFront) {
         </div>
         <p class="episode-meta">Alertas: ${escapeHtml(e.alert_count ?? 'n/d')} · Pendientes: ${escapeHtml(e.pending_count ?? 'n/d')}</p>
         <p class="episode-brief">${escapeHtml(briefSummary)}</p>
+        ${contextHtml}
       </li>
     `;
   }).join('');

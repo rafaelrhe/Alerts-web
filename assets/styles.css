@@ -345,6 +345,72 @@ header h1 {
   color: #4a5f81;
 }
 
+.event-context {
+  margin-top: 0.5rem;
+  border-top: 1px solid #e6ecf8;
+  padding-top: 0.48rem;
+}
+
+.event-context h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4a5f81;
+}
+
+.identity-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.28rem;
+}
+
+.identity-row:last-child {
+  margin-bottom: 0;
+}
+
+.identity-label {
+  min-width: 4rem;
+  font-size: 0.77rem;
+  font-weight: 620;
+  color: #3d5276;
+}
+
+.identity-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.24rem;
+}
+
+.identity-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.08rem 0.42rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  color: #264268;
+  border: 1px solid #d9e3f4;
+  background: #f8fbff;
+}
+
+.identity-chip-more {
+  color: #425678;
+  border-style: dashed;
+  background: #f9fbff;
+}
+
+.identity-row-geo {
+  align-items: center;
+}
+
+.identity-geo-path {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #233b5f;
+  overflow-wrap: anywhere;
+}
+
 .daily-meta {
   color: #4b5f82;
   font-weight: 600;
@@ -469,6 +535,10 @@ small {
 
   .kpi-secondary-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .identity-label {
+    min-width: 4.35rem;
   }
 
 }
