@@ -81,7 +81,21 @@ function statusPriority(status) {
   return 1;
 }
 
-function pickPrincipalFront(episodes = [], latestDaily = null) {
+function pickPrincipalFront(alerts = [], episodes = []) {
+  const latestIntradayAlert = (alerts || []).slice().sort((a, b) => {
+    const atA = new Date(a?.sent_at || a?.created_at || 0).getTime() || 0;
+    const atB = new Date(b?.sent_at || b?.created_at || 0).getTime() || 0;
+    return atB - atA;
+  }).find((item) => item?.episode_key);
+
+  if (latestIntradayAlert?.episode_key) {
+    return {
+      key: latestIntradayAlert.episode_key,
+      title: latestIntradayAlert.summary || cleanEpisodeLabel(latestIntradayAlert.episode_key),
+      status: null,
+    };
+  }
+
   const rankedEpisode = (episodes || []).slice().sort((a, b) => {
     const byStatus = statusPriority(b.status) - statusPriority(a.status);
     if (byStatus !== 0) return byStatus;
@@ -98,17 +112,11 @@ function pickPrincipalFront(episodes = [], latestDaily = null) {
     };
   }
 
-  const frontFromDaily = Array.isArray(latestDaily?.fronts) ? latestDaily.fronts[0] : null;
-  if (!frontFromDaily?.root_episode_key) return null;
-  return {
-    key: frontFromDaily.root_episode_key,
-    title: frontFromDaily.headline || frontFromDaily.summary || cleanEpisodeLabel(frontFromDaily.root_episode_key),
-    status: null,
-  };
+  return null;
 }
 
-function pickMainFront(latestDaily, episodes = []) {
-  return pickPrincipalFront(episodes, latestDaily);
+function pickMainFront(alerts = [], episodes = []) {
+  return pickPrincipalFront(alerts, episodes);
 }
 
 function parseDailyContent(latestDaily) {
@@ -132,21 +140,8 @@ function parseDailyContent(latestDaily) {
   };
 }
 
-function buildFrontTimeline(mainFrontKey, latestDaily, situation, episodes) {
+function buildFrontTimeline(mainFrontKey, situation, episodes, alerts = []) {
   const items = [];
-
-  const dailyFront = (latestDaily?.fronts || []).find((front) => front.root_episode_key === mainFrontKey)
-    || (latestDaily?.fronts || [])[0];
-
-  if (dailyFront) {
-    const fromDaily = normalizeList(
-      dailyFront.recent_milestones
-      || dailyFront.recent_phases
-      || dailyFront.active_phases
-      || dailyFront.events
-    );
-    fromDaily.forEach((entry) => items.push({ label: entry, at: latestDaily.generated_at || latestDaily.sent_at || null }));
-  }
 
   const episode = (episodes || []).find((ep) => ep.episode_key === mainFrontKey);
   const summarySentence = String(episode?.short_summary || '')
@@ -167,6 +162,15 @@ function buildFrontTimeline(mainFrontKey, latestDaily, situation, episodes) {
       items.push({ label: cleaned, at: situation.generated_at || null });
     }
   });
+
+  (alerts || [])
+    .filter((alert) => !mainFrontKey || alert?.episode_key === mainFrontKey)
+    .slice(0, 4)
+    .forEach((alert) => {
+      const action = alert?.is_update ? 'Update' : 'Alerta';
+      const label = `${action}: ${alert?.summary || 'Movimiento operativo reciente'}`;
+      items.push({ label, at: alert?.sent_at || alert?.created_at || null });
+    });
 
   const dedup = [];
   const seen = new Set();
@@ -296,7 +300,7 @@ function listToHtml(items, type = '') {
   return items.map((item) => `<li>${renderSituationItem(item, type)}</li>`).join('');
 }
 
-function renderExecutiveHero(dailyData, situation, mainFront, episodes) {
+function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
   const card = document.getElementById('executive-hero');
   const summaryNode = document.getElementById('exec-summary');
   const pointsNode = document.getElementById('exec-points');
@@ -311,8 +315,12 @@ function renderExecutiveHero(dailyData, situation, mainFront, episodes) {
     if (!episode) return item.detail;
     return `${episode}: ${item.detail}`;
   });
-  const basePoints = normalizeList(dailyData?.points || []);
-  const heroPoints = [...basePoints, ...changedTexts].slice(0, 3);
+  const latestIntradayPoints = (alerts || [])
+    .filter((alert) => !mainFront?.key || alert?.episode_key === mainFront.key)
+    .slice(0, 2)
+    .map((alert) => alert?.summary)
+    .filter(Boolean);
+  const heroPoints = [...changedTexts, ...latestIntradayPoints].slice(0, 3);
 
   const watchItems = normalizeList(situation?.what_to_watch_now);
   const compactWatch = watchItems
@@ -323,10 +331,10 @@ function renderExecutiveHero(dailyData, situation, mainFront, episodes) {
   const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || '');
 
   titleNode.textContent = 'Qué está pasando ahora';
-  summaryNode.textContent = dailyData?.summary || situation?.headline || 'Sin resumen diario disponible.';
+  summaryNode.textContent = situation?.headline || mainFront?.title || 'Sin novedades intradía recientes.';
   pointsNode.innerHTML = heroPoints.length
     ? heroPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join('')
-    : '<li>Sin puntos clave adicionales.</li>';
+    : '<li>Sin actividad intradía para destacar.</li>';
 
   watchNode.innerHTML = compactWatch.length
     ? compactWatch.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
@@ -467,10 +475,10 @@ function renderReview(review) {
     ]);
 
     const dailyData = parseDailyContent(latestDaily);
-    const mainFront = pickMainFront(latestDaily, episodes);
-    const frontTimeline = buildFrontTimeline(mainFront?.key, latestDaily, situation, episodes);
+    const mainFront = pickMainFront(alerts, episodes);
+    const frontTimeline = buildFrontTimeline(mainFront?.key, situation, episodes, alerts);
 
-    renderExecutiveHero(dailyData, situation, mainFront, episodes);
+    renderExecutiveHero(situation, mainFront, episodes, alerts);
     renderStatus(status);
     renderFrontStory(mainFront, frontTimeline);
     renderEpisodes(episodes, mainFront);
