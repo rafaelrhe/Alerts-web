@@ -114,6 +114,6 @@ function renderReview(review) {
     renderSituation(situation);
     renderReview(review);
   } catch (err) {
-    document.body.innerHTML += `<p style="padding:1rem;color:#ffb4b4">Error cargando dashboard: ${err.message}</p>`;
+    document.body.innerHTML += `<p style="padding:1rem;color:#9f2431;background:#ffecee;border:1px solid #f4c9cf;border-radius:10px">Error cargando dashboard: ${err.message}</p>`;
   }
 })();

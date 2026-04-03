@@ -1,35 +1,85 @@
 :root {
-  color-scheme: dark;
-  --bg: #0e1320;
-  --card: #161d2f;
-  --text: #eef2ff;
-  --muted: #aab3ca;
-  --accent: #73e2a7;
+  color-scheme: light;
+  --bg: #f3f6fb;
+  --bg-accent: radial-gradient(circle at 10% 10%, #ffffff 0%, #f3f6fb 45%, #edf2fa 100%);
+  --card: #ffffff;
+  --card-border: #dce4f3;
+  --text: #172033;
+  --muted: #4f607d;
+  --accent: #2b6de5;
+  --accent-soft: #e9f0ff;
+  --shadow: 0 10px 28px rgba(27, 51, 97, 0.08);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-  background: var(--bg);
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg-accent);
   color: var(--text);
+  line-height: 1.45;
 }
 
-header, main {
-  max-width: 1024px;
+header,
+main {
+  max-width: 1080px;
   margin: 0 auto;
   padding: 1rem;
 }
 
+header {
+  padding-top: 1.75rem;
+  padding-bottom: 0.35rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 2vw, 2.2rem);
+  letter-spacing: 0.01em;
+}
+
+header p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
 .card {
   background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 1rem 1.05rem;
+  margin-bottom: 0.95rem;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #111b30;
+  font-size: 1.15rem;
+}
+
+.card h3,
+.card h4 {
+  margin-top: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+#situation-headline {
+  color: #1b335f;
+  background: linear-gradient(90deg, #eef4ff, #ffffff);
+  border: 1px solid #d9e5fb;
   border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 0.7rem 0.85rem;
 }
 
 .status-grid {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.7rem;
 }
 
 .kpi-primary-grid {
@@ -44,62 +94,56 @@ header, main {
   gap: 0.45rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.7rem;
-}
-
 .kpi {
-  background: rgba(255, 255, 255, 0.04);
-  padding: 0.55rem 0.65rem;
-  border-radius: 8px;
-  min-height: 70px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: #f7f9fd;
+  padding: 0.58rem 0.65rem;
+  border-radius: 10px;
+  min-height: 74px;
+  border: 1px solid #e1e9f8;
 }
 
 .kpi span {
   color: var(--muted);
   display: block;
   font-size: 0.76rem;
-  line-height: 1.15;
+  line-height: 1.2;
   margin-bottom: 0.24rem;
 }
 
 .kpi strong {
-  font-size: 1.14rem;
-  line-height: 1.1;
+  font-size: 1.12rem;
+  line-height: 1.15;
+  color: #172033;
 }
 
 .kpi-primary {
-  background: rgba(255, 255, 255, 0.06);
+  background: #f4f8ff;
 }
 
 .kpi-alerts {
-  border-left: 3px solid #ff8f85;
+  border-left: 4px solid #df4f5f;
 }
 
 .kpi-episodes {
-  border-left: 3px solid #f0b56a;
+  border-left: 4px solid #d68f2c;
 }
 
 .kpi-feeds {
-  border-left: 3px solid #73e2a7;
+  border-left: 4px solid #2f9e77;
 }
 
 .kpi-pending {
-  border-left: 3px solid #97acc8;
+  border-left: 4px solid #4f6f95;
 }
 
 .kpi-secondary {
   min-height: auto;
   padding: 0.48rem 0.58rem;
-  background: rgba(255, 255, 255, 0.02);
+  background: #fbfcff;
 }
 
 .kpi-secondary strong {
   font-size: 0.92rem;
-  color: #d9e2f5;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -108,7 +152,14 @@ header, main {
 .columns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  gap: 0.85rem;
+}
+
+.columns > div {
+  background: #f9fbff;
+  border: 1px solid #e5ecf9;
+  border-radius: 10px;
+  padding: 0.35rem 0.6rem 0.5rem;
 }
 
 .list {
@@ -118,18 +169,28 @@ header, main {
 }
 
 .list li {
-  padding: 0.52rem;
-  border-bottom: 1px solid rgba(255,255,255,0.09);
+  padding: 0.58rem;
+  border-bottom: 1px solid #e4eaf5;
+}
+
+.list li:last-child {
+  border-bottom: none;
 }
 
 .tag {
   display: inline-block;
   padding: 0.1rem 0.45rem;
   border-radius: 999px;
-  background: #274662;
+  background: var(--accent-soft);
   margin-right: 0.45rem;
-  color: #c8e2ff;
-  font-size: 0.82rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid #cfe0ff;
+}
+
+small {
+  color: var(--muted);
 }
 
 @media (min-width: 760px) {
