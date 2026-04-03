@@ -12,17 +12,22 @@
   </header>
 
   <main>
+    <section class="card">
+      <h2>Estado del radar</h2>
+      <div id="status-grid" class="status-grid"></div>
+    </section>
+
+    <section class="card card-summary">
+      <h2>Resumen ejecutivo</h2>
+      <ul id="executive-summary-lines" class="situation-list"></ul>
+    </section>
+
     <section id="executive-hero" class="card card-hero" hidden>
-      <p class="eyebrow">Resumen ejecutivo</p>
+      <p class="eyebrow">Contexto diario</p>
       <h2 id="exec-title">Situación actual</h2>
       <p id="exec-summary" class="exec-summary"></p>
       <ul id="exec-points" class="exec-points"></ul>
       <p id="exec-main-front" class="exec-main-front" hidden></p>
-    </section>
-
-    <section class="card">
-      <h2>Estado del radar</h2>
-      <div id="status-grid" class="status-grid"></div>
     </section>
 
     <section class="card card-situation">

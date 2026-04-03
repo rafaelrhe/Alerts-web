@@ -74,26 +74,41 @@ function cleanEpisodeLabel(value) {
     .trim();
 }
 
-function pickMainFront(latestDaily, episodes = []) {
-  const frontFromDaily = Array.isArray(latestDaily?.fronts) ? latestDaily.fronts[0] : null;
-  if (frontFromDaily?.root_episode_key) {
+function statusPriority(status) {
+  const normalized = String(status || '').toLowerCase();
+  if (normalized === 'confirmed_material') return 3;
+  if (normalized === 'partially_confirmed') return 2;
+  return 1;
+}
+
+function pickPrincipalFront(episodes = [], latestDaily = null) {
+  const rankedEpisode = (episodes || []).slice().sort((a, b) => {
+    const byStatus = statusPriority(b.status) - statusPriority(a.status);
+    if (byStatus !== 0) return byStatus;
+    const byActive = (b.active_alerted_count || 0) - (a.active_alerted_count || 0);
+    if (byActive !== 0) return byActive;
+    return (b.alert_count || 0) - (a.alert_count || 0);
+  })[0];
+
+  if (rankedEpisode?.episode_key) {
     return {
-      key: frontFromDaily.root_episode_key,
-      title: frontFromDaily.headline || frontFromDaily.summary || cleanEpisodeLabel(frontFromDaily.root_episode_key),
+      key: rankedEpisode.episode_key,
+      title: rankedEpisode.short_summary || cleanEpisodeLabel(rankedEpisode.episode_key),
+      status: rankedEpisode.status || null,
     };
   }
 
-  const bestEpisode = (episodes || []).slice().sort((a, b) => {
-    const byAlert = (b.alert_count || 0) - (a.alert_count || 0);
-    if (byAlert !== 0) return byAlert;
-    return (b.active_alerted_count || 0) - (a.active_alerted_count || 0);
-  })[0];
-
-  if (!bestEpisode) return null;
+  const frontFromDaily = Array.isArray(latestDaily?.fronts) ? latestDaily.fronts[0] : null;
+  if (!frontFromDaily?.root_episode_key) return null;
   return {
-    key: bestEpisode.episode_key,
-    title: bestEpisode.short_summary || cleanEpisodeLabel(bestEpisode.episode_key),
+    key: frontFromDaily.root_episode_key,
+    title: frontFromDaily.headline || frontFromDaily.summary || cleanEpisodeLabel(frontFromDaily.root_episode_key),
+    status: null,
   };
+}
+
+function pickMainFront(latestDaily, episodes = []) {
+  return pickPrincipalFront(episodes, latestDaily);
 }
 
 function parseDailyContent(latestDaily) {
@@ -134,6 +149,13 @@ function buildFrontTimeline(mainFrontKey, latestDaily, situation, episodes) {
   }
 
   const episode = (episodes || []).find((ep) => ep.episode_key === mainFrontKey);
+  const summarySentence = String(episode?.short_summary || '')
+    .split(/[.!?]/)
+    .map((line) => line.trim())
+    .find(Boolean);
+  if (summarySentence) {
+    items.push({ label: summarySentence, at: episode.latest_event_at || episode.latest_alert_at || null });
+  }
   if (episode?.status) {
     items.push({ label: `Estado actual: ${cleanEpisodeLabel(episode.status)}`, at: episode.latest_event_at || episode.latest_alert_at || null });
   }
@@ -157,6 +179,85 @@ function buildFrontTimeline(mainFrontKey, latestDaily, situation, episodes) {
   });
 
   return dedup.slice(0, 5);
+}
+
+function parseChangedEvent(raw) {
+  const text = String(raw || '').trim();
+  const match = text.match(/^(update|alerta) en ([^:]+):\s*(.*)$/i);
+  if (!match) {
+    return {
+      action: null,
+      eventId: null,
+      detail: text,
+    };
+  }
+
+  const rawDetail = String(match[3] || '').trim();
+  const normalizedDetail = rawDetail && rawDetail.toLowerCase() !== 'sin detalle'
+    ? rawDetail
+    : 'sin cambio material';
+
+  return {
+    action: match[1].toLowerCase(),
+    eventId: match[2],
+    detail: normalizedDetail,
+  };
+}
+
+function dedupeChangedItems(changedItems = []) {
+  const grouped = new Map();
+  normalizeList(changedItems).forEach((raw) => {
+    const parsed = parseChangedEvent(raw);
+    const groupKey = parsed.eventId || parsed.detail || raw;
+    if (!grouped.has(groupKey)) {
+      grouped.set(groupKey, {
+        key: groupKey,
+        eventId: parsed.eventId,
+        action: parsed.action,
+        detail: parsed.detail,
+        count: 0,
+      });
+    }
+    grouped.get(groupKey).count += 1;
+  });
+
+  return Array.from(grouped.values());
+}
+
+function extractImpactLine(episodes = []) {
+  const text = (episodes || [])
+    .map((ep) => String(ep?.short_summary || '').toLowerCase())
+    .join(' ');
+  if (!text) return 'Sin impacto confirmado en energía o supply chain';
+  const hasImpact = /impact|disrupt|disruption|infraestructura|infrastructure|energ|supply chain|shipping/.test(text);
+  const hasNegative = /(no impact|sin impacto|sin disrupci|no direct operational disruption|not a material operational event)/.test(text);
+  if (hasImpact && !hasNegative) {
+    return 'Impacto operativo con señales en energía o supply chain';
+  }
+  return 'Sin impacto confirmado en energía o supply chain';
+}
+
+function buildExecutiveSummary(episodes = []) {
+  if (!episodes.length) {
+    return ['Sin señales materiales activas', 'Riesgo distribuido sin concentración clara', 'Sin impacto confirmado en energía o supply chain'];
+  }
+
+  const principal = pickPrincipalFront(episodes);
+  const principalStatus = String(principal?.status || '').toLowerCase();
+  let line1 = `Seguimiento activo en ${cleanEpisodeLabel(principal?.key || 'frente principal')}`;
+  if (principal?.key && principalStatus === 'confirmed_material') {
+    line1 = `Escalada confirmada en ${cleanEpisodeLabel(principal.key)}`;
+  } else if (principal?.key && principalStatus === 'partially_confirmed') {
+    line1 = `Escalada parcial en ${cleanEpisodeLabel(principal.key)}`;
+  }
+
+  const topPriorityCount = episodes.filter((episode) => statusPriority(episode.status) === 3).length;
+  const line2 = topPriorityCount <= 1
+    ? 'Riesgo concentrado en un solo frente'
+    : `Riesgo repartido en ${topPriorityCount} frentes confirmados`;
+
+  const line3 = extractImpactLine(episodes);
+  return [line1, line2, line3].slice(0, 3);
 }
 
 function renderStatus(status) {
@@ -185,18 +286,18 @@ function renderStatus(status) {
   `;
 }
 
-function renderSituationItem(raw, type) {
-  const text = String(raw || '').trim();
-  if (!text) return 'Sin datos recientes.';
+function renderSituationItem(raw, type, options = {}) {
+  const text = typeof raw === 'string' ? String(raw || '').trim() : '';
+  const { principalFrontKey = null } = options;
+  if (!text && !raw) return 'Sin datos recientes.';
 
   if (type === 'changed') {
-    const match = text.match(/^(update|alerta) en ([^:]+):\s*(.*)$/i);
-    if (match) {
-      const badge = match[1].toLowerCase() === 'update' ? 'Actualización' : 'Alerta';
-      const episode = match[2].replace(/_/g, ' ');
-      const detail = match[3] && match[3].toLowerCase() !== 'sin detalle'
-        ? match[3]
-        : 'Sin más detalle confirmado por ahora.';
+    if (typeof raw === 'object' && raw !== null && raw.eventId) {
+      const badge = raw.action === 'update' ? 'Actualización' : 'Alerta';
+      const episode = cleanEpisodeLabel(raw.eventId);
+      const detail = raw.count > 1
+        ? `${raw.count} actualizaciones (${raw.detail})`
+        : raw.detail;
       return `
         <div class="situation-item-row">
           <span class="situation-badge">${escapeHtml(badge)}</span>
@@ -211,9 +312,11 @@ function renderSituationItem(raw, type) {
     const match = text.match(/^([^:]+):\s*estado=([^\s]+)\s+alertas=(\d+)\s+pendientes=(\d+)$/i);
     if (match) {
       const [, episode, status, alerts, pending] = match;
+      const isPrincipal = principalFrontKey && episode === principalFrontKey;
       return `
         <div class="situation-item-row">
           <span class="situation-episode">${escapeHtml(episode.replace(/_/g, ' '))}</span>
+          ${isPrincipal ? '<span class="situation-badge situation-badge-main">PRINCIPAL</span>' : ''}
           <span class="situation-badge">${escapeHtml(status.replace(/_/g, ' '))}</span>
         </div>
         <p class="situation-detail">Alertas: ${escapeHtml(alerts)} · Pendientes: ${escapeHtml(pending)}</p>
@@ -303,19 +406,25 @@ function renderFrontStory(mainFront, timelineItems) {
 function renderSituation(situation, dailyData, mainFront) {
   const dailySummary = dailyData?.summary;
   document.getElementById('situation-headline').textContent = dailySummary || situation.headline || 'Sin resumen';
-  document.getElementById('what-changed').innerHTML = listToHtml(situation.what_changed, 'changed');
-  document.getElementById('what-open').innerHTML = listToHtml(situation.what_is_open, 'open');
+  const changedItems = dedupeChangedItems(situation.what_changed).slice(0, 4);
+  const openItems = normalizeList(situation.what_is_open);
+  document.getElementById('what-changed').innerHTML = changedItems.map((item) => `<li>${renderSituationItem(item, 'changed')}</li>`).join('') || '<li>Sin datos recientes.</li>';
+  document.getElementById('what-open').innerHTML = openItems.map((item) => `<li>${renderSituationItem(item, 'open', { principalFrontKey: mainFront?.key })}</li>`).join('') || '<li>Sin datos recientes.</li>';
 
   const watchItems = normalizeList(situation.what_to_watch_now);
-  if (dailyData?.points?.length) {
-    watchItems.unshift(...dailyData.points.slice(0, 2));
+  const conciseWatch = watchItems
+    .map((item) => item.replace(/^Confirmar señales pendientes en\s+/i, 'Confirmación de '))
+    .slice(0, 3);
+  if (mainFront?.key && conciseWatch.length < 3) {
+    conciseWatch.unshift(`Evolución de ${cleanEpisodeLabel(mainFront.key)}`);
   }
+  document.getElementById('what-watch').innerHTML = listToHtml(conciseWatch.slice(0, 3));
+}
 
-  if (mainFront?.key) {
-    watchItems.unshift(`Seguir ${cleanEpisodeLabel(mainFront.key)} como frente dominante.`);
-  }
-
-  document.getElementById('what-watch').innerHTML = listToHtml(watchItems.slice(0, 4));
+function renderExecutiveSummary(episodes) {
+  const list = document.getElementById('executive-summary-lines');
+  const lines = buildExecutiveSummary(episodes);
+  list.innerHTML = lines.map((line) => `<li>${escapeHtml(line)}</li>`).join('');
 }
 
 function renderAlerts(alerts) {
@@ -355,10 +464,9 @@ function renderEpisodes(episodes, mainFront) {
       <li>
         <div class="episode-row">
           <strong>${escapeHtml(cleanEpisodeLabel(e.episode_key))}</strong>
-          ${isMain ? '<span class="tag tag-main">principal</span>' : ''}
+          ${isMain ? '<span class="tag tag-main">PRINCIPAL</span>' : ''}
         </div>
-        <p class="episode-meta">Estado: ${escapeHtml(cleanEpisodeLabel(e.status || 'n/d'))} · Alertas: ${escapeHtml(e.alert_count ?? 'n/d')} · Pendientes: ${escapeHtml(e.pending_count ?? 'n/d')}</p>
-        <small>${escapeHtml(e.short_summary || '')}</small>
+        <p class="episode-meta">Estado: ${escapeHtml(cleanEpisodeLabel(e.status || 'n/d'))} · Alertas: ${escapeHtml(e.alert_count ?? 'n/d')}</p>
       </li>
     `;
   }).join('');
@@ -391,6 +499,7 @@ function renderReview(review) {
 
     renderExecutiveHero(dailyData, mainFront);
     renderStatus(status);
+    renderExecutiveSummary(episodes);
     renderSituation(situation, dailyData, mainFront);
     renderFrontStory(mainFront, frontTimeline);
     renderEpisodes(episodes, mainFront);

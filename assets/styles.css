@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  --bg: #f3f5f9;
+  --bg: #ffffff;
   --card: #ffffff;
   --card-border: #dde3ee;
   --text: #172033;
@@ -64,6 +64,10 @@ header h1 {
 
 .card-hero {
   border-color: #d4deef;
+}
+
+.card-summary .situation-list li {
+  padding: 0.46rem 0.15rem;
 }
 
 .eyebrow {
@@ -247,6 +251,12 @@ header h1 {
   color: #1f3d70;
 }
 
+.situation-badge-main {
+  background: #f7f8fa;
+  border-color: #d8dce4;
+  color: #394255;
+}
+
 .situation-episode {
   font-weight: 600;
   color: #182845;
@@ -312,6 +322,10 @@ header h1 {
   margin: 0.2rem 0;
   color: #304767;
   font-size: 0.9rem;
+}
+
+#episodes-list li {
+  padding: 0.48rem 0.58rem;
 }
 
 .daily-meta {
