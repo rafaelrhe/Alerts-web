@@ -1,0 +1,32 @@
+[
+  {
+    "episode_key": "iran_war",
+    "latest_alert_at": "2026-04-03T14:02:11.713309+00:00",
+    "latest_event_at": "2026-04-03T14:02:11.713344+00:00",
+    "status": "confirmed_material",
+    "alert_count": 1,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "Confirmed physical military action: U.S. fighter jet downed over Iran with active search and rescue operation. This is a hard escalation event with state actor involvement (U.S. an"
+  },
+  {
+    "episode_key": "iran_us_tensions",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-03T13:31:35.972410+00:00",
+    "status": "partially_confirmed",
+    "alert_count": 0,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Trump-Iran tensions over Hormuz Strait represent a credible geopolitical escalation scenario with direct energy infrastructure implications. The headline signals active threat rhet"
+  },
+  {
+    "episode_key": "iran_israel_war",
+    "latest_alert_at": "2026-04-03T13:19:34.135111+00:00",
+    "latest_event_at": "2026-04-03T13:19:34.135143+00:00",
+    "status": "confirmed_material",
+    "alert_count": 1,
+    "pending_count": 1,
+    "active_alerted_count": 1,
+    "short_summary": "Confirmed physical attack on critical energy infrastructure (Kuwaiti refinery) with multiple units ablaze. Clear escalation in Iran-Israel conflict with direct impact on Gulf energ"
+  }
+]

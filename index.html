@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RiskMonitor Dashboard</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>RiskMonitor</h1>
+    <p>Panel estático de situación y alertas</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Estado del radar</h2>
+      <div id="status-grid" class="grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Qué está pasando</h2>
+      <h3 id="situation-headline"></h3>
+      <div class="columns">
+        <div>
+          <h4>Qué cambió</h4>
+          <ul id="what-changed"></ul>
+        </div>
+        <div>
+          <h4>Qué sigue abierto</h4>
+          <ul id="what-open"></ul>
+        </div>
+        <div>
+          <h4>Qué vigilar ahora</h4>
+          <ul id="what-watch"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Alertas recientes</h2>
+      <ul id="alerts-list" class="list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Episodios / frentes abiertos</h2>
+      <ul id="episodes-list" class="list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Review reciente</h2>
+      <ul id="review-list" class="list"></ul>
+    </section>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
