@@ -1,5 +1,15 @@
 [
   {
+    "episode_key": "iran_war",
+    "latest_alert_at": "2026-04-03T16:32:07.824598+00:00",
+    "latest_event_at": "2026-04-03T16:32:07.824632+00:00",
+    "status": "confirmed_material",
+    "alert_count": 3,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli"
+  },
+  {
     "episode_key": "eu_legal_proceedings",
     "latest_alert_at": null,
     "latest_event_at": "2026-04-03T16:01:46.044226+00:00",
@@ -8,16 +18,6 @@
     "pending_count": 0,
     "active_alerted_count": 0,
     "short_summary": "This is a legal/political development regarding an MEP's social media post and potential prosecution for glorifying terrorism. It is not a material operational event, physical disr"
-  },
-  {
-    "episode_key": "iran_war",
-    "latest_alert_at": "2026-04-03T15:12:24.563596+00:00",
-    "latest_event_at": "2026-04-03T15:12:24.563623+00:00",
-    "status": "confirmed_material",
-    "alert_count": 2,
-    "pending_count": 0,
-    "active_alerted_count": 1,
-    "short_summary": "Confirmed physical military action: U.S. fighter jet downed over Iran with active search and rescue operation. This is a hard escalation event with state actor involvement (U.S. an"
   },
   {
     "episode_key": "iran_us_tensions",
