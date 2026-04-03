@@ -61,6 +61,10 @@ function normalizeList(value) {
     .filter(Boolean);
 }
 
+function asArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
 function stripHtmlToText(value) {
   return String(value || '')
     .replace(/<[^>]+>/g, ' ')
@@ -82,7 +86,9 @@ function statusPriority(status) {
 }
 
 function pickPrincipalFront(alerts = [], episodes = []) {
-  const latestIntradayAlert = (alerts || []).slice().sort((a, b) => {
+  // Regla estricta: la lectura principal solo usa señales intradía/operativas.
+  // Nunca se considera latest_daily para esta selección.
+  const latestIntradayAlert = asArray(alerts).slice().sort((a, b) => {
     const atA = new Date(a?.sent_at || a?.created_at || 0).getTime() || 0;
     const atB = new Date(b?.sent_at || b?.created_at || 0).getTime() || 0;
     return atB - atA;
@@ -96,7 +102,7 @@ function pickPrincipalFront(alerts = [], episodes = []) {
     };
   }
 
-  const rankedEpisode = (episodes || []).slice().sort((a, b) => {
+  const rankedEpisode = asArray(episodes).slice().sort((a, b) => {
     const byStatus = statusPriority(b.status) - statusPriority(a.status);
     if (byStatus !== 0) return byStatus;
     const byActive = (b.active_alerted_count || 0) - (a.active_alerted_count || 0);
@@ -143,7 +149,7 @@ function parseDailyContent(latestDaily) {
 function buildFrontTimeline(mainFrontKey, situation, episodes, alerts = []) {
   const items = [];
 
-  const episode = (episodes || []).find((ep) => ep.episode_key === mainFrontKey);
+  const episode = asArray(episodes).find((ep) => ep.episode_key === mainFrontKey);
   const summarySentence = String(episode?.short_summary || '')
     .split(/[.!?]/)
     .map((line) => line.trim())
@@ -163,7 +169,7 @@ function buildFrontTimeline(mainFrontKey, situation, episodes, alerts = []) {
     }
   });
 
-  (alerts || [])
+  asArray(alerts)
     .filter((alert) => !mainFrontKey || alert?.episode_key === mainFrontKey)
     .slice(0, 4)
     .forEach((alert) => {
@@ -228,32 +234,6 @@ function dedupeChangedItems(changedItems = []) {
   return Array.from(grouped.values());
 }
 
-function renderStatus(status) {
-  const container = document.getElementById('status-grid');
-  const primary = [
-    ['Alertas 24h', status.alerts_last_24h ?? 'n/d', 'kpi-alerts'],
-    ['Episodios activos', status.active_episodes_count ?? 'n/d', 'kpi-episodes'],
-    ['Pendientes', status.pending_events_count ?? 'n/d', 'kpi-pending'],
-    ['Feeds OK / total', `${status.feeds_ok ?? 'n/d'} / ${status.total_feeds ?? 'n/d'}`, 'kpi-feeds'],
-  ];
-  const runParts = formatUtcDateParts(status.last_run_at);
-  const secondary = [
-    ['Último run', `<span class="run-date">${escapeHtml(runParts.date)}</span><span class="run-time">${escapeHtml(runParts.time)}</span>`, 'run-kpi'],
-    ['Modo', escapeHtml(status.run_mode || 'n/d')],
-    ['Coverage degraded', status.coverage_degraded ? 'Sí' : 'No'],
-    ['Activos alertados', status.active_alerted_events_count ?? 'n/d'],
-  ];
-
-  container.innerHTML = `
-    <div class="kpi-primary-grid">
-      ${primary.map(([k, v, tone]) => `<div class="kpi kpi-primary ${tone}"><span>${k}</span><strong>${v}</strong></div>`).join('')}
-    </div>
-    <div class="kpi-secondary-grid">
-      ${secondary.map(([k, v, extraClass = '']) => `<div class="kpi kpi-secondary ${extraClass}"><span>${k}</span><strong>${v}</strong></div>`).join('')}
-    </div>
-  `;
-}
-
 function renderSituationItem(raw, type, options = {}) {
   const text = typeof raw === 'string' ? String(raw || '').trim() : '';
   const { principalFrontKey = null } = options;
@@ -296,8 +276,9 @@ function renderSituationItem(raw, type, options = {}) {
 }
 
 function listToHtml(items, type = '') {
-  if (!items || items.length === 0) return '<li>Sin datos recientes.</li>';
-  return items.map((item) => `<li>${renderSituationItem(item, type)}</li>`).join('');
+  const safeItems = asArray(items);
+  if (safeItems.length === 0) return '<li>Sin datos recientes.</li>';
+  return safeItems.map((item) => `<li>${renderSituationItem(item, type)}</li>`).join('');
 }
 
 function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
@@ -308,6 +289,7 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
   const frontNode = document.getElementById('exec-main-front');
   const statusNode = document.getElementById('exec-status');
   const titleNode = document.getElementById('exec-title');
+  if (!card || !summaryNode || !pointsNode || !watchNode || !frontNode || !statusNode || !titleNode) return;
 
   const changedItems = dedupeChangedItems(situation?.what_changed || []).slice(0, 2);
   const changedTexts = changedItems.map((item) => {
@@ -315,7 +297,7 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
     if (!episode) return item.detail;
     return `${episode}: ${item.detail}`;
   });
-  const latestIntradayPoints = (alerts || [])
+  const latestIntradayPoints = asArray(alerts)
     .filter((alert) => !mainFront?.key || alert?.episode_key === mainFront.key)
     .slice(0, 2)
     .map((alert) => alert?.summary)
@@ -327,7 +309,7 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
     .map((item) => item.replace(/^Confirmar señales pendientes en\s+/i, 'Confirmar '))
     .slice(0, 3);
 
-  const mainEpisode = (episodes || []).find((episode) => episode.episode_key === mainFront?.key);
+  const mainEpisode = asArray(episodes).find((episode) => episode.episode_key === mainFront?.key);
   const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || '');
 
   titleNode.textContent = 'Qué está pasando ahora';
@@ -360,6 +342,7 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
 function renderDailyReport(dailyData) {
   const card = document.getElementById('daily-report-card');
   const container = document.getElementById('daily-report-content');
+  if (!card || !container) return;
   if (!dailyData) {
     card.hidden = true;
     return;
@@ -372,7 +355,7 @@ function renderDailyReport(dailyData) {
     <p class="daily-meta"><span>${escapeHtml(dateParts.date)}</span><span>${escapeHtml(dateParts.time)}</span></p>
     <h3 class="daily-title">${escapeHtml(dailyData.title || 'Informe diario ejecutivo')}</h3>
     <p class="daily-summary">${escapeHtml(dailyData.summary || 'Resumen diario disponible.')}</p>
-    ${dailyData.points.length ? `<ul class="daily-points">${dailyData.points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}
+    ${asArray(dailyData.points).length ? `<ul class="daily-points">${asArray(dailyData.points).map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}
     ${excerpt ? `<details><summary class="daily-link">Ver informe completo</summary><p class="daily-summary">${escapeHtml(excerpt)}</p></details>` : ''}
   `;
   card.hidden = false;
@@ -382,14 +365,16 @@ function renderFrontStory(mainFront, timelineItems) {
   const card = document.getElementById('front-story-card');
   const title = document.getElementById('front-story-title');
   const list = document.getElementById('front-story-list');
+  if (!card || !title || !list) return;
 
-  if (!mainFront || !timelineItems.length) {
+  const safeTimelineItems = asArray(timelineItems);
+  if (!mainFront || !safeTimelineItems.length) {
     card.hidden = true;
     return;
   }
 
   title.textContent = `Evolución de ${cleanEpisodeLabel(mainFront.key)}`;
-  list.innerHTML = timelineItems.map((item) => `
+  list.innerHTML = safeTimelineItems.map((item) => `
     <li>
       <span class="timeline-date">${escapeHtml(formatShortDate(item.at))}</span>
       <span class="timeline-dot" aria-hidden="true"></span>
@@ -402,11 +387,13 @@ function renderFrontStory(mainFront, timelineItems) {
 
 function renderAlerts(alerts) {
   const list = document.getElementById('alerts-list');
-  if (!alerts.length) {
+  if (!list) return;
+  const safeAlerts = asArray(alerts);
+  if (!safeAlerts.length) {
     list.innerHTML = '<li>Sin alertas recientes.</li>';
     return;
   }
-  list.innerHTML = alerts.slice(0, 25).map((a) => `
+  list.innerHTML = safeAlerts.slice(0, 25).map((a) => `
     <li>
       <span class="tag">${a.is_update ? 'update' : 'alerta'}</span>
       <strong>${a.episode_key || 'sin episodio'}</strong><br>
@@ -418,12 +405,14 @@ function renderAlerts(alerts) {
 
 function renderEpisodes(episodes, mainFront) {
   const list = document.getElementById('episodes-list');
-  if (!episodes.length) {
+  if (!list) return;
+  const safeEpisodes = asArray(episodes);
+  if (!safeEpisodes.length) {
     list.innerHTML = '<li>Sin episodios activos o recientes.</li>';
     return;
   }
 
-  const ordered = episodes.slice().sort((a, b) => {
+  const ordered = safeEpisodes.slice().sort((a, b) => {
     if (mainFront?.key) {
       if (a.episode_key === mainFront.key) return -1;
       if (b.episode_key === mainFront.key) return 1;
@@ -455,12 +444,42 @@ function renderEpisodes(episodes, mainFront) {
 
 function renderReview(review) {
   const list = document.getElementById('review-list');
+  if (!list) return;
+  const safeReview = review && typeof review === 'object' ? review : {};
   const items = [
-    ...(review.findings || []),
-    ...(review.weak_spots || []).map((i) => `Debilidad: ${i}`),
-    ...(review.recommendations || []).map((i) => `Recomendación: ${i}`),
+    ...asArray(safeReview.findings),
+    ...asArray(safeReview.weak_spots).map((i) => `Debilidad: ${i}`),
+    ...asArray(safeReview.recommendations).map((i) => `Recomendación: ${i}`),
   ].slice(0, 5);
   list.innerHTML = listToHtml(items);
+}
+
+function renderStatus(status) {
+  const container = document.getElementById('status-grid');
+  if (!container) return;
+  const safeStatus = status && typeof status === 'object' ? status : {};
+  const primary = [
+    ['Alertas 24h', safeStatus.alerts_last_24h ?? 'n/d', 'kpi-alerts'],
+    ['Episodios activos', safeStatus.active_episodes_count ?? 'n/d', 'kpi-episodes'],
+    ['Pendientes', safeStatus.pending_events_count ?? 'n/d', 'kpi-pending'],
+    ['Feeds OK / total', `${safeStatus.feeds_ok ?? 'n/d'} / ${safeStatus.total_feeds ?? 'n/d'}`, 'kpi-feeds'],
+  ];
+  const runParts = formatUtcDateParts(safeStatus.last_run_at);
+  const secondary = [
+    ['Último run', `<span class="run-date">${escapeHtml(runParts.date)}</span><span class="run-time">${escapeHtml(runParts.time)}</span>`, 'run-kpi'],
+    ['Modo', escapeHtml(safeStatus.run_mode || 'n/d')],
+    ['Coverage degraded', safeStatus.coverage_degraded ? 'Sí' : 'No'],
+    ['Activos alertados', safeStatus.active_alerted_events_count ?? 'n/d'],
+  ];
+
+  container.innerHTML = `
+    <div class="kpi-primary-grid">
+      ${primary.map(([k, v, tone]) => `<div class="kpi kpi-primary ${tone}"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+    </div>
+    <div class="kpi-secondary-grid">
+      ${secondary.map(([k, v, extraClass = '']) => `<div class="kpi kpi-secondary ${extraClass}"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+    </div>
+  `;
 }
 
 (async function main() {
@@ -474,17 +493,21 @@ function renderReview(review) {
       loadJson('data/latest_daily.json', { optional: true }),
     ]);
 
+    const safeAlerts = asArray(alerts);
+    const safeEpisodes = asArray(episodes);
+    const safeSituation = situation && typeof situation === 'object' ? situation : {};
+    const safeReview = review && typeof review === 'object' ? review : {};
     const dailyData = parseDailyContent(latestDaily);
-    const mainFront = pickMainFront(alerts, episodes);
-    const frontTimeline = buildFrontTimeline(mainFront?.key, situation, episodes, alerts);
+    const mainFront = pickMainFront(safeAlerts, safeEpisodes);
+    const frontTimeline = buildFrontTimeline(mainFront?.key, safeSituation, safeEpisodes, safeAlerts);
 
-    renderExecutiveHero(situation, mainFront, episodes, alerts);
+    renderExecutiveHero(safeSituation, mainFront, safeEpisodes, safeAlerts);
     renderStatus(status);
     renderFrontStory(mainFront, frontTimeline);
-    renderEpisodes(episodes, mainFront);
+    renderEpisodes(safeEpisodes, mainFront);
     renderDailyReport(dailyData);
-    renderAlerts(alerts);
-    renderReview(review);
+    renderAlerts(safeAlerts);
+    renderReview(safeReview);
   } catch (err) {
     document.body.innerHTML += `<p style="padding:1rem;color:#9f2431;background:#ffecee;border:1px solid #f4c9cf;border-radius:10px">Error cargando dashboard: ${err.message}</p>`;
   }
