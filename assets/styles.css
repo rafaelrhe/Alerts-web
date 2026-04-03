@@ -86,39 +86,21 @@ header h1 {
 }
 
 .exec-summary {
-  margin: 0.15rem 0 0.5rem;
-  color: #263954;
-  font-size: 0.96rem;
+  margin: 0.2rem 0 0.55rem;
+  color: #1f3352;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  font-weight: 560;
 }
 
 .exec-points {
-  margin: 0.15rem 0 0.55rem;
-  padding-left: 1rem;
+  margin: 0.15rem 0 0.5rem;
+  padding-left: 1.05rem;
 }
 
 .exec-points li {
   margin-bottom: 0.24rem;
   color: #223654;
-}
-
-.exec-main-front {
-  margin: 0 0 0.35rem;
-  color: #2a4369;
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-
-.exec-status {
-  margin: 0 0 0.45rem;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.14rem 0.5rem;
-  border-radius: 999px;
-  background: #eff4ff;
-  border: 1px solid #d8e3f7;
-  color: #22406d;
-  font-size: 0.79rem;
-  font-weight: 640;
 }
 
 .status-grid {
@@ -517,8 +499,8 @@ small {
 }
 
 .hero-watch-list li {
-  font-size: 0.88rem;
-  color: #344b70;
+  font-size: 0.9rem;
+  color: #2b4268;
   padding: 0.22rem 0;
 }
 

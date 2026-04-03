@@ -101,6 +101,12 @@ function cleanEpisodeLabel(value) {
     .trim();
 }
 
+function titleCaseSentence(value) {
+  const text = String(value || '').trim();
+  if (!text) return '';
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 function compactIdentityItems(items, maxItems) {
   const safeItems = normalizeIdentityList(items);
   return {
@@ -351,6 +357,43 @@ function dedupeChangedItems(changedItems = []) {
   return Array.from(grouped.values());
 }
 
+function toNaturalWatchLabel(raw) {
+  const text = String(raw || '').trim();
+  if (!text) return '';
+
+  const explicitMap = {
+    iran_israel_war: 'Escalada entre Irán e Israel',
+    iran_us_tensions: 'Tensión entre Irán y Estados Unidos',
+    iran_war: 'Nueva fase material del conflicto con Irán',
+  };
+
+  const lowerText = text.toLowerCase();
+  const directKey = lowerText.replace(/\s+/g, '_');
+  if (explicitMap[directKey]) return explicitMap[directKey];
+
+  const match = lowerText.match(/\b([a-z]+(?:_[a-z]+){1,})\b/);
+  if (match && explicitMap[match[1]]) return explicitMap[match[1]];
+
+  const cleaned = text
+    .replace(/^confirmar señales pendientes en\s+/i, '')
+    .replace(/^monitorear\s+/i, '')
+    .replace(/^watch\s+/i, '')
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return titleCaseSentence(cleaned);
+}
+
+function buildExecutiveSummary(mainFrontLabel, statusText, hasMaterialChange) {
+  const safeFront = cleanEpisodeLabel(mainFrontLabel || 'el frente principal');
+  const safeStatus = statusText || 'seguimiento activo';
+  const disruption = hasMaterialChange
+    ? 'con escalada material reciente confirmada'
+    : 'sin nueva disrupción operativa adicional por ahora';
+  return `El frente principal sigue siendo ${safeFront}, en ${safeStatus}, ${disruption}.`;
+}
+
 function renderSituationItem(raw, type, options = {}) {
   const text = typeof raw === 'string' ? String(raw || '').trim() : '';
   const { principalFrontKey = null } = options;
@@ -403,59 +446,41 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
   const summaryNode = document.getElementById('exec-summary');
   const pointsNode = document.getElementById('exec-points');
   const watchNode = document.getElementById('hero-watch-list');
-  const frontNode = document.getElementById('exec-main-front');
-  const statusNode = document.getElementById('exec-status');
   const titleNode = document.getElementById('exec-title');
-  if (!card || !summaryNode || !pointsNode || !watchNode || !frontNode || !statusNode || !titleNode) return;
-
-  const changedItems = dedupeChangedItems(situation?.what_changed || []).slice(0, 2);
-  const changedTexts = changedItems.map((item) => {
-    const episode = cleanEpisodeLabel(item.eventId || '');
-    if (!episode) return item.detail;
-    return `${episode}: ${item.detail}`;
-  });
-  const latestIntradayPoints = asArray(alerts)
-    .filter((alert) => !mainFront?.key || alert?.episode_key === mainFront.key)
-    .slice(0, 2)
-    .map((alert) => alert?.summary)
-    .filter(Boolean);
-  const heroPoints = [...changedTexts, ...latestIntradayPoints].slice(0, 3);
-
-  const watchItems = normalizeList(situation?.what_to_watch_now);
-  const compactWatch = watchItems
-    .map((item) => item.replace(/^Confirmar señales pendientes en\s+/i, 'Confirmar '))
-    .slice(0, 3);
+  if (!card || !summaryNode || !pointsNode || !watchNode || !titleNode) return;
 
   const mainEpisode = asArray(episodes).find((episode) => episode.episode_key === mainFront?.key);
-  const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || '');
+  const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || 'seguimiento activo');
+  const changedItems = dedupeChangedItems(situation?.what_changed || []);
+  const hasMaterialChange = changedItems.some((item) => {
+    const detail = String(item?.detail || '').toLowerCase();
+    return !detail.includes('sin cambio material');
+  });
+
+  const geoFocus = buildGeoHierarchy(mainEpisode?.event_identity || {});
+  const keyBullets = [
+    `Estado actual: ${statusText}.`,
+    hasMaterialChange
+      ? 'Se confirma movimiento material reciente en este frente.'
+      : 'No se confirma nueva disrupción operativa adicional.',
+    geoFocus ? `Foco operativo: ${geoFocus}.` : null,
+  ].filter(Boolean).slice(0, 3);
+
+  const watchItems = normalizeList(situation?.what_to_watch_now)
+    .map((item) => toNaturalWatchLabel(item))
+    .filter(Boolean);
+  const compactWatch = Array.from(new Set(watchItems)).slice(0, 3);
 
   titleNode.textContent = 'Qué está pasando ahora';
-  summaryNode.textContent = normalizeOperationalFallback(
-    situation?.headline || mainFront?.title,
-    { fallback: FALLBACK_COPY.stableMonitoring },
-  );
-  pointsNode.innerHTML = heroPoints.length
-    ? heroPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join('')
+  summaryNode.textContent = buildExecutiveSummary(mainFront?.key || mainFront?.title, statusText, hasMaterialChange);
+  pointsNode.innerHTML = keyBullets.length
+    ? keyBullets.map((point) => `<li>${escapeHtml(point)}</li>`).join('')
     : `<li>${FALLBACK_COPY.noMaterialChange}.</li>`;
 
   const watchFallback = situation?.coverage_limited ? FALLBACK_COPY.limitedCoverage : FALLBACK_COPY.stableMonitoring;
   watchNode.innerHTML = compactWatch.length
     ? compactWatch.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
     : `<li>${watchFallback}.</li>`;
-
-  if (mainFront?.key) {
-    frontNode.textContent = `Frente principal: ${cleanEpisodeLabel(mainFront.key)}`;
-    frontNode.hidden = false;
-  } else {
-    frontNode.hidden = true;
-  }
-
-  if (statusText) {
-    statusNode.textContent = `Estado: ${statusText}`;
-    statusNode.hidden = false;
-  } else {
-    statusNode.hidden = true;
-  }
 
   card.hidden = false;
 }
