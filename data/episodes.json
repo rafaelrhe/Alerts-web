@@ -1,5 +1,15 @@
 [
   {
+    "episode_key": "iran_war",
+    "latest_alert_at": "2026-04-03T19:32:09.413256+00:00",
+    "latest_event_at": "2026-04-03T20:02:11.632252+00:00",
+    "status": "confirmed_material",
+    "alert_count": 4,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli"
+  },
+  {
     "episode_key": "natural_hazard_afghanistan",
     "latest_alert_at": null,
     "latest_event_at": "2026-04-03T17:02:15.852606+00:00",
@@ -8,16 +18,6 @@
     "pending_count": 0,
     "active_alerted_count": 0,
     "short_summary": "Natural hazard (earthquake) with no direct operational disruption to energy infrastructure, shipping, or supply chains confirmed. While oil prices show strong 1d/7d gains (WTI +11."
-  },
-  {
-    "episode_key": "iran_war",
-    "latest_alert_at": "2026-04-03T16:32:07.824598+00:00",
-    "latest_event_at": "2026-04-03T17:05:03.740748+00:00",
-    "status": "confirmed_material",
-    "alert_count": 3,
-    "pending_count": 0,
-    "active_alerted_count": 1,
-    "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli"
   },
   {
     "episode_key": "eu_legal_proceedings",

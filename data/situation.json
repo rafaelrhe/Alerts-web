@@ -1,20 +1,21 @@
 {
-  "generated_at": "2026-04-03T18:31:49.092505+00:00",
+  "generated_at": "2026-04-03T21:31:45.495615+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
-    "update en iran_war: sin detalle",
+    "alerta en iran_war: sin detalle",
     "update en iran_war: sin detalle",
     "update en iran_war: sin detalle"
   ],
   "what_is_open": [
+    "iran_war: estado=confirmed_material alertas=4 pendientes=1",
     "natural_hazard_afghanistan: estado=insufficient_signal alertas=0 pendientes=0",
-    "iran_war: estado=confirmed_material alertas=3 pendientes=0",
     "eu_legal_proceedings: estado=closed alertas=0 pendientes=0",
     "iran_us_tensions: estado=partially_confirmed alertas=0 pendientes=1"
   ],
   "what_to_watch_now": [
     "Confirmar señales pendientes en iran_israel_war (1).",
-    "Confirmar señales pendientes en iran_us_tensions (1)."
+    "Confirmar señales pendientes en iran_us_tensions (1).",
+    "Confirmar señales pendientes en iran_war (1)."
   ],
   "daily_context": {
     "sent_at": "2026-04-03T17:57:25.493173+00:00",
