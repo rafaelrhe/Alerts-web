@@ -5,7 +5,8 @@
     "event_id": "796583fa49",
     "is_update": false,
     "summary": "",
-    "related_to_event_id": null
+    "related_to_event_id": null,
+    "change_profile": null
   },
   {
     "sent_at": "2026-04-03T16:32:07.824598+00:00",
@@ -13,7 +14,8 @@
     "event_id": "3226bfc014",
     "is_update": true,
     "summary": "",
-    "related_to_event_id": "01c13ac7e7"
+    "related_to_event_id": "01c13ac7e7",
+    "change_profile": null
   },
   {
     "sent_at": "2026-04-03T15:12:24.563596+00:00",
@@ -21,7 +23,8 @@
     "event_id": "01c13ac7e7",
     "is_update": true,
     "summary": "",
-    "related_to_event_id": "3226bfc014"
+    "related_to_event_id": "3226bfc014",
+    "change_profile": null
   },
   {
     "sent_at": "2026-04-03T14:02:11.713309+00:00",
@@ -29,7 +32,8 @@
     "event_id": "3226bfc014",
     "is_update": true,
     "summary": "",
-    "related_to_event_id": "a27f09871a"
+    "related_to_event_id": "a27f09871a",
+    "change_profile": null
   },
   {
     "sent_at": "2026-04-03T13:19:34.135111+00:00",
@@ -37,6 +41,7 @@
     "event_id": "a27f09871a",
     "is_update": false,
     "summary": "",
-    "related_to_event_id": null
+    "related_to_event_id": null,
+    "change_profile": null
   }
 ]

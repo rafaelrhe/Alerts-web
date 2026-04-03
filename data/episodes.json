@@ -2,12 +2,18 @@
   {
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-03T19:32:09.413256+00:00",
-    "latest_event_at": "2026-04-03T22:40:51.486357+00:00",
+    "latest_event_at": "2026-04-03T23:02:02.602089+00:00",
     "status": "confirmed_material",
     "alert_count": 4,
     "pending_count": 0,
     "active_alerted_count": 0,
-    "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli"
+    "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli",
+    "change_profile": {
+      "change_class": "infrastructure_damage",
+      "evidence_level": "low",
+      "impact_scope": "local",
+      "novelty_level": "low"
+    }
   },
   {
     "episode_key": "natural_hazard_afghanistan",
@@ -17,7 +23,8 @@
     "alert_count": 0,
     "pending_count": 0,
     "active_alerted_count": 0,
-    "short_summary": "Natural hazard (earthquake) with no direct operational disruption to energy infrastructure, shipping, or supply chains confirmed. While oil prices show strong 1d/7d gains (WTI +11."
+    "short_summary": "Natural hazard (earthquake) with no direct operational disruption to energy infrastructure, shipping, or supply chains confirmed. While oil prices show strong 1d/7d gains (WTI +11.",
+    "change_profile": null
   },
   {
     "episode_key": "eu_legal_proceedings",
@@ -27,7 +34,8 @@
     "alert_count": 0,
     "pending_count": 0,
     "active_alerted_count": 0,
-    "short_summary": "This is a legal/political development regarding an MEP's social media post and potential prosecution for glorifying terrorism. It is not a material operational event, physical disr"
+    "short_summary": "This is a legal/political development regarding an MEP's social media post and potential prosecution for glorifying terrorism. It is not a material operational event, physical disr",
+    "change_profile": null
   },
   {
     "episode_key": "iran_us_tensions",
@@ -37,7 +45,8 @@
     "alert_count": 0,
     "pending_count": 1,
     "active_alerted_count": 0,
-    "short_summary": "Trump-Iran tensions over Hormuz Strait represent a credible geopolitical escalation scenario with direct energy infrastructure implications. The headline signals active threat rhet"
+    "short_summary": "Trump-Iran tensions over Hormuz Strait represent a credible geopolitical escalation scenario with direct energy infrastructure implications. The headline signals active threat rhet",
+    "change_profile": null
   },
   {
     "episode_key": "iran_israel_war",
@@ -47,6 +56,7 @@
     "alert_count": 1,
     "pending_count": 1,
     "active_alerted_count": 1,
-    "short_summary": "Confirmed physical attack on critical energy infrastructure (Kuwaiti refinery) with multiple units ablaze. Clear escalation in Iran-Israel conflict with direct impact on Gulf energ"
+    "short_summary": "Confirmed physical attack on critical energy infrastructure (Kuwaiti refinery) with multiple units ablaze. Clear escalation in Iran-Israel conflict with direct impact on Gulf energ",
+    "change_profile": null
   }
 ]
