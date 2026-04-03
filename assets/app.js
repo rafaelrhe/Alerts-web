@@ -86,6 +86,15 @@ function stripHtmlToText(value) {
     .trim();
 }
 
+const FALLBACK_COPY = {
+  noMaterialChange: 'Sin cambio material por ahora',
+  pendingOperationalDetail: 'Pendiente de más detalle operativo',
+  stableMonitoring: 'Seguimiento estable, sin novedad operativa adicional',
+  limitedCoverage: 'Cobertura limitada en esta actualización',
+  noRecentData: 'Seguimiento estable en esta ventana intradía',
+  recentOperationalMovement: 'Movimiento operativo reciente',
+};
+
 function cleanEpisodeLabel(value) {
   return String(value || '')
     .replace(/_/g, ' ')
@@ -216,49 +225,88 @@ function parseDailyContent(latestDaily) {
   };
 }
 
-function buildFrontTimeline(mainFrontKey, situation, episodes, alerts = []) {
+function normalizeOperationalFallback(rawDetail, options = {}) {
+  const { fallback = FALLBACK_COPY.pendingOperationalDetail } = options;
+  const detail = String(rawDetail || '').trim();
+  if (!detail) return fallback;
+
+  const normalized = detail
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (normalized.includes('sin cambio material')) return FALLBACK_COPY.noMaterialChange;
+  if (/mas detalle confirm/.test(normalized)) return FALLBACK_COPY.pendingOperationalDetail;
+  if (/sin info/.test(normalized) || /sin detall/.test(normalized)) return FALLBACK_COPY.pendingOperationalDetail;
+  if (normalized.includes('cobertura limitada')) return FALLBACK_COPY.limitedCoverage;
+
+  return detail;
+}
+
+function compactTimelineLabel(value) {
+  const raw = String(value || '').replace(/\s+/g, ' ').trim();
+  if (!raw) return '';
+  const sentence = raw.split(/[.!?]/).map((part) => part.trim()).find(Boolean) || raw;
+  return sentence.length > 94 ? `${sentence.slice(0, 91)}…` : sentence;
+}
+
+function buildFrontTimeline(mainFrontKey, situation, episodes, alerts = [], dailyData = null) {
   const items = [];
+  const seen = new Set();
+  const pushTimelineItem = (label, at) => {
+    const safeLabel = compactTimelineLabel(label);
+    if (!safeLabel) return;
+    const dedupeKey = safeLabel.toLowerCase();
+    if (seen.has(dedupeKey)) return;
+    seen.add(dedupeKey);
+    items.push({ label: safeLabel, at: at || null });
+  };
 
   const episode = asArray(episodes).find((ep) => ep.episode_key === mainFrontKey);
-  const summarySentence = String(episode?.short_summary || '')
-    .split(/[.!?]/)
-    .map((line) => line.trim())
-    .find(Boolean);
-  if (summarySentence) {
-    items.push({ label: summarySentence, at: episode.latest_event_at || episode.latest_alert_at || null });
+  const episodeTime = episode?.latest_event_at || episode?.latest_alert_at || null;
+
+  if (episode?.short_summary) {
+    pushTimelineItem(episode.short_summary, episodeTime);
   }
   if (episode?.status) {
-    items.push({ label: `Estado actual: ${cleanEpisodeLabel(episode.status)}`, at: episode.latest_event_at || episode.latest_alert_at || null });
+    pushTimelineItem(`Estado actual: ${cleanEpisodeLabel(episode.status)}`, episodeTime);
   }
 
   normalizeList(situation?.what_changed).forEach((line) => {
     const lowered = line.toLowerCase();
     if (!mainFrontKey || lowered.includes(mainFrontKey.toLowerCase())) {
-      const cleaned = line.replace(/^update en\s+/i, '').replace(/^alerta en\s+/i, '').trim();
-      items.push({ label: cleaned, at: situation.generated_at || null });
+      const cleaned = normalizeOperationalFallback(
+        line.replace(/^update en\s+/i, '').replace(/^alerta en\s+/i, '').trim(),
+        { fallback: FALLBACK_COPY.noMaterialChange },
+      );
+      pushTimelineItem(cleaned, situation.generated_at || null);
     }
   });
 
   asArray(alerts)
     .filter((alert) => !mainFrontKey || alert?.episode_key === mainFrontKey)
-    .slice(0, 4)
+    .slice(0, 3)
     .forEach((alert) => {
       const action = alert?.is_update ? 'Update' : 'Alerta';
-      const label = `${action}: ${alert?.summary || 'Movimiento operativo reciente'}`;
-      items.push({ label, at: alert?.sent_at || alert?.created_at || null });
+      const label = `${action}: ${normalizeOperationalFallback(alert?.summary, { fallback: FALLBACK_COPY.recentOperationalMovement })}`;
+      pushTimelineItem(label, alert?.sent_at || alert?.created_at || null);
     });
 
-  const dedup = [];
-  const seen = new Set();
-  items.forEach((item) => {
-    const key = item.label.toLowerCase();
-    if (!seen.has(key)) {
-      seen.add(key);
-      dedup.push(item);
-    }
-  });
+  asArray(dailyData?.points)
+    .slice(0, 2)
+    .forEach((point) => {
+      if (!mainFrontKey || point.toLowerCase().includes(mainFrontKey.toLowerCase())) {
+        pushTimelineItem(point, dailyData?.date || null);
+      }
+    });
 
-  return dedup.slice(0, 4);
+  if (!items.length && mainFrontKey) {
+    pushTimelineItem(FALLBACK_COPY.noMaterialChange, situation?.generated_at || episodeTime);
+  }
+
+  return items.slice(0, 4);
 }
 
 function parseChangedEvent(raw) {
@@ -272,10 +320,9 @@ function parseChangedEvent(raw) {
     };
   }
 
-  const rawDetail = String(match[3] || '').trim();
-  const normalizedDetail = rawDetail && rawDetail.toLowerCase() !== 'sin detalle'
-    ? rawDetail
-    : 'sin cambio material';
+  const normalizedDetail = normalizeOperationalFallback(match[3], {
+    fallback: FALLBACK_COPY.pendingOperationalDetail,
+  });
 
   return {
     action: match[1].toLowerCase(),
@@ -307,7 +354,7 @@ function dedupeChangedItems(changedItems = []) {
 function renderSituationItem(raw, type, options = {}) {
   const text = typeof raw === 'string' ? String(raw || '').trim() : '';
   const { principalFrontKey = null } = options;
-  if (!text && !raw) return 'Sin datos recientes.';
+  if (!text && !raw) return FALLBACK_COPY.noRecentData;
 
   if (type === 'changed') {
     if (typeof raw === 'object' && raw !== null && raw.eventId) {
@@ -347,7 +394,7 @@ function renderSituationItem(raw, type, options = {}) {
 
 function listToHtml(items, type = '') {
   const safeItems = asArray(items);
-  if (safeItems.length === 0) return '<li>Sin datos recientes.</li>';
+  if (safeItems.length === 0) return `<li>${FALLBACK_COPY.noRecentData}.</li>`;
   return safeItems.map((item) => `<li>${renderSituationItem(item, type)}</li>`).join('');
 }
 
@@ -383,14 +430,18 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
   const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || '');
 
   titleNode.textContent = 'Qué está pasando ahora';
-  summaryNode.textContent = situation?.headline || mainFront?.title || 'Sin novedades intradía recientes.';
+  summaryNode.textContent = normalizeOperationalFallback(
+    situation?.headline || mainFront?.title,
+    { fallback: FALLBACK_COPY.stableMonitoring },
+  );
   pointsNode.innerHTML = heroPoints.length
     ? heroPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join('')
-    : '<li>Sin actividad intradía para destacar.</li>';
+    : `<li>${FALLBACK_COPY.noMaterialChange}.</li>`;
 
+  const watchFallback = situation?.coverage_limited ? FALLBACK_COPY.limitedCoverage : FALLBACK_COPY.stableMonitoring;
   watchNode.innerHTML = compactWatch.length
     ? compactWatch.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
-    : '<li>Sin focos críticos inmediatos.</li>';
+    : `<li>${watchFallback}.</li>`;
 
   if (mainFront?.key) {
     frontNode.textContent = `Frente principal: ${cleanEpisodeLabel(mainFront.key)}`;
@@ -443,7 +494,7 @@ function renderFrontStory(mainFront, timelineItems) {
     return;
   }
 
-  title.textContent = `Evolución de ${cleanEpisodeLabel(mainFront.key)}`;
+  title.textContent = `Evolución reciente de ${cleanEpisodeLabel(mainFront.key)}`;
   list.innerHTML = safeTimelineItems.map((item) => `
     <li>
       <span class="timeline-date">${escapeHtml(formatShortDate(item.at))}</span>
@@ -466,9 +517,9 @@ function renderAlerts(alerts) {
   list.innerHTML = safeAlerts.slice(0, 25).map((a) => `
     <li>
       <span class="tag">${a.is_update ? 'update' : 'alerta'}</span>
-      <strong>${a.episode_key || 'sin episodio'}</strong><br>
-      <small>${a.sent_at || 'sin hora'}</small><br>
-      ${a.summary || 'sin resumen'}
+      <strong>${a.episode_key || 'episodio no especificado'}</strong><br>
+      <small>${a.sent_at || 'hora no especificada'}</small><br>
+      ${normalizeOperationalFallback(a.summary, { fallback: FALLBACK_COPY.pendingOperationalDetail })}
     </li>
   `).join('');
 }
@@ -497,7 +548,7 @@ function renderEpisodes(episodes, mainFront) {
       .trim();
     const briefSummary = summaryLine.length > 110
       ? `${summaryLine.slice(0, 107)}...`
-      : summaryLine || 'Sin resumen breve disponible.';
+      : summaryLine || FALLBACK_COPY.pendingOperationalDetail;
     const contextHtml = renderEventContext(e.event_identity);
     return `
       <li>
@@ -571,7 +622,7 @@ function renderStatus(status) {
     const safeReview = review && typeof review === 'object' ? review : {};
     const dailyData = parseDailyContent(latestDaily);
     const mainFront = pickMainFront(safeAlerts, safeEpisodes);
-    const frontTimeline = buildFrontTimeline(mainFront?.key, safeSituation, safeEpisodes, safeAlerts);
+    const frontTimeline = buildFrontTimeline(mainFront?.key, safeSituation, safeEpisodes, safeAlerts, dailyData);
 
     renderExecutiveHero(safeSituation, mainFront, safeEpisodes, safeAlerts);
     renderStatus(status);

@@ -288,15 +288,15 @@ header h1 {
 .timeline-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 0.2rem;
 }
 
 .timeline-list li {
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto minmax(0, 1fr);
   align-items: start;
-  column-gap: 0.45rem;
-  padding: 0.34rem 0;
+  column-gap: 0.5rem;
+  padding: 0.42rem 0;
   border-bottom: 1px solid #e6ecf8;
 }
 
@@ -315,12 +315,14 @@ header h1 {
   height: 8px;
   border-radius: 50%;
   background: #436799;
-  margin-top: 0.38rem;
+  margin-top: 0.35rem;
+  box-shadow: 0 0 0 3px #eef3fb;
 }
 
 .timeline-text {
   color: #233856;
   font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .episode-row {
