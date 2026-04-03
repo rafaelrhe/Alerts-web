@@ -504,6 +504,34 @@ small {
   padding: 0.22rem 0;
 }
 
+.change-profile-summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  margin: 0.18rem 0 0.55rem;
+}
+
+.change-profile-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  border: 1px solid #e4eaf6;
+  border-radius: 10px;
+  padding: 0.34rem 0.5rem;
+  background: #f9fbff;
+}
+
+.change-profile-label {
+  color: #4c6288;
+  font-size: 0.82rem;
+}
+
+.change-profile-value {
+  color: #1f355b;
+  font-size: 0.85rem;
+  text-transform: none;
+}
+
 @media (min-width: 760px) {
   .card {
     padding: 1rem 1.08rem;
@@ -523,6 +551,10 @@ small {
 
   .identity-label {
     min-width: 4.35rem;
+  }
+
+  .change-profile-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }

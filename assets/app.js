@@ -107,6 +107,62 @@ function titleCaseSentence(value) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+function normalizeChangeProfile(value) {
+  if (!value || typeof value !== 'object') return null;
+  const normalized = {
+    change_class: String(value.change_class || '').trim(),
+    evidence_level: String(value.evidence_level || '').trim().toLowerCase(),
+    novelty_level: String(value.novelty_level || '').trim().toLowerCase(),
+    impact_scope: String(value.impact_scope || '').trim().toLowerCase(),
+  };
+  if (!normalized.change_class && !normalized.evidence_level && !normalized.novelty_level && !normalized.impact_scope) {
+    return null;
+  }
+  return normalized;
+}
+
+function toUiLevelLabel(value) {
+  const map = {
+    high: 'Alta',
+    medium: 'Media',
+    low: 'Baja',
+  };
+  return map[String(value || '').toLowerCase()] || '';
+}
+
+function toUiScopeLabel(value) {
+  const map = {
+    local: 'Local',
+    regional: 'Regional',
+    global: 'Global',
+  };
+  return map[String(value || '').toLowerCase()] || '';
+}
+
+function renderChangeProfileSummary(changeProfile) {
+  const profile = normalizeChangeProfile(changeProfile);
+  if (!profile) return '';
+
+  const rows = [
+    ['Tipo de cambio', profile.change_class],
+    ['Evidencia', toUiLevelLabel(profile.evidence_level)],
+    ['Novedad', toUiLevelLabel(profile.novelty_level)],
+    ['Alcance', toUiScopeLabel(profile.impact_scope)],
+  ].filter(([, value]) => Boolean(value));
+
+  if (!rows.length) return '';
+  return `
+    <section class="change-profile-summary" aria-label="Change profile">
+      ${rows.map(([label, value]) => `
+        <div class="change-profile-item">
+          <span class="change-profile-label">${escapeHtml(label)}</span>
+          <strong class="change-profile-value">${escapeHtml(value)}</strong>
+        </div>
+      `).join('')}
+    </section>
+  `;
+}
+
 function compactIdentityItems(items, maxItems) {
   const safeItems = normalizeIdentityList(items);
   return {
@@ -446,8 +502,9 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
   const summaryNode = document.getElementById('exec-summary');
   const pointsNode = document.getElementById('exec-points');
   const watchNode = document.getElementById('hero-watch-list');
+  const changeProfileNode = document.getElementById('exec-change-profile');
   const titleNode = document.getElementById('exec-title');
-  if (!card || !summaryNode || !pointsNode || !watchNode || !titleNode) return;
+  if (!card || !summaryNode || !pointsNode || !watchNode || !titleNode || !changeProfileNode) return;
 
   const mainEpisode = asArray(episodes).find((episode) => episode.episode_key === mainFront?.key);
   const statusText = cleanEpisodeLabel(mainFront?.status || mainEpisode?.status || 'seguimiento activo');
@@ -481,6 +538,10 @@ function renderExecutiveHero(situation, mainFront, episodes, alerts = []) {
   watchNode.innerHTML = compactWatch.length
     ? compactWatch.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
     : `<li>${watchFallback}.</li>`;
+
+  const changeProfileHtml = renderChangeProfileSummary(mainEpisode?.change_profile);
+  changeProfileNode.innerHTML = changeProfileHtml;
+  changeProfileNode.hidden = !changeProfileHtml;
 
   card.hidden = false;
 }
