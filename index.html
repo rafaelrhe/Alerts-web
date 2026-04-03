@@ -9,7 +9,6 @@
 <body>
   <header>
     <h1>RiskMonitor</h1>
-    <p>Panel estático de situación y alertas</p>
   </header>
 
   <main>
@@ -18,23 +17,28 @@
       <div id="status-grid" class="status-grid"></div>
     </section>
 
-    <section class="card">
+    <section class="card card-situation">
       <h2>Qué está pasando</h2>
       <h3 id="situation-headline"></h3>
       <div class="columns">
         <div>
-          <h4>Qué cambió</h4>
-          <ul id="what-changed"></ul>
+          <h4>Cambios clave</h4>
+          <ul id="what-changed" class="situation-list"></ul>
         </div>
         <div>
-          <h4>Qué sigue abierto</h4>
-          <ul id="what-open"></ul>
+          <h4>Frentes en seguimiento</h4>
+          <ul id="what-open" class="situation-list"></ul>
         </div>
         <div>
-          <h4>Qué vigilar ahora</h4>
-          <ul id="what-watch"></ul>
+          <h4>Foco inmediato</h4>
+          <ul id="what-watch" class="situation-list"></ul>
         </div>
       </div>
+    </section>
+
+    <section id="daily-report-card" class="card" hidden>
+      <h2>Último informe diario</h2>
+      <div id="daily-report-content"></div>
     </section>
 
     <section class="card">

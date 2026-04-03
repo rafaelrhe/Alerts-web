@@ -1,5 +1,15 @@
 [
   {
+    "episode_key": "eu_legal_proceedings",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-03T16:01:46.044226+00:00",
+    "status": "closed",
+    "alert_count": 0,
+    "pending_count": 0,
+    "active_alerted_count": 0,
+    "short_summary": "This is a legal/political development regarding an MEP's social media post and potential prosecution for glorifying terrorism. It is not a material operational event, physical disr"
+  },
+  {
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-03T15:12:24.563596+00:00",
     "latest_event_at": "2026-04-03T15:12:24.563623+00:00",
