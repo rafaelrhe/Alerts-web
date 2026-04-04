@@ -693,40 +693,6 @@ function renderReview(review) {
   list.innerHTML = listToHtml(items);
 }
 
-function renderViews(viewPayloads = []) {
-  const card = document.getElementById('views-card');
-  const grid = document.getElementById('views-grid');
-  if (!card || !grid) return;
-
-  const safeViews = asArray(viewPayloads)
-    .filter((view) => view && typeof view === 'object' && !view?.meta?.empty);
-  if (!safeViews.length) {
-    card.hidden = true;
-    return;
-  }
-
-  grid.innerHTML = safeViews.map((view) => {
-    const title = cleanEpisodeLabel(view.view_id || 'view');
-    const groups = asArray(view.groups).slice(0, 3).map((group) => {
-      const episode = cleanEpisodeLabel(group.group_key || 'sin grupo');
-      const topEvent = asArray(group.events)[0] || {};
-      const summary = normalizeOperationalFallback(topEvent.last_decision_reason || topEvent.reason || topEvent.summary, {
-        fallback: FALLBACK_COPY.pendingOperationalDetail,
-      });
-      return `<li><strong>${escapeHtml(episode)}</strong><p>${escapeHtml(summary)}</p></li>`;
-    }).join('');
-
-    return `
-      <article class="view-block">
-        <h3>${escapeHtml(title)}</h3>
-        <p class="view-meta">${escapeHtml(String(view?.meta?.returned_events ?? 0))} eventos visibles</p>
-        <ul class="view-list">${groups || '<li>Sin eventos visibles.</li>'}</ul>
-      </article>
-    `;
-  }).join('');
-  card.hidden = false;
-}
-
 function renderStatus(status) {
   const container = document.getElementById('status-grid');
   if (!container) return;
@@ -757,16 +723,13 @@ function renderStatus(status) {
 
 (async function main() {
   try {
-    const [status, alerts, episodes, situation, review, latestDaily, iranView, energyView, globalView] = await Promise.all([
+    const [status, alerts, episodes, situation, review, latestDaily] = await Promise.all([
       loadJson('data/status.json'),
       loadJson('data/alerts.json'),
       loadJson('data/episodes.json'),
       loadJson('data/situation.json'),
       loadJson('data/review_summary.json'),
       loadJson('data/latest_daily.json', { optional: true }),
-      loadJson('data/views/iran_risk.json', { optional: true }),
-      loadJson('data/views/energy_risk.json', { optional: true }),
-      loadJson('data/views/global_radar.json', { optional: true }),
     ]);
 
     const safeAlerts = asArray(alerts);
@@ -784,7 +747,6 @@ function renderStatus(status) {
     renderDailyReport(dailyData);
     renderAlerts(safeAlerts);
     renderReview(safeReview);
-    renderViews([iranView, energyView, globalView]);
   } catch (err) {
     document.body.innerHTML += `<p style="padding:1rem;color:#9f2431;background:#ffecee;border:1px solid #f4c9cf;border-radius:10px">Error cargando dashboard: ${err.message}</p>`;
   }
