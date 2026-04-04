@@ -226,29 +226,46 @@ function statusPriority(status) {
   return 1;
 }
 
+function frontStructuralScore(episode = {}) {
+  let score = 0;
+  const status = String(episode?.status || '').toLowerCase();
+  if (status === 'confirmed_material') score += 50;
+  else if (status === 'potential' || status === 'partially_confirmed') score += 20;
+
+  if (episode?.is_active || (episode?.active_alerted_count || 0) > 0) score += 30;
+
+  const scenario = String(episode?.scenario || '').toLowerCase();
+  if (['geopolitical_conflict', 'energy_shock', 'macro_fx_shock', 'financial_stress'].includes(scenario)) score += 25;
+
+  const evidence = String(episode?.evidence_level || episode?.change_profile?.evidence_level || '').toLowerCase();
+  if (evidence === 'high') score += 15;
+  else if (evidence === 'medium') score += 8;
+
+  const impact = String(episode?.impact || episode?.change_profile?.impact_scope || '').toLowerCase();
+  if (scenario === 'natural_hazard' && impact !== 'material') score -= 20;
+
+  const latestTs = episode?.latest_alert_at || episode?.latest_event_at;
+  const recencyHours = latestTs ? Math.max(0, (Date.now() - new Date(latestTs).getTime()) / (1000 * 60 * 60)) : 999;
+  if (recencyHours < 6) score += 5;
+  else if (recencyHours < 24) score += 3;
+
+  return score;
+}
+
 function pickPrincipalFront(alerts = [], episodes = []) {
-  // Regla estricta: la lectura principal solo usa señales intradía/operativas.
-  // Nunca se considera latest_daily para esta selección.
-  const latestIntradayAlert = asArray(alerts).slice().sort((a, b) => {
-    const atA = new Date(a?.sent_at || a?.created_at || 0).getTime() || 0;
-    const atB = new Date(b?.sent_at || b?.created_at || 0).getTime() || 0;
-    return atB - atA;
-  }).find((item) => item?.episode_key);
-
-  if (latestIntradayAlert?.episode_key) {
-    return {
-      key: latestIntradayAlert.episode_key,
-      title: latestIntradayAlert.summary || cleanEpisodeLabel(latestIntradayAlert.episode_key),
-      status: null,
-    };
-  }
-
-  const rankedEpisode = asArray(episodes).slice().sort((a, b) => {
+  // Prioriza persistencia y materialidad; evita que novedad táctica desplace frentes estratégicos.
+  const candidateEpisodes = asArray(episodes).filter((ep) => ep?.episode_key);
+  const explicitMain = candidateEpisodes.find((ep) => ep?.is_main_front);
+  const rankedEpisode = explicitMain || candidateEpisodes.slice().sort((a, b) => {
+    const scoreDelta = frontStructuralScore(b) - frontStructuralScore(a);
+    if (scoreDelta !== 0) return scoreDelta;
     const byStatus = statusPriority(b.status) - statusPriority(a.status);
     if (byStatus !== 0) return byStatus;
     const byActive = (b.active_alerted_count || 0) - (a.active_alerted_count || 0);
     if (byActive !== 0) return byActive;
-    return (b.alert_count || 0) - (a.alert_count || 0);
+    const atA = new Date(a?.latest_alert_at || a?.latest_event_at || 0).getTime() || 0;
+    const atB = new Date(b?.latest_alert_at || b?.latest_event_at || 0).getTime() || 0;
+    return atB - atA;
   })[0];
 
   if (rankedEpisode?.episode_key) {
@@ -256,6 +273,19 @@ function pickPrincipalFront(alerts = [], episodes = []) {
       key: rankedEpisode.episode_key,
       title: rankedEpisode.short_summary || cleanEpisodeLabel(rankedEpisode.episode_key),
       status: rankedEpisode.status || null,
+    };
+  }
+
+  const latestIntradayAlert = asArray(alerts).slice().sort((a, b) => {
+    const atA = new Date(a?.sent_at || a?.created_at || 0).getTime() || 0;
+    const atB = new Date(b?.sent_at || b?.created_at || 0).getTime() || 0;
+    return atB - atA;
+  }).find((item) => item?.episode_key);
+  if (latestIntradayAlert?.episode_key) {
+    return {
+      key: latestIntradayAlert.episode_key,
+      title: latestIntradayAlert.summary || cleanEpisodeLabel(latestIntradayAlert.episode_key),
+      status: null,
     };
   }
 
