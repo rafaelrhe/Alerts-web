@@ -9,35 +9,37 @@
 <body>
   <header>
     <h1>RiskMonitor</h1>
+    <p class="subtitle">Executive Risk View · Active & Watchlist</p>
   </header>
 
   <main>
-    <section class="card card-secondary">
+    <section class="card card-secondary compact-card">
       <h2>Estado del radar</h2>
       <div id="status-grid" class="status-grid"></div>
     </section>
 
-    <section id="executive-hero" class="card card-hero card-primary" hidden>
-      <p class="eyebrow">Front principal</p>
-      <h2 id="exec-title">Situación principal</h2>
-      <p id="exec-summary" class="exec-summary"></p>
-      <ul id="exec-points" class="exec-points"></ul>
+    <section class="split-grid">
+      <section class="card block-card">
+        <div class="block-head">
+          <h2>Active events</h2>
+          <span id="active-count" class="tag tag-neutral">0</span>
+        </div>
+        <ul id="active-events" class="event-tree"></ul>
+      </section>
+
+      <section class="card block-card card-secondary">
+        <div class="block-head">
+          <h2>Watchlist</h2>
+          <span id="watchlist-count" class="tag tag-neutral">0</span>
+        </div>
+        <ul id="watchlist-events" class="event-tree"></ul>
+      </section>
     </section>
 
-    <section id="branches-card" class="card card-secondary" hidden>
-      <h2>Ramificaciones del frente principal</h2>
-      <ul id="branches-list" class="list"></ul>
-    </section>
-
-    <section class="card">
-      <h2>Actividad reciente</h2>
-      <ul id="activity-list" class="list"></ul>
-    </section>
-
-    <section class="card card-secondary">
-      <h2>Episodios en radar (segundo plano)</h2>
-      <ul id="radar-list" class="list"></ul>
-    </section>
+    <details class="card card-secondary collapsed-history">
+      <summary>Closed / lower-priority events (secondary)</summary>
+      <ul id="closed-events" class="list compact-list"></ul>
+    </details>
   </main>
 
   <script src="assets/app.js"></script>
