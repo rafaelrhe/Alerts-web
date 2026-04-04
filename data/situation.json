@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-04-04T00:32:17.710466+00:00",
+  "generated_at": "2026-04-04T01:02:08.949443+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
+    "alerta en energy market shock (unknown_change, evidencia medium): sin detalle",
     "alerta en iran war (physical_action, evidencia high): sin detalle",
-    "alerta en iran war: sin detalle",
-    "update en iran war: sin detalle"
+    "alerta en iran war: sin detalle"
   ],
   "what_is_open": [
+    "energy market shock: estado=confirmed_material alertas=1 pendientes=0",
     "iran war: estado=confirmed_material alertas=5 pendientes=0",
     "natural hazard afghanistan: estado=insufficient_signal alertas=0 pendientes=0",
-    "eu legal proceedings: estado=closed alertas=0 pendientes=0",
-    "iran us tensions: estado=partially_confirmed alertas=0 pendientes=0"
+    "eu legal proceedings: estado=closed alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
     "Confirmar señales pendientes en iran israel war (1)."

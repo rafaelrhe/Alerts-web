@@ -1,5 +1,21 @@
 [
   {
+    "episode_key": "energy_market_shock",
+    "latest_alert_at": "2026-04-04T01:02:08.749064+00:00",
+    "latest_event_at": "2026-04-04T01:02:08.749096+00:00",
+    "status": "confirmed_material",
+    "alert_count": 1,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "Strong market signal: WTI crude up 11.41% in 1 day and 20.78% in 7 days; Brent up 7.78% in 1 day; heating oil up 7.5% in 1 day. Flags confirm oil_spike and refined_products_spike. ",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "medium",
+      "impact_scope": "global",
+      "novelty_level": "high"
+    }
+  },
+  {
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-04T00:32:17.478096+00:00",
     "latest_event_at": "2026-04-04T00:32:17.478126+00:00",
