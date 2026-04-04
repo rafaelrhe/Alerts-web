@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-04-04T00:02:10.782011+00:00",
-  "last_run_at": "2026-04-04T00:02:10.597016+00:00",
+  "generated_at": "2026-04-04T00:32:17.709473+00:00",
+  "last_run_at": "2026-04-04T00:32:17.480413+00:00",
   "run_mode": "intraday",
   "coverage_degraded": false,
   "degraded_reason": null,
   "feeds_ok": 44,
   "total_feeds": 44,
-  "alerts_last_24h": 5,
+  "alerts_last_24h": 6,
   "active_episodes_count": 1,
-  "pending_events_count": 2,
-  "active_alerted_events_count": 1
+  "pending_events_count": 1,
+  "active_alerted_events_count": 2
 }
