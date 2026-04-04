@@ -235,7 +235,7 @@ function frontStructuralScore(episode = {}) {
   if (episode?.is_active || (episode?.active_alerted_count || 0) > 0) score += 30;
 
   const scenario = String(episode?.scenario || '').toLowerCase();
-  if (['geopolitical_conflict', 'energy_shock', 'macro_fx_shock', 'financial_stress'].includes(scenario)) score += 25;
+  if (['geopolitical_conflict', 'energy_shock', 'macro_fx_shock', 'climate_natural_hazard'].includes(scenario)) score += 25;
 
   const evidence = String(episode?.evidence_level || episode?.change_profile?.evidence_level || '').toLowerCase();
   if (evidence === 'high') score += 15;
