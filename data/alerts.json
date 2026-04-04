@@ -1,15 +1,15 @@
 [
   {
-    "sent_at": "2026-04-04T11:59:00.610262+00:00",
-    "episode_key": "seismic_activity_se_asia",
-    "event_id": "0c8bc59286",
+    "sent_at": "2026-04-04T12:20:54.324465+00:00",
+    "episode_key": "us_embassy_attack_riyadh",
+    "event_id": "eff20f2bf2",
     "is_update": false,
     "summary": "",
     "related_to_event_id": null,
     "change_profile": {
-      "change_class": "unknown_change",
+      "change_class": "physical_action",
       "evidence_level": "high",
-      "impact_scope": "regional",
+      "impact_scope": "local",
       "novelty_level": "high"
     }
   }
