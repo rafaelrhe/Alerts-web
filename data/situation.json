@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T21:01:47.272183+00:00",
+  "generated_at": "2026-04-04T21:31:42.845587+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
     "alerta en iran war (unknown_change, evidencia high): sin detalle"
@@ -8,7 +8,7 @@
     "asia pacific seismic activity: estado=confirmed_material alertas=0 pendientes=1",
     "iran war: estado=confirmed_material alertas=1 pendientes=1",
     "geopolitical escalation iran: estado=partially_confirmed alertas=0 pendientes=0",
-    "none: estado=analysis_only alertas=0 pendientes=0"
+    "iran global general: estado=partially_confirmed alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
     "Confirmar señales pendientes en asia pacific seismic activity (1).",
@@ -26,6 +26,15 @@
     "latest_signal": "",
     "latest_signal_at": "2026-04-04T19:02:10.569152+00:00",
     "branches": [
+      {
+        "episode_key": "iran_global_general",
+        "title": "iran global general",
+        "status": "partially_confirmed",
+        "relationship": "vínculo temático",
+        "summary": "Sin resumen reciente",
+        "latest_signal": null,
+        "latest_signal_at": "2026-04-04T21:31:42.656295+00:00"
+      },
       {
         "episode_key": "geopolitical_escalation_iran",
         "title": "geopolitical escalation iran",
@@ -59,6 +68,13 @@
       "status": "partially_confirmed",
       "summary": "Cluster origin=scenario (HIGH RECALL MODE). Evento concreto: UNICEF reporta uso de menores por grupos armados en Irán. Señales de apoyo: oil_spike (WTI +11.41% 1d, +20.78% 7d; Bren",
       "latest_event_at": "2026-04-04T19:31:53.847121+00:00"
+    },
+    {
+      "episode_key": "iran_global_general",
+      "title": "iran global general",
+      "status": "partially_confirmed",
+      "summary": "",
+      "latest_event_at": "2026-04-04T21:31:42.656295+00:00"
     },
     {
       "episode_key": "none",
