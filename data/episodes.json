@@ -1,5 +1,28 @@
 [
   {
+    "id": "iran_kuwait_escalation",
+    "episode_key": "iran_kuwait_escalation",
+    "latest_alert_at": "2026-04-04T15:31:57.225016+00:00",
+    "latest_event_at": "2026-04-04T15:31:57.225048+00:00",
+    "status": "confirmed_material",
+    "is_active": true,
+    "alert_count": 1,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "regional",
+      "novelty_level": "high"
+    },
+    "scenario": "geopolitical_escalation",
+    "evidence_level": "high",
+    "impact": "material",
+    "main_front_score": 100,
+    "is_main_front": true
+  },
+  {
     "id": "seismic_activity_apac",
     "episode_key": "seismic_activity_apac",
     "latest_alert_at": null,
@@ -30,7 +53,7 @@
     "status": "confirmed_material",
     "is_active": false,
     "alert_count": 1,
-    "pending_count": 1,
+    "pending_count": 0,
     "active_alerted_count": 0,
     "short_summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
     "change_profile": {
@@ -43,7 +66,7 @@
     "evidence_level": "high",
     "impact": "material",
     "main_front_score": 70,
-    "is_main_front": true
+    "is_main_front": false
   },
   {
     "id": "wildfire_china",

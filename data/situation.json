@@ -1,14 +1,15 @@
 {
-  "generated_at": "2026-04-04T14:14:55.547870+00:00",
+  "generated_at": "2026-04-04T16:01:40.802788+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
+    "alerta en iran kuwait escalation (unknown_change, evidencia high): sin detalle",
     "alerta en iran war (unknown_change, evidencia high): sin detalle"
   ],
   "what_is_open": [
+    "iran kuwait escalation: estado=confirmed_material alertas=1 pendientes=0",
     "seismic activity apac: estado=confirmed_material alertas=0 pendientes=1",
-    "iran war: estado=confirmed_material alertas=1 pendientes=1",
-    "wildfire china: estado=low_impact alertas=0 pendientes=1",
-    "seismic activity oceanic: estado=low_impact alertas=0 pendientes=1"
+    "iran war: estado=confirmed_material alertas=1 pendientes=0",
+    "wildfire china: estado=low_impact alertas=0 pendientes=1"
   ],
   "what_to_watch_now": [
     "Confirmar señales pendientes en seismic activity apac (1).",
@@ -20,15 +21,31 @@
     "message": null
   },
   "main_front": {
-    "episode_key": "iran_war",
-    "title": "iran war",
-    "why_now": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
+    "episode_key": "iran_kuwait_escalation",
+    "title": "iran kuwait escalation",
+    "why_now": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
     "status": "confirmed_material",
     "latest_signal": "",
-    "latest_signal_at": "2026-04-04T13:17:49.730710+00:00",
-    "branches": []
+    "latest_signal_at": "2026-04-04T15:31:57.225016+00:00",
+    "branches": [
+      {
+        "episode_key": "iran_war",
+        "title": "iran war",
+        "status": "confirmed_material",
+        "relationship": "vínculo temático",
+        "summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
+        "latest_signal": "",
+        "latest_signal_at": "2026-04-04T13:17:49.730710+00:00"
+      }
+    ]
   },
   "recent_activity": [
+    {
+      "type": "alert",
+      "episode_key": "iran_kuwait_escalation",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-04T15:31:57.225016+00:00"
+    },
     {
       "type": "alert",
       "episode_key": "iran_war",
@@ -43,6 +60,13 @@
       "status": "confirmed_material",
       "summary": "Dos terremotos confirmados (Filipinas 6.0M, Indonesia 5.9M) con población afectada significativa (460k y 530k en MMI IV). Eventos naturales reales con potencial impacto en logístic",
       "latest_event_at": "2026-04-04T13:17:49.731058+00:00"
+    },
+    {
+      "episode_key": "iran_war",
+      "title": "iran war",
+      "status": "confirmed_material",
+      "summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
+      "latest_event_at": "2026-04-04T14:14:55.352132+00:00"
     },
     {
       "episode_key": "wildfire_china",

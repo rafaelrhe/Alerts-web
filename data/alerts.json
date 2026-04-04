@@ -1,5 +1,19 @@
 [
   {
+    "sent_at": "2026-04-04T15:31:57.225016+00:00",
+    "episode_key": "iran_kuwait_escalation",
+    "event_id": "09c50a38fb",
+    "is_update": false,
+    "summary": "",
+    "related_to_event_id": null,
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "regional",
+      "novelty_level": "high"
+    }
+  },
+  {
     "sent_at": "2026-04-04T13:17:49.730710+00:00",
     "episode_key": "iran_war",
     "event_id": "1a927bfbe3",
