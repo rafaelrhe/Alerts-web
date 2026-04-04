@@ -1,8 +1,8 @@
 [
   {
-    "sent_at": "2026-04-04T15:31:57.225016+00:00",
-    "episode_key": "iran_kuwait_escalation",
-    "event_id": "09c50a38fb",
+    "sent_at": "2026-04-04T19:02:10.569152+00:00",
+    "episode_key": "iran_war",
+    "event_id": "90235bbbd5",
     "is_update": false,
     "summary": "",
     "related_to_event_id": null,
@@ -10,21 +10,6 @@
       "change_class": "unknown_change",
       "evidence_level": "high",
       "impact_scope": "regional",
-      "novelty_level": "high"
-    },
-    "escalation_state": null
-  },
-  {
-    "sent_at": "2026-04-04T13:17:49.730710+00:00",
-    "episode_key": "iran_war",
-    "event_id": "1a927bfbe3",
-    "is_update": false,
-    "summary": "",
-    "related_to_event_id": null,
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "high",
-      "impact_scope": "local",
       "novelty_level": "high"
     },
     "escalation_state": null

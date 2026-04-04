@@ -1,102 +1,71 @@
 {
-  "generated_at": "2026-04-04T18:32:09.957841+00:00",
+  "generated_at": "2026-04-04T20:02:09.001307+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
-    "alerta en iran kuwait escalation (unknown_change, evidencia high): sin detalle",
     "alerta en iran war (unknown_change, evidencia high): sin detalle"
   ],
   "what_is_open": [
-    "iran kuwait escalation: estado=confirmed_material alertas=1 pendientes=0",
-    "seismic activity apac: estado=confirmed_material alertas=0 pendientes=1",
-    "iran war: estado=confirmed_material alertas=1 pendientes=0",
-    "taiwan earthquake 04 04 2026: estado=confirmed_event_no_operational_impact_yet alertas=0 pendientes=1"
+    "asia pacific seismic activity: estado=confirmed_material alertas=0 pendientes=1",
+    "iran war: estado=confirmed_material alertas=1 pendientes=1",
+    "geopolitical escalation iran: estado=partially_confirmed alertas=0 pendientes=0",
+    "none: estado=analysis_only alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
-    "Confirmar señales pendientes en seismic activity apac (1).",
-    "Confirmar señales pendientes en seismic activity oceanic (1).",
-    "Confirmar señales pendientes en wildfire china (1)."
+    "Confirmar señales pendientes en asia pacific seismic activity (1).",
+    "Confirmar señales pendientes en iran war (1)."
   ],
   "daily_context": {
-    "sent_at": "2026-04-04T17:17:38.131530+00:00",
-    "message": "<article style=\"font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.45;color:#0f172a;background:#ffffff;border:1px solid #d9dfeb;border-radius:12px;padding:14px;\"><header style=\"border-bottom:1px solid #d9dfeb;padding:0 0 10px 0;margin:0 0 12px 0;\"><h2 style=\"margin:0 0 4px 0;font-size:18px;\">RiskMonitor | Informe diario ejecutivo</h2><p style=\"margin:0;color:#475569;\">2026-04-04 · Visión integrada de contexto y seguimiento</p></header><section style=\"ma"
+    "sent_at": null,
+    "message": null
   },
   "main_front": {
     "episode_key": "iran_war",
     "title": "iran war",
-    "why_now": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
+    "why_now": "Cluster origin=configured. Evento concreto: escalada geopolítica Iran-Israel con impacto energético confirmado. Señales presentes: (1) acción física confirmada (ataque a complejo p",
     "status": "confirmed_material",
     "latest_signal": "",
-    "latest_signal_at": "2026-04-04T13:17:49.730710+00:00",
+    "latest_signal_at": "2026-04-04T19:02:10.569152+00:00",
     "branches": [
       {
-        "episode_key": "iran_usa_military_escalation_april_2026",
-        "title": "iran usa military escalation april 2026",
+        "episode_key": "geopolitical_escalation_iran",
+        "title": "geopolitical escalation iran",
         "status": "partially_confirmed",
-        "relationship": "vínculo temático",
-        "summary": "Escalada geopolítica Iran-USA con confirmación de acción física (F-15 derribado, crew missing, jefe del ejército destituido). Origen 'scenario' con HIGH RECALL MODE. Señales de mer",
-        "latest_signal": null,
-        "latest_signal_at": "2026-04-04T18:32:09.778766+00:00"
-      },
-      {
-        "episode_key": "iran_kuwait_escalation",
-        "title": "iran kuwait escalation",
-        "status": "confirmed_material",
         "relationship": "misma hipótesis",
-        "summary": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
-        "latest_signal": "",
-        "latest_signal_at": "2026-04-04T15:31:57.225016+00:00"
+        "summary": "Cluster origin=scenario (HIGH RECALL MODE). Evento concreto: UNICEF reporta uso de menores por grupos armados en Irán. Señales de apoyo: oil_spike (WTI +11.41% 1d, +20.78% 7d; Bren",
+        "latest_signal": null,
+        "latest_signal_at": "2026-04-04T19:31:53.847121+00:00"
       }
     ]
   },
   "recent_activity": [
     {
       "type": "alert",
-      "episode_key": "iran_kuwait_escalation",
-      "summary": "Sin detalle",
-      "timestamp": "2026-04-04T15:31:57.225016+00:00"
-    },
-    {
-      "type": "alert",
       "episode_key": "iran_war",
       "summary": "Sin detalle",
-      "timestamp": "2026-04-04T13:17:49.730710+00:00"
+      "timestamp": "2026-04-04T19:02:10.569152+00:00"
     }
   ],
   "radar": [
     {
-      "episode_key": "iran_kuwait_escalation",
-      "title": "iran kuwait escalation",
+      "episode_key": "asia_pacific_seismic_activity",
+      "title": "asia pacific seismic activity",
       "status": "confirmed_material",
-      "summary": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
-      "latest_event_at": "2026-04-04T15:31:57.225048+00:00"
+      "summary": "Cluster de hazards naturales: terremotos en Australia (5.5M, 2k afectados MMI V), Taiwan (5.5M, 80k afectados MMI VI), Filipinas (6M, 460k afectados MMI IV), y Mid-Indian Ridge. Or",
+      "latest_event_at": "2026-04-04T19:02:10.569519+00:00"
     },
     {
-      "episode_key": "seismic_activity_apac",
-      "title": "seismic activity apac",
-      "status": "confirmed_material",
-      "summary": "Dos terremotos confirmados (Filipinas 6.0M, Indonesia 5.9M) con población afectada significativa (460k y 530k en MMI IV). Eventos naturales reales con potencial impacto en logístic",
-      "latest_event_at": "2026-04-04T13:17:49.731058+00:00"
-    },
-    {
-      "episode_key": "taiwan_earthquake_04_04_2026",
-      "title": "taiwan earthquake 04 04 2026",
-      "status": "confirmed_event_no_operational_impact_yet",
-      "summary": "Cluster GDACS con evento natural concreto: terremoto M5.5 en Taiwan (04/04/2026 17:14 UTC), profundidad 22km, afectando ~80k personas en MMI VI. Origin=gdacs con query_origin=clima",
-      "latest_event_at": "2026-04-04T18:01:57.264726+00:00"
-    },
-    {
-      "episode_key": "iran_usa_military_escalation_april_2026",
-      "title": "iran usa military escalation april 2026",
+      "episode_key": "geopolitical_escalation_iran",
+      "title": "geopolitical escalation iran",
       "status": "partially_confirmed",
-      "summary": "Escalada geopolítica Iran-USA con confirmación de acción física (F-15 derribado, crew missing, jefe del ejército destituido). Origen 'scenario' con HIGH RECALL MODE. Señales de mer",
-      "latest_event_at": "2026-04-04T18:32:09.778766+00:00"
+      "summary": "Cluster origin=scenario (HIGH RECALL MODE). Evento concreto: UNICEF reporta uso de menores por grupos armados en Irán. Señales de apoyo: oil_spike (WTI +11.41% 1d, +20.78% 7d; Bren",
+      "latest_event_at": "2026-04-04T19:31:53.847121+00:00"
     },
     {
-      "episode_key": "wildfire_china",
-      "title": "wildfire china",
-      "status": "low_impact",
-      "summary": "Ruido: incendio forestal en China con severidad GREEN (bajo impacto). Sin confirmación de disrupciones operativas. Evento rutinario sin relevancia material para cadena de suministr",
-      "latest_event_at": "2026-04-04T13:17:35.078480+00:00"
+      "episode_key": "none",
+      "title": "none",
+      "status": "analysis_only",
+      "summary": "Análisis prospectivo sobre opciones europeas para restaurar shipping en el Estrecho de Ormuz post-conflicto. Es commentary/explainer sin hecho nuevo concreto. No introduce novedad ",
+      "latest_event_at": "2026-04-04T19:01:48.144668+00:00"
     }
   ]
 }
