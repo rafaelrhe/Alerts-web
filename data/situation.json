@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T10:31:30.785082+00:00",
+  "generated_at": "2026-04-04T10:41:21.162677+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
     "alerta en energy market shock (unknown_change, evidencia medium): sin detalle",
@@ -13,10 +13,109 @@
   ],
   "what_to_watch_now": [
     "Confirmar señales pendientes en iran israel war (1).",
-    "Confirmar señales pendientes en indonesia natural hazard 2026 (1)."
+    "Confirmar señales pendientes en indonesia natural hazard 2026 (1).",
+    "Debilidad detectada: Deduplicación deficiente: 8 eventos de energy_market_shock en memoria reciente con IDs distintos pero señales idénticas o muy similares, generando ruido y decisiones inconsistentes (algunos alert, otros no_alert)",
+    "Debilidad detectada: Laguna en sourcing de noticias energéticas: todos los eventos de shock energético carecen de narrativa causal confirmada (missing: root_cause_narrative, supply_disruption_confirmation, geopolitical_trigger_confirmation), sugiriendo que el sistema detecta bien señales de mercado pero no captura noticias operativas o geopolíticas subyacentes"
   ],
   "daily_context": {
     "sent_at": "2026-04-03T17:57:25.493173+00:00",
     "message": "<article style=\"font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.45;color:#0f172a;background:#ffffff;border:1px solid #d9dfeb;border-radius:12px;padding:14px;\"><header style=\"border-bottom:1px solid #d9dfeb;padding:0 0 10px 0;margin:0 0 12px 0;\"><h2 style=\"margin:0 0 4px 0;font-size:18px;\">RiskMonitor | Informe diario ejecutivo</h2><p style=\"margin:0;color:#475569;\">2026-04-03 · Visión integrada de contexto y seguimiento</p></header><section style=\"ma"
-  }
+  },
+  "main_front": {
+    "episode_key": "iran_war",
+    "title": "iran war",
+    "why_now": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli",
+    "status": "confirmed_material",
+    "latest_signal": "",
+    "latest_signal_at": "2026-04-04T00:32:17.478096+00:00",
+    "branches": [
+      {
+        "episode_key": "iran_us_tensions",
+        "title": "iran us tensions",
+        "status": "partially_confirmed",
+        "relationship": "misma hipótesis",
+        "summary": "Trump-Iran tensions over Hormuz Strait represent a credible geopolitical escalation scenario with direct energy infrastructure implications. The headline signals active threat rhet",
+        "latest_signal": null,
+        "latest_signal_at": "2026-04-03T13:31:35.972410+00:00"
+      },
+      {
+        "episode_key": "iran_israel_war",
+        "title": "iran israel war",
+        "status": "confirmed_material",
+        "relationship": "misma hipótesis",
+        "summary": "Confirmed physical attack on critical energy infrastructure (Kuwaiti refinery) with multiple units ablaze. Clear escalation in Iran-Israel conflict with direct impact on Gulf energ",
+        "latest_signal": "",
+        "latest_signal_at": "2026-04-03T13:19:34.135111+00:00"
+      }
+    ]
+  },
+  "recent_activity": [
+    {
+      "type": "alert",
+      "episode_key": "energy_market_shock",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-04T03:32:24.251449+00:00"
+    },
+    {
+      "type": "alert",
+      "episode_key": "indonesia_natural_hazard_2026",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-04T02:15:32.252716+00:00"
+    },
+    {
+      "type": "alert",
+      "episode_key": "energy_market_shock",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-04T01:02:08.749064+00:00"
+    },
+    {
+      "type": "alert",
+      "episode_key": "iran_war",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-04T00:32:17.478096+00:00"
+    },
+    {
+      "type": "alert",
+      "episode_key": "iran_war",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-03T19:32:09.413256+00:00"
+    }
+  ],
+  "radar": [
+    {
+      "episode_key": "energy_market_shock",
+      "title": "energy market shock",
+      "status": "confirmed_material",
+      "summary": "Strong market signal: WTI crude up 11.41% in 1 day and 20.78% in 7 days; Brent up 7.78% in 1 day; heating oil up 7.5% in 1 day. Flags confirm oil_spike and refined_products_spike. ",
+      "latest_event_at": "2026-04-04T03:32:24.251481+00:00"
+    },
+    {
+      "episode_key": "iran_israel_war",
+      "title": "iran israel war",
+      "status": "confirmed_material",
+      "summary": "Confirmed physical attack on critical energy infrastructure (Kuwaiti refinery) with multiple units ablaze. Clear escalation in Iran-Israel conflict with direct impact on Gulf energ",
+      "latest_event_at": "2026-04-03T13:19:34.135143+00:00"
+    },
+    {
+      "episode_key": "indonesia_natural_hazard_2026",
+      "title": "indonesia natural hazard 2026",
+      "status": "confirmed_material",
+      "summary": "Confirmed natural hazard event (M5.9 earthquake in Indonesia, 540k affected at MMI IV) with material energy market response. Oil prices spiked 7.78% (Brent) and 11.41% (WTI) same d",
+      "latest_event_at": "2026-04-04T02:32:07.719462+00:00"
+    },
+    {
+      "episode_key": "energy_market_repricing",
+      "title": "energy market repricing",
+      "status": "partially_confirmed",
+      "summary": "Material energy price shock confirmed by strong market signals (WTI +11.41% 1d, +20.78% 7d; Brent +7.78% 1d; heating oil +7.5% 1d). Flags confirm oil_spike and refined_products_spi",
+      "latest_event_at": "2026-04-04T01:31:40.522408+00:00"
+    },
+    {
+      "episode_key": "iran_us_tensions",
+      "title": "iran us tensions",
+      "status": "partially_confirmed",
+      "summary": "Trump-Iran tensions over Hormuz Strait represent a credible geopolitical escalation scenario with direct energy infrastructure implications. The headline signals active threat rhet",
+      "latest_event_at": "2026-04-03T13:31:35.972410+00:00"
+    }
+  ]
 }
