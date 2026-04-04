@@ -2,17 +2,17 @@
   {
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-03T19:32:09.413256+00:00",
-    "latest_event_at": "2026-04-03T23:02:02.602089+00:00",
+    "latest_event_at": "2026-04-04T00:02:10.595547+00:00",
     "status": "confirmed_material",
     "alert_count": 4,
-    "pending_count": 0,
+    "pending_count": 1,
     "active_alerted_count": 0,
     "short_summary": "Confirmed kinetic military action: U.S. F-15E fighter jet downed over Iran with active search and rescue operation. This represents hard escalation in an active geopolitical confli",
     "change_profile": {
-      "change_class": "infrastructure_damage",
-      "evidence_level": "low",
+      "change_class": "physical_action",
+      "evidence_level": "high",
       "impact_scope": "local",
-      "novelty_level": "low"
+      "novelty_level": "high"
     }
   },
   {
@@ -43,7 +43,7 @@
     "latest_event_at": "2026-04-03T13:31:35.972410+00:00",
     "status": "partially_confirmed",
     "alert_count": 0,
-    "pending_count": 1,
+    "pending_count": 0,
     "active_alerted_count": 0,
     "short_summary": "Trump-Iran tensions over Hormuz Strait represent a credible geopolitical escalation scenario with direct energy infrastructure implications. The headline signals active threat rhet",
     "change_profile": null
