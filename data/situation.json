@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T17:31:23.845427+00:00",
+  "generated_at": "2026-04-04T18:32:09.957841+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
     "alerta en iran kuwait escalation (unknown_change, evidencia high): sin detalle",
@@ -9,7 +9,7 @@
     "iran kuwait escalation: estado=confirmed_material alertas=1 pendientes=0",
     "seismic activity apac: estado=confirmed_material alertas=0 pendientes=1",
     "iran war: estado=confirmed_material alertas=1 pendientes=0",
-    "wildfire china: estado=low_impact alertas=0 pendientes=1"
+    "taiwan earthquake 04 04 2026: estado=confirmed_event_no_operational_impact_yet alertas=0 pendientes=1"
   ],
   "what_to_watch_now": [
     "Confirmar señales pendientes en seismic activity apac (1).",
@@ -21,21 +21,30 @@
     "message": "<article style=\"font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.45;color:#0f172a;background:#ffffff;border:1px solid #d9dfeb;border-radius:12px;padding:14px;\"><header style=\"border-bottom:1px solid #d9dfeb;padding:0 0 10px 0;margin:0 0 12px 0;\"><h2 style=\"margin:0 0 4px 0;font-size:18px;\">RiskMonitor | Informe diario ejecutivo</h2><p style=\"margin:0;color:#475569;\">2026-04-04 · Visión integrada de contexto y seguimiento</p></header><section style=\"ma"
   },
   "main_front": {
-    "episode_key": "iran_kuwait_escalation",
-    "title": "iran kuwait escalation",
-    "why_now": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
+    "episode_key": "iran_war",
+    "title": "iran war",
+    "why_now": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
     "status": "confirmed_material",
     "latest_signal": "",
-    "latest_signal_at": "2026-04-04T15:31:57.225016+00:00",
+    "latest_signal_at": "2026-04-04T13:17:49.730710+00:00",
     "branches": [
       {
-        "episode_key": "iran_war",
-        "title": "iran war",
-        "status": "confirmed_material",
+        "episode_key": "iran_usa_military_escalation_april_2026",
+        "title": "iran usa military escalation april 2026",
+        "status": "partially_confirmed",
         "relationship": "vínculo temático",
-        "summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
+        "summary": "Escalada geopolítica Iran-USA con confirmación de acción física (F-15 derribado, crew missing, jefe del ejército destituido). Origen 'scenario' con HIGH RECALL MODE. Señales de mer",
+        "latest_signal": null,
+        "latest_signal_at": "2026-04-04T18:32:09.778766+00:00"
+      },
+      {
+        "episode_key": "iran_kuwait_escalation",
+        "title": "iran kuwait escalation",
+        "status": "confirmed_material",
+        "relationship": "misma hipótesis",
+        "summary": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
         "latest_signal": "",
-        "latest_signal_at": "2026-04-04T13:17:49.730710+00:00"
+        "latest_signal_at": "2026-04-04T15:31:57.225016+00:00"
       }
     ]
   },
@@ -55,6 +64,13 @@
   ],
   "radar": [
     {
+      "episode_key": "iran_kuwait_escalation",
+      "title": "iran kuwait escalation",
+      "status": "confirmed_material",
+      "summary": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
+      "latest_event_at": "2026-04-04T15:31:57.225048+00:00"
+    },
+    {
       "episode_key": "seismic_activity_apac",
       "title": "seismic activity apac",
       "status": "confirmed_material",
@@ -62,11 +78,18 @@
       "latest_event_at": "2026-04-04T13:17:49.731058+00:00"
     },
     {
-      "episode_key": "iran_war",
-      "title": "iran war",
-      "status": "confirmed_material",
-      "summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
-      "latest_event_at": "2026-04-04T14:14:55.352132+00:00"
+      "episode_key": "taiwan_earthquake_04_04_2026",
+      "title": "taiwan earthquake 04 04 2026",
+      "status": "confirmed_event_no_operational_impact_yet",
+      "summary": "Cluster GDACS con evento natural concreto: terremoto M5.5 en Taiwan (04/04/2026 17:14 UTC), profundidad 22km, afectando ~80k personas en MMI VI. Origin=gdacs con query_origin=clima",
+      "latest_event_at": "2026-04-04T18:01:57.264726+00:00"
+    },
+    {
+      "episode_key": "iran_usa_military_escalation_april_2026",
+      "title": "iran usa military escalation april 2026",
+      "status": "partially_confirmed",
+      "summary": "Escalada geopolítica Iran-USA con confirmación de acción física (F-15 derribado, crew missing, jefe del ejército destituido). Origen 'scenario' con HIGH RECALL MODE. Señales de mer",
+      "latest_event_at": "2026-04-04T18:32:09.778766+00:00"
     },
     {
       "episode_key": "wildfire_china",
@@ -74,20 +97,6 @@
       "status": "low_impact",
       "summary": "Ruido: incendio forestal en China con severidad GREEN (bajo impacto). Sin confirmación de disrupciones operativas. Evento rutinario sin relevancia material para cadena de suministr",
       "latest_event_at": "2026-04-04T13:17:35.078480+00:00"
-    },
-    {
-      "episode_key": "seismic_activity_oceanic",
-      "title": "seismic activity oceanic",
-      "status": "low_impact",
-      "summary": "Ruido: terremoto en Mid-Indian Ridge (5.5M, profundidad 10km) sin población afectada confirmada ([unknown]). Evento geológico sin impacto operativo claro. Descartar como ruido de b",
-      "latest_event_at": "2026-04-04T13:17:35.078032+00:00"
-    },
-    {
-      "episode_key": "us_domestic_policy",
-      "title": "us domestic policy",
-      "status": "out_of_scope",
-      "summary": "Ruido: política doméstica estadounidense (deportaciones). Sin relevancia operativa para riesgos de cadena de suministro, energía o logística. Análisis de política exterior sin hech",
-      "latest_event_at": "2026-04-04T13:17:35.078407+00:00"
     }
   ]
 }

@@ -5,10 +5,10 @@
     "latest_alert_at": "2026-04-04T15:31:57.225016+00:00",
     "latest_event_at": "2026-04-04T15:31:57.225048+00:00",
     "status": "confirmed_material",
-    "is_active": true,
+    "is_active": false,
     "alert_count": 1,
     "pending_count": 0,
-    "active_alerted_count": 1,
+    "active_alerted_count": 0,
     "short_summary": "Evento concreto de escalada geopolítica: ataque atribuido a Irán contra infraestructura crítica de Kuwait (plantas de energía y desalinización). Origin=scenario (HIGH RECALL MODE).",
     "change_profile": {
       "change_class": "unknown_change",
@@ -20,8 +20,8 @@
     "scenario": "geopolitical_escalation",
     "evidence_level": "high",
     "impact": "material",
-    "main_front_score": 100,
-    "is_main_front": true
+    "main_front_score": 70,
+    "is_main_front": false
   },
   {
     "id": "seismic_activity_apac",
@@ -51,7 +51,7 @@
     "id": "iran_war",
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-04T13:17:49.730710+00:00",
-    "latest_event_at": "2026-04-04T14:14:55.352132+00:00",
+    "latest_event_at": "2026-04-04T18:01:57.264317+00:00",
     "status": "confirmed_material",
     "is_active": false,
     "alert_count": 1,
@@ -61,14 +61,62 @@
     "change_profile": {
       "change_class": "unknown_change",
       "evidence_level": "high",
-      "impact_scope": "regional",
+      "impact_scope": "local",
+      "novelty_level": "high"
+    },
+    "escalation_state": null,
+    "scenario": "geopolitical_escalation",
+    "evidence_level": "high",
+    "impact": "material",
+    "main_front_score": 70,
+    "is_main_front": true
+  },
+  {
+    "id": "taiwan_earthquake_04_04_2026",
+    "episode_key": "taiwan_earthquake_04_04_2026",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T18:01:57.264726+00:00",
+    "status": "confirmed_event_no_operational_impact_yet",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Cluster GDACS con evento natural concreto: terremoto M5.5 en Taiwan (04/04/2026 17:14 UTC), profundidad 22km, afectando ~80k personas en MMI VI. Origin=gdacs con query_origin=clima",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "local",
+      "novelty_level": "medium"
+    },
+    "escalation_state": null,
+    "scenario": "natural_hazard",
+    "evidence_level": "high",
+    "impact": "local",
+    "main_front_score": 45,
+    "is_main_front": false
+  },
+  {
+    "id": "iran_usa_military_escalation_april_2026",
+    "episode_key": "iran_usa_military_escalation_april_2026",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T18:32:09.778766+00:00",
+    "status": "partially_confirmed",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Escalada geopolítica Iran-USA con confirmación de acción física (F-15 derribado, crew missing, jefe del ejército destituido). Origen 'scenario' con HIGH RECALL MODE. Señales de mer",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "local",
       "novelty_level": "high"
     },
     "escalation_state": null,
     "scenario": "military_escalation",
     "evidence_level": "high",
-    "impact": "material",
-    "main_front_score": 70,
+    "impact": "local",
+    "main_front_score": 40,
     "is_main_front": false
   },
   {
