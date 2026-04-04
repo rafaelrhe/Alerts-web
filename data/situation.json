@@ -1,30 +1,78 @@
 {
-  "generated_at": "2026-04-04T11:45:56.652149+00:00",
-  "headline": "Situación estable",
-  "what_changed": [],
-  "what_is_open": [],
+  "generated_at": "2026-04-04T12:01:20.612960+00:00",
+  "headline": "Frentes materiales activos",
+  "what_changed": [
+    "alerta en seismic activity se asia (unknown_change, evidencia high): sin detalle"
+  ],
+  "what_is_open": [
+    "seismic activity se asia: estado=confirmed_material alertas=1 pendientes=0",
+    "wildfire china: estado=new alertas=0 pendientes=1",
+    "seismic activity indian ocean: estado=new alertas=0 pendientes=1",
+    "none: estado=noise alertas=0 pendientes=0"
+  ],
   "what_to_watch_now": [
-    "Sin alertas críticas nuevas; mantener vigilancia sobre episodios activos."
+    "Confirmar señales pendientes en seismic activity indian ocean (1).",
+    "Confirmar señales pendientes en wildfire china (1)."
   ],
   "daily_context": {
     "sent_at": null,
     "message": null
   },
   "main_front": {
-    "episode_key": null,
-    "title": null,
-    "why_now": "Frente más activo por estado y señales recientes.",
-    "status": null,
-    "latest_signal": null,
-    "latest_signal_at": null,
-    "branches": []
+    "episode_key": "seismic_activity_se_asia",
+    "title": "seismic activity se asia",
+    "why_now": "Dos terremotos confirmados en zona de riesgo sísmico (Filipinas M6.0, Indonesia M5.9) con población potencialmente afectada (310k y 530k en MMI IV respectivamente). Eventos GDACS v",
+    "status": "confirmed_material",
+    "latest_signal": "",
+    "latest_signal_at": "2026-04-04T11:59:00.610262+00:00",
+    "branches": [
+      {
+        "episode_key": "seismic_activity_indian_ocean",
+        "title": "seismic activity indian ocean",
+        "status": "new",
+        "relationship": "misma hipótesis",
+        "summary": "Terremoto en Mid-Indian Ridge (M5.5, profundidad 10km) con población afectada desconocida. Ubicación en cordillera submarina sin población costera cercana. Severidad 'green' y sin ",
+        "latest_signal": null,
+        "latest_signal_at": "2026-04-04T11:58:51.758373+00:00"
+      }
+    ]
   },
   "recent_activity": [
     {
-      "type": "status",
-      "summary": "Sin actividad reciente relevante; seguimiento estable.",
-      "timestamp": "2026-04-04T11:45:56.652145+00:00"
+      "type": "alert",
+      "episode_key": "seismic_activity_se_asia",
+      "summary": "Sin detalle",
+      "timestamp": "2026-04-04T11:59:00.610262+00:00"
     }
   ],
-  "radar": []
+  "radar": [
+    {
+      "episode_key": "wildfire_china",
+      "title": "wildfire china",
+      "status": "new",
+      "summary": "Notificación GDACS de incendio forestal en China con severidad 'green'. Evento real pero sin confirmación de impacto operativo, cierre de infraestructura o disruption de cadena de ",
+      "latest_event_at": "2026-04-04T11:58:51.758654+00:00"
+    },
+    {
+      "episode_key": "seismic_activity_indian_ocean",
+      "title": "seismic activity indian ocean",
+      "status": "new",
+      "summary": "Terremoto en Mid-Indian Ridge (M5.5, profundidad 10km) con población afectada desconocida. Ubicación en cordillera submarina sin población costera cercana. Severidad 'green' y sin ",
+      "latest_event_at": "2026-04-04T11:58:51.758373+00:00"
+    },
+    {
+      "episode_key": "none",
+      "title": "none",
+      "status": "noise",
+      "summary": "Artículo de lifestyle sin novedad operativa. Familias celebrando fin de año nuevo en Irán. No introduce hechos nuevos sobre conflicto, energía o infraestructura. Las señales de mer",
+      "latest_event_at": "2026-04-04T11:58:51.758612+00:00"
+    },
+    {
+      "episode_key": "iran_war",
+      "title": "iran war",
+      "status": "noise",
+      "summary": "Acusación de Amnistía Internacional sobre reclutamiento de menores de edad en Irán. Aunque toca tema de derechos humanos y conflicto, no introduce novedad operativa sobre escalada,",
+      "latest_event_at": "2026-04-04T11:58:51.757666+00:00"
+    }
+  ]
 }

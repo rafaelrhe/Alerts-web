@@ -1,1 +1,117 @@
-[]
+[
+  {
+    "id": "seismic_activity_se_asia",
+    "episode_key": "seismic_activity_se_asia",
+    "latest_alert_at": "2026-04-04T11:59:00.610262+00:00",
+    "latest_event_at": "2026-04-04T11:59:00.610291+00:00",
+    "status": "confirmed_material",
+    "is_active": true,
+    "alert_count": 1,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "Dos terremotos confirmados en zona de riesgo sísmico (Filipinas M6.0, Indonesia M5.9) con población potencialmente afectada (310k y 530k en MMI IV respectivamente). Eventos GDACS v",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "regional",
+      "novelty_level": "high"
+    },
+    "scenario": "natural_hazard_earthquake",
+    "evidence_level": "high",
+    "impact": "material",
+    "main_front_score": 100,
+    "is_main_front": true
+  },
+  {
+    "id": "wildfire_china",
+    "episode_key": "wildfire_china",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T11:58:51.758654+00:00",
+    "status": "new",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Notificación GDACS de incendio forestal en China con severidad 'green'. Evento real pero sin confirmación de impacto operativo, cierre de infraestructura o disruption de cadena de ",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "local",
+      "novelty_level": "medium"
+    },
+    "scenario": "natural_hazard_wildfire",
+    "evidence_level": "high",
+    "impact": "local",
+    "main_front_score": 20,
+    "is_main_front": false
+  },
+  {
+    "id": "seismic_activity_indian_ocean",
+    "episode_key": "seismic_activity_indian_ocean",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T11:58:51.758373+00:00",
+    "status": "new",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Terremoto en Mid-Indian Ridge (M5.5, profundidad 10km) con población afectada desconocida. Ubicación en cordillera submarina sin población costera cercana. Severidad 'green' y sin ",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "local",
+      "novelty_level": "medium"
+    },
+    "scenario": "natural_hazard_earthquake",
+    "evidence_level": "high",
+    "impact": "local",
+    "main_front_score": 20,
+    "is_main_front": false
+  },
+  {
+    "id": "none",
+    "episode_key": "none",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T11:58:51.758612+00:00",
+    "status": "noise",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 0,
+    "active_alerted_count": 0,
+    "short_summary": "Artículo de lifestyle sin novedad operativa. Familias celebrando fin de año nuevo en Irán. No introduce hechos nuevos sobre conflicto, energía o infraestructura. Las señales de mer",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "low",
+      "impact_scope": "local",
+      "novelty_level": "low"
+    },
+    "scenario": "policy_commentary",
+    "evidence_level": "low",
+    "impact": "local",
+    "main_front_score": 5,
+    "is_main_front": false
+  },
+  {
+    "id": "iran_war",
+    "episode_key": "iran_war",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T11:58:51.757666+00:00",
+    "status": "noise",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 0,
+    "active_alerted_count": 0,
+    "short_summary": "Acusación de Amnistía Internacional sobre reclutamiento de menores de edad en Irán. Aunque toca tema de derechos humanos y conflicto, no introduce novedad operativa sobre escalada,",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "low",
+      "impact_scope": "local",
+      "novelty_level": "medium"
+    },
+    "scenario": "human_rights_allegation",
+    "evidence_level": "low",
+    "impact": "local",
+    "main_front_score": 5,
+    "is_main_front": false
+  }
+]
