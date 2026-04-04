@@ -1,67 +1,52 @@
 {
-  "generated_at": "2026-04-04T12:41:40.200128+00:00",
+  "generated_at": "2026-04-04T13:01:37.399858+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
-    "alerta en us iran escalation (physical_action, evidencia high): sin detalle"
+    "alerta en us embassy attack riyadh (unknown_change, evidencia high): sin detalle"
   ],
   "what_is_open": [
-    "us iran escalation: estado=confirmed_material alertas=1 pendientes=0",
-    "seismic activity asia pacific: estado=confirmed_material alertas=0 pendientes=1",
-    "wildfire china: estado=low_severity_natural_event alertas=0 pendientes=0",
-    "seismic activity oceanic: estado=low_impact_natural_event alertas=0 pendientes=0"
+    "us embassy attack riyadh: estado=confirmed_material alertas=1 pendientes=0",
+    "southeast asia earthquakes april 2026: estado=confirmed_material alertas=0 pendientes=1",
+    "none: estado=noise alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
-    "Confirmar señales pendientes en seismic activity asia pacific (1)."
+    "Confirmar señales pendientes en southeast asia earthquakes april 2026 (1)."
   ],
   "daily_context": {
     "sent_at": null,
     "message": null
   },
   "main_front": {
-    "episode_key": "us_iran_escalation",
-    "title": "us iran escalation",
-    "why_now": "IRGC condena ataque a embajada estadounidense en Riad y niega participación iraní. Esto indica un evento operativo real: ataque a infraestructura diplomática crítica en Arabia Saud",
+    "episode_key": "us_embassy_attack_riyadh",
+    "title": "us embassy attack riyadh",
+    "why_now": "IRGC condena ataque a embajada estadounidense en Riad y niega participación iraní. Esto sugiere un evento físico real (ataque a embajada) con implicación geopolítica potencial. Aun",
     "status": "confirmed_material",
     "latest_signal": "",
-    "latest_signal_at": "2026-04-04T12:41:40.015133+00:00",
+    "latest_signal_at": "2026-04-04T12:44:37.939752+00:00",
     "branches": []
   },
   "recent_activity": [
     {
       "type": "alert",
-      "episode_key": "us_iran_escalation",
+      "episode_key": "us_embassy_attack_riyadh",
       "summary": "Sin detalle",
-      "timestamp": "2026-04-04T12:41:40.015133+00:00"
+      "timestamp": "2026-04-04T12:44:37.939752+00:00"
     }
   ],
   "radar": [
     {
-      "episode_key": "seismic_activity_asia_pacific",
-      "title": "seismic activity asia pacific",
+      "episode_key": "southeast_asia_earthquakes_april_2026",
+      "title": "southeast asia earthquakes april 2026",
       "status": "confirmed_material",
-      "summary": "Dos terremotos significativos en región Asia-Pacífico (Filipinas M6.0, Indonesia M5.9) con afectación potencial de 310k y 530k personas respectivamente en MMI IV. Eventos naturales",
-      "latest_event_at": "2026-04-04T12:41:40.015482+00:00"
-    },
-    {
-      "episode_key": "wildfire_china",
-      "title": "wildfire china",
-      "status": "low_severity_natural_event",
-      "summary": "Notificación GDACS de incendio forestal en China con severidad GREEN (baja). Sin impacto operativo confirmado. Evento natural rutinario sin transmisión clara a infraestructura crít",
-      "latest_event_at": "2026-04-04T12:41:28.576368+00:00"
-    },
-    {
-      "episode_key": "seismic_activity_oceanic",
-      "title": "seismic activity oceanic",
-      "status": "low_impact_natural_event",
-      "summary": "Terremoto M5.5 en Mid-Indian Ridge (zona oceánica profunda, 10km de profundidad). Ubicación en dorsal oceánica sin población afectada (reported as [unknown]). Bajo impacto operativ",
-      "latest_event_at": "2026-04-04T12:41:28.576237+00:00"
+      "summary": "Dos terremotos confirmados en Filipinas (6.0M, 310k afectados en MMI IV) e Indonesia (5.9M, 530k afectados en MMI IV) en 04/04/2026. Eventos naturales reales con impacto potencial ",
+      "latest_event_at": "2026-04-04T12:44:37.940071+00:00"
     },
     {
       "episode_key": "none",
       "title": "none",
       "status": "noise",
       "summary": "Artículo sobre familias iraníes disfrutando de picnics durante vacaciones de Año Nuevo. No contiene novedad operativa ni hecho nuevo relevante. Es contenido de vida cotidiana sin i",
-      "latest_event_at": "2026-04-04T12:41:28.576306+00:00"
+      "latest_event_at": "2026-04-04T12:44:24.970927+00:00"
     }
   ]
 }
