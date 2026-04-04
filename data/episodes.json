@@ -18,7 +18,7 @@
   {
     "episode_key": "energy_market_shock",
     "latest_alert_at": "2026-04-04T01:02:08.749064+00:00",
-    "latest_event_at": "2026-04-04T01:02:08.749096+00:00",
+    "latest_event_at": "2026-04-04T01:38:57.660381+00:00",
     "status": "confirmed_material",
     "alert_count": 1,
     "pending_count": 0,
@@ -27,7 +27,7 @@
     "change_profile": {
       "change_class": "unknown_change",
       "evidence_level": "medium",
-      "impact_scope": "global",
+      "impact_scope": "local",
       "novelty_level": "high"
     }
   },
