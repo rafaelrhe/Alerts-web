@@ -1,5 +1,19 @@
 [
   {
+    "sent_at": "2026-04-04T02:15:32.252716+00:00",
+    "episode_key": "indonesia_natural_hazard_2026",
+    "event_id": "5c30c0883c",
+    "is_update": false,
+    "summary": "",
+    "related_to_event_id": null,
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "local",
+      "novelty_level": "medium"
+    }
+  },
+  {
     "sent_at": "2026-04-04T01:02:08.749064+00:00",
     "episode_key": "energy_market_shock",
     "event_id": "evt_market_2b002ed282",

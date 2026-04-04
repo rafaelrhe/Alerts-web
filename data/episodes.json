@@ -1,5 +1,21 @@
 [
   {
+    "episode_key": "indonesia_natural_hazard_2026",
+    "latest_alert_at": "2026-04-04T02:15:32.252716+00:00",
+    "latest_event_at": "2026-04-04T02:32:07.719462+00:00",
+    "status": "confirmed_material",
+    "alert_count": 1,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Confirmed natural hazard event (M5.9 earthquake in Indonesia, 540k affected at MMI IV) with material energy market response. Oil prices spiked 7.78% (Brent) and 11.41% (WTI) same d",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "low",
+      "impact_scope": "global",
+      "novelty_level": "low"
+    }
+  },
+  {
     "episode_key": "energy_market_repricing",
     "latest_alert_at": null,
     "latest_event_at": "2026-04-04T01:31:40.522408+00:00",
