@@ -16,6 +16,7 @@
       "impact_scope": "regional",
       "novelty_level": "high"
     },
+    "escalation_state": null,
     "scenario": "geopolitical_escalation",
     "evidence_level": "high",
     "impact": "material",
@@ -39,6 +40,7 @@
       "impact_scope": "regional",
       "novelty_level": "high"
     },
+    "escalation_state": null,
     "scenario": "earthquake",
     "evidence_level": "high",
     "impact": "material",
@@ -62,6 +64,7 @@
       "impact_scope": "regional",
       "novelty_level": "high"
     },
+    "escalation_state": null,
     "scenario": "military_escalation",
     "evidence_level": "high",
     "impact": "material",
@@ -85,6 +88,7 @@
       "impact_scope": "local",
       "novelty_level": "medium"
     },
+    "escalation_state": null,
     "scenario": "wildfire",
     "evidence_level": "high",
     "impact": "local",
@@ -108,6 +112,7 @@
       "impact_scope": "local",
       "novelty_level": "medium"
     },
+    "escalation_state": null,
     "scenario": "earthquake",
     "evidence_level": "high",
     "impact": "local",
@@ -131,6 +136,7 @@
       "impact_scope": "local",
       "novelty_level": "low"
     },
+    "escalation_state": null,
     "scenario": "policy",
     "evidence_level": "low",
     "impact": "local",
