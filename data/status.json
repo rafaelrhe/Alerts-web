@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-04-04T10:41:21.161801+00:00",
-  "last_run_at": "2026-04-04T10:41:20.974826+00:00",
+  "generated_at": "2026-04-04T11:01:30.588623+00:00",
+  "last_run_at": "2026-04-04T11:01:30.411276+00:00",
   "run_mode": "intraday",
   "coverage_degraded": false,
   "degraded_reason": null,
-  "feeds_ok": null,
-  "total_feeds": null,
-  "alerts_last_24h": 9,
-  "active_episodes_count": 4,
-  "pending_events_count": 2,
-  "active_alerted_events_count": 3
+  "feeds_ok": 26,
+  "total_feeds": 26,
+  "alerts_last_24h": 0,
+  "active_episodes_count": 0,
+  "pending_events_count": 0,
+  "active_alerted_events_count": 0
 }

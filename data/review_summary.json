@@ -1,21 +1,9 @@
 {
-  "generated_at": "2026-04-04T10:41:21.162219+00:00",
-  "sent_at": "2026-04-04T10:41:20.974067+00:00",
-  "window_days": 7,
-  "findings": [
-    "El sistema emitió una alerta correcta sobre shock energético (WTI +11.4% 1d, +20.8% 7d; Brent +7.8% 1d) con señales de mercado claras y materiales. La alerta fue oportuna y bien calibrada. Sin embargo, se detectan dos debilidades: (1) múltiples eventos duplicados o casi-duplicados en memoria (8 eventos de energy_market_shock con decisiones inconsistentes entre sí), sugiriendo problema de deduplica"
-  ],
+  "generated_at": "2026-04-04T11:01:30.588745+00:00",
+  "sent_at": null,
+  "window_days": null,
+  "findings": [],
   "coverage_issues": [],
-  "weak_spots": [
-    "Deduplicación deficiente: 8 eventos de energy_market_shock en memoria reciente con IDs distintos pero señales idénticas o muy similares, generando ruido y decisiones inconsistentes (algunos alert, otros no_alert)",
-    "Laguna en sourcing de noticias energéticas: todos los eventos de shock energético carecen de narrativa causal confirmada (missing: root_cause_narrative, supply_disruption_confirmation, geopolitical_trigger_confirmation), sugiriendo que el sistema detecta bien señales de mercado pero no captura noticias operativas o geopolíticas subyacentes",
-    "Cobertura limitada de infraestructura energética en Asia-Pacífico: terremoto en Indonesia con 540k afectados no generó investigación visible sobre refinerías, puertos o gasoductos regionales",
-    "Ausencia de artículos recientes sobre energía: los 6 artículos recientes incluyen Irán (geopolítica general), deportaciones, y terremotos, pero ninguno sobre mercados energéticos, refinerías, OPEC, sanciones o Hormuz, a pesar del shock de +20% en WTI"
-  ],
-  "recommendations": [
-    "Añadir query configurada específica para 'oil market news', 'OPEC production', 'refinery outage', 'Strait of Hormuz' para mejorar captura de narrativa causal en shocks energéticos",
-    "Ajustar umbral de deduplicación de eventos de mercado: considerar agrupar eventos con mismo root_episode_key y señales de mercado idénticas en ventana de 2-4 horas",
-    "Incluir en queries de natural_hazard términos como 'refinery', 'LNG terminal', 'oil port' para capturar impacto en infraestructura energética",
-    "Añadir señal de mercado para natural gas (Henry Hub) para complementar cobertura de energía"
-  ]
+  "weak_spots": [],
+  "recommendations": []
 }
