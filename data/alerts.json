@@ -1,7 +1,7 @@
 [
   {
-    "sent_at": "2026-04-04T12:20:54.324465+00:00",
-    "episode_key": "us_embassy_attack_riyadh",
+    "sent_at": "2026-04-04T12:41:40.015133+00:00",
+    "episode_key": "us_iran_escalation",
     "event_id": "eff20f2bf2",
     "is_update": false,
     "summary": "",
@@ -9,7 +9,7 @@
     "change_profile": {
       "change_class": "physical_action",
       "evidence_level": "high",
-      "impact_scope": "local",
+      "impact_scope": "regional",
       "novelty_level": "high"
     }
   }
