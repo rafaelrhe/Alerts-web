@@ -1,28 +1,5 @@
 [
   {
-    "id": "iran_war",
-    "episode_key": "iran_war",
-    "latest_alert_at": "2026-04-04T13:17:49.730710+00:00",
-    "latest_event_at": "2026-04-04T13:17:49.731124+00:00",
-    "status": "confirmed_material",
-    "is_active": true,
-    "alert_count": 1,
-    "pending_count": 0,
-    "active_alerted_count": 1,
-    "short_summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "high",
-      "impact_scope": "global",
-      "novelty_level": "high"
-    },
-    "scenario": "shipping_disruption",
-    "evidence_level": "high",
-    "impact": "material",
-    "main_front_score": 100,
-    "is_main_front": true
-  },
-  {
     "id": "seismic_activity_apac",
     "episode_key": "seismic_activity_apac",
     "latest_alert_at": null,
@@ -44,6 +21,29 @@
     "impact": "material",
     "main_front_score": 70,
     "is_main_front": false
+  },
+  {
+    "id": "iran_war",
+    "episode_key": "iran_war",
+    "latest_alert_at": "2026-04-04T13:17:49.730710+00:00",
+    "latest_event_at": "2026-04-04T14:14:55.352132+00:00",
+    "status": "confirmed_material",
+    "is_active": false,
+    "alert_count": 1,
+    "pending_count": 1,
+    "active_alerted_count": 0,
+    "short_summary": "Escalación militar confirmada: Irán derriba F-15E estadounidense (primer avión de guerra derribado en el conflicto). Acción cinética física con víctimas confirmadas. Señal operativ",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "high",
+      "impact_scope": "regional",
+      "novelty_level": "high"
+    },
+    "scenario": "military_escalation",
+    "evidence_level": "high",
+    "impact": "material",
+    "main_front_score": 70,
+    "is_main_front": true
   },
   {
     "id": "wildfire_china",

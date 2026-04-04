@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-04T14:01:34.502881+00:00",
+  "generated_at": "2026-04-04T14:14:55.547870+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
     "alerta en iran war (unknown_change, evidencia high): sin detalle"
   ],
   "what_is_open": [
-    "iran war: estado=confirmed_material alertas=1 pendientes=0",
     "seismic activity apac: estado=confirmed_material alertas=0 pendientes=1",
+    "iran war: estado=confirmed_material alertas=1 pendientes=1",
     "wildfire china: estado=low_impact alertas=0 pendientes=1",
     "seismic activity oceanic: estado=low_impact alertas=0 pendientes=1"
   ],
