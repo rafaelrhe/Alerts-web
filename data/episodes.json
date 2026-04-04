@@ -19,7 +19,7 @@
     "scenario": "geopolitical_conflict",
     "evidence_level": "high",
     "impact": "material",
-    "main_front_score": 125,
+    "main_front_score": 123,
     "is_main_front": true
   },
   {
@@ -83,7 +83,7 @@
     "scenario": "energy_shock",
     "evidence_level": "low",
     "impact": "material",
-    "main_front_score": 80,
+    "main_front_score": 78,
     "is_main_front": false
   },
   {
@@ -106,7 +106,7 @@
     "scenario": "energy_shock",
     "evidence_level": "medium",
     "impact": "global",
-    "main_front_score": 58,
+    "main_front_score": 56,
     "is_main_front": false
   },
   {
@@ -156,6 +156,24 @@
     "pending_count": 0,
     "active_alerted_count": 0,
     "short_summary": "This is a legal/political development regarding an MEP's social media post and potential prosecution for glorifying terrorism. It is not a material operational event, physical disr",
+    "change_profile": null,
+    "scenario": null,
+    "evidence_level": null,
+    "impact": null,
+    "main_front_score": 3,
+    "is_main_front": false
+  },
+  {
+    "id": "multi_global_general",
+    "episode_key": "multi_global_general",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-03T13:19:27.655027+00:00",
+    "status": "insufficient_signal",
+    "is_active": false,
+    "alert_count": 0,
+    "pending_count": 0,
+    "active_alerted_count": 0,
+    "short_summary": "Commentary and analysis piece on Israeli public sentiment regarding the Iran war. No new operational development, no material escalation, no new action. Reflects existing conflict ",
     "change_profile": null,
     "scenario": null,
     "evidence_level": null,
