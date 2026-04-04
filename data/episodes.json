@@ -1,5 +1,21 @@
 [
   {
+    "episode_key": "energy_market_repricing",
+    "latest_alert_at": null,
+    "latest_event_at": "2026-04-04T01:31:40.522408+00:00",
+    "status": "partially_confirmed",
+    "alert_count": 0,
+    "pending_count": 0,
+    "active_alerted_count": 0,
+    "short_summary": "Material energy price shock confirmed by strong market signals (WTI +11.41% 1d, +20.78% 7d; Brent +7.78% 1d; heating oil +7.5% 1d). Flags confirm oil_spike and refined_products_spi",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "medium",
+      "impact_scope": "global",
+      "novelty_level": "high"
+    }
+  },
+  {
     "episode_key": "energy_market_shock",
     "latest_alert_at": "2026-04-04T01:02:08.749064+00:00",
     "latest_event_at": "2026-04-04T01:02:08.749096+00:00",
