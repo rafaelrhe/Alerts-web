@@ -27,8 +27,8 @@
     "id": "iran_global_general",
     "episode_key": "iran_global_general",
     "latest_alert_at": null,
-    "latest_event_at": "2026-04-05T16:01:55.983421+00:00",
-    "status": "confirmed_material",
+    "latest_event_at": "2026-04-05T16:31:47.728843+00:00",
+    "status": "partially_confirmed",
     "is_active": false,
     "alert_count": 0,
     "pending_count": 0,
@@ -43,8 +43,8 @@
     "escalation_state": "stable",
     "scenario": null,
     "evidence_level": "medium",
-    "impact": "material",
-    "main_front_score": 63,
+    "impact": "local",
+    "main_front_score": 33,
     "is_main_front": false
   }
 ]
