@@ -1,5 +1,29 @@
 [
   {
+    "id": "iran_war",
+    "episode_key": "iran_war",
+    "latest_alert_at": "2026-04-05T00:31:52.986128+00:00",
+    "latest_event_at": "2026-04-05T01:01:51.218025+00:00",
+    "status": "confirmed_material",
+    "is_active": true,
+    "alert_count": 2,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "Cluster origin=configured. Evento concreto: escalada geopolítica Iran-Israel con impacto energético confirmado. Señales presentes: (1) acción física confirmada (ataque a complejo p",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "low",
+      "impact_scope": "global",
+      "novelty_level": "medium"
+    },
+    "escalation_state": "degrading",
+    "scenario": "geopolitical_escalation",
+    "evidence_level": "low",
+    "impact": "material",
+    "main_front_score": 83,
+    "is_main_front": true
+  },
+  {
     "id": "asia_pacific_seismic_activity",
     "episode_key": "asia_pacific_seismic_activity",
     "latest_alert_at": null,
@@ -20,32 +44,32 @@
     "scenario": "earthquake",
     "evidence_level": "high",
     "impact": "material",
-    "main_front_score": 70,
+    "main_front_score": 68,
     "is_main_front": false
   },
   {
-    "id": "iran_war",
-    "episode_key": "iran_war",
-    "latest_alert_at": "2026-04-04T19:02:10.569152+00:00",
-    "latest_event_at": "2026-04-04T20:02:08.803034+00:00",
-    "status": "confirmed_material",
-    "is_active": false,
+    "id": "iran_global_general",
+    "episode_key": "iran_global_general",
+    "latest_alert_at": "2026-04-05T03:31:54.139506+00:00",
+    "latest_event_at": "2026-04-05T06:31:52.085566+00:00",
+    "status": "partially_confirmed",
+    "is_active": true,
     "alert_count": 1,
-    "pending_count": 1,
-    "active_alerted_count": 0,
-    "short_summary": "Cluster origin=configured. Evento concreto: escalada geopolítica Iran-Israel con impacto energético confirmado. Señales presentes: (1) acción física confirmada (ataque a complejo p",
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "",
     "change_profile": {
       "change_class": "unknown_change",
-      "evidence_level": "high",
-      "impact_scope": "global",
-      "novelty_level": "high"
+      "evidence_level": "medium",
+      "impact_scope": "local",
+      "novelty_level": "medium"
     },
-    "escalation_state": null,
-    "scenario": "geopolitical_escalation",
-    "evidence_level": "high",
-    "impact": "material",
-    "main_front_score": 70,
-    "is_main_front": true
+    "escalation_state": "stable",
+    "scenario": null,
+    "evidence_level": "medium",
+    "impact": "local",
+    "main_front_score": 63,
+    "is_main_front": false
   },
   {
     "id": "geopolitical_escalation_iran",
@@ -68,31 +92,7 @@
     "scenario": "geopolitical_escalation",
     "evidence_level": "high",
     "impact": "local",
-    "main_front_score": 40,
-    "is_main_front": false
-  },
-  {
-    "id": "iran_global_general",
-    "episode_key": "iran_global_general",
-    "latest_alert_at": null,
-    "latest_event_at": "2026-04-04T21:31:42.656295+00:00",
-    "status": "partially_confirmed",
-    "is_active": false,
-    "alert_count": 0,
-    "pending_count": 0,
-    "active_alerted_count": 0,
-    "short_summary": "",
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "low",
-      "impact_scope": "local",
-      "novelty_level": "medium"
-    },
-    "escalation_state": null,
-    "scenario": null,
-    "evidence_level": "low",
-    "impact": "local",
-    "main_front_score": 25,
+    "main_front_score": 38,
     "is_main_front": false
   },
   {
@@ -116,7 +116,7 @@
     "scenario": "policy_news",
     "evidence_level": "low",
     "impact": "local",
-    "main_front_score": 5,
+    "main_front_score": 3,
     "is_main_front": false
   }
 ]
