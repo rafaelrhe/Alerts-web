@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-04-05T21:43:48.376500+00:00",
-  "headline": "Frentes materiales activos",
+  "generated_at": "2026-04-05T21:53:48.952125+00:00",
+  "headline": "Actividad reciente detectada",
   "what_changed": [
-    "alerta en multi global general (unknown_change, evidencia medium): sin detalle"
+    "alerta en multi global general (unknown_change, evidencia low): sin detalle"
   ],
   "what_is_open": [
-    "multi global general: estado=confirmed_material alertas=1 pendientes=0",
-    "iran global general: estado=partially_confirmed alertas=0 pendientes=0"
+    "multi global general: estado=insufficient_signal alertas=1 pendientes=0",
+    "iran global general: estado=partially_confirmed alertas=0 pendientes=0",
+    "china global general: estado=insufficient_signal alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
     "Sin alertas críticas nuevas; mantener vigilancia sobre episodios activos."
@@ -19,7 +20,7 @@
     "episode_key": "multi_global_general",
     "title": "multi global general",
     "why_now": "Frente más activo por estado y señales recientes.",
-    "status": "confirmed_material",
+    "status": "insufficient_signal",
     "latest_signal": "",
     "latest_signal_at": "2026-04-05T16:01:55.983042+00:00",
     "branches": [
@@ -30,7 +31,16 @@
         "relationship": "vínculo temático",
         "summary": "Sin resumen reciente",
         "latest_signal": null,
-        "latest_signal_at": "2026-04-05T16:31:47.728843+00:00"
+        "latest_signal_at": "2026-04-05T21:53:48.724949+00:00"
+      },
+      {
+        "episode_key": "china_global_general",
+        "title": "china global general",
+        "status": "insufficient_signal",
+        "relationship": "vínculo temático",
+        "summary": "Sin resumen reciente",
+        "latest_signal": null,
+        "latest_signal_at": "2026-04-05T21:53:43.185006+00:00"
       }
     ]
   },
@@ -48,7 +58,14 @@
       "title": "iran global general",
       "status": "partially_confirmed",
       "summary": "",
-      "latest_event_at": "2026-04-05T16:31:47.728843+00:00"
+      "latest_event_at": "2026-04-05T21:53:48.724949+00:00"
+    },
+    {
+      "episode_key": "china_global_general",
+      "title": "china global general",
+      "status": "insufficient_signal",
+      "summary": "",
+      "latest_event_at": "2026-04-05T21:53:43.185006+00:00"
     }
   ]
 }

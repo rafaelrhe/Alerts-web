@@ -8,10 +8,10 @@
     "related_to_event_id": null,
     "change_profile": {
       "change_class": "unknown_change",
-      "evidence_level": "medium",
+      "evidence_level": "low",
       "impact_scope": "local",
       "novelty_level": "medium"
     },
-    "escalation_state": "stable"
+    "escalation_state": "degrading"
   }
 ]
