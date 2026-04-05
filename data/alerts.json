@@ -1,8 +1,8 @@
 [
   {
-    "sent_at": "2026-04-05T15:31:48.754374+00:00",
-    "episode_key": "iran_global_general",
-    "event_id": "9e930a70c2",
+    "sent_at": "2026-04-05T15:53:59.443869+00:00",
+    "episode_key": "multi_global_general",
+    "event_id": "82b8ebad57",
     "is_update": false,
     "summary": "",
     "related_to_event_id": null,
@@ -13,65 +13,5 @@
       "novelty_level": "medium"
     },
     "escalation_state": "stable"
-  },
-  {
-    "sent_at": "2026-04-05T09:31:58.327697+00:00",
-    "episode_key": "iran_global_general",
-    "event_id": "2e991c0884",
-    "is_update": false,
-    "summary": "",
-    "related_to_event_id": null,
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "medium",
-      "impact_scope": "local",
-      "novelty_level": "medium"
-    },
-    "escalation_state": "stable"
-  },
-  {
-    "sent_at": "2026-04-05T03:31:54.139506+00:00",
-    "episode_key": "iran_global_general",
-    "event_id": "27b39224a4",
-    "is_update": false,
-    "summary": "",
-    "related_to_event_id": null,
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "medium",
-      "impact_scope": "local",
-      "novelty_level": "medium"
-    },
-    "escalation_state": "stable"
-  },
-  {
-    "sent_at": "2026-04-05T00:31:52.986128+00:00",
-    "episode_key": "iran_war",
-    "event_id": "76c0b18d45",
-    "is_update": false,
-    "summary": "",
-    "related_to_event_id": null,
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "medium",
-      "impact_scope": "global",
-      "novelty_level": "medium"
-    },
-    "escalation_state": "stable"
-  },
-  {
-    "sent_at": "2026-04-04T19:02:10.569152+00:00",
-    "episode_key": "iran_war",
-    "event_id": "90235bbbd5",
-    "is_update": false,
-    "summary": "",
-    "related_to_event_id": null,
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "high",
-      "impact_scope": "regional",
-      "novelty_level": "high"
-    },
-    "escalation_state": null
   }
 ]
