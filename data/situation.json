@@ -1,14 +1,15 @@
 {
-  "generated_at": "2026-04-05T10:31:51.131404+00:00",
+  "generated_at": "2026-04-05T11:01:54.319354+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
+    "alerta en iran global general (unknown_change, evidencia low): sin detalle",
     "alerta en iran global general (unknown_change, evidencia medium): sin detalle",
     "alerta en iran war (unknown_change, evidencia medium): sin detalle"
   ],
   "what_is_open": [
-    "iran global general: estado=confirmed_material alertas=2 pendientes=0",
     "iran war: estado=confirmed_material alertas=2 pendientes=0",
     "asia pacific seismic activity: estado=confirmed_material alertas=0 pendientes=1",
+    "iran global general: estado=partially_confirmed alertas=2 pendientes=0",
     "geopolitical escalation iran: estado=partially_confirmed alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
@@ -19,27 +20,27 @@
     "message": "<article style=\"font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.45;color:#0f172a;background:#ffffff;border:1px solid #d9dfeb;border-radius:12px;padding:14px;\"><header style=\"border-bottom:1px solid #d9dfeb;padding:0 0 10px 0;margin:0 0 12px 0;\"><h2 style=\"margin:0 0 4px 0;font-size:18px;\">RiskMonitor | Informe diario ejecutivo</h2><p style=\"margin:0;color:#475569;\">2026-04-05 · Visión integrada de contexto y seguimiento</p></header><section style=\"ma"
   },
   "main_front": {
-    "episode_key": "iran_global_general",
-    "title": "iran global general",
-    "why_now": "Frente más activo por estado y señales recientes.",
+    "episode_key": "iran_war",
+    "title": "iran war",
+    "why_now": "Cluster origin=configured. Evento concreto: escalada geopolítica Iran-Israel con impacto energético confirmado. Señales presentes: (1) acción física confirmada (ataque a complejo p",
     "status": "confirmed_material",
     "latest_signal": "",
-    "latest_signal_at": "2026-04-05T09:31:58.327697+00:00",
+    "latest_signal_at": "2026-04-05T00:31:52.986128+00:00",
     "branches": [
       {
-        "episode_key": "iran_war",
-        "title": "iran war",
-        "status": "confirmed_material",
+        "episode_key": "iran_global_general",
+        "title": "iran global general",
+        "status": "partially_confirmed",
         "relationship": "vínculo temático",
-        "summary": "Cluster origin=configured. Evento concreto: escalada geopolítica Iran-Israel con impacto energético confirmado. Señales presentes: (1) acción física confirmada (ataque a complejo p",
+        "summary": "Sin resumen reciente",
         "latest_signal": "",
-        "latest_signal_at": "2026-04-05T00:31:52.986128+00:00"
+        "latest_signal_at": "2026-04-05T09:31:58.327697+00:00"
       },
       {
         "episode_key": "geopolitical_escalation_iran",
         "title": "geopolitical escalation iran",
         "status": "partially_confirmed",
-        "relationship": "vínculo temático",
+        "relationship": "misma hipótesis",
         "summary": "Cluster origin=scenario (HIGH RECALL MODE). Evento concreto: UNICEF reporta uso de menores por grupos armados en Irán. Señales de apoyo: oil_spike (WTI +11.41% 1d, +20.78% 7d; Bren",
         "latest_signal": null,
         "latest_signal_at": "2026-04-04T19:31:53.847121+00:00"
@@ -74,18 +75,18 @@
   ],
   "radar": [
     {
-      "episode_key": "iran_war",
-      "title": "iran war",
-      "status": "confirmed_material",
-      "summary": "Cluster origin=configured. Evento concreto: escalada geopolítica Iran-Israel con impacto energético confirmado. Señales presentes: (1) acción física confirmada (ataque a complejo p",
-      "latest_event_at": "2026-04-05T01:01:51.218025+00:00"
-    },
-    {
       "episode_key": "asia_pacific_seismic_activity",
       "title": "asia pacific seismic activity",
       "status": "confirmed_material",
       "summary": "Cluster de hazards naturales: terremotos en Australia (5.5M, 2k afectados MMI V), Taiwan (5.5M, 80k afectados MMI VI), Filipinas (6M, 460k afectados MMI IV), y Mid-Indian Ridge. Or",
       "latest_event_at": "2026-04-04T19:02:10.569519+00:00"
+    },
+    {
+      "episode_key": "iran_global_general",
+      "title": "iran global general",
+      "status": "partially_confirmed",
+      "summary": "",
+      "latest_event_at": "2026-04-05T11:01:54.146440+00:00"
     },
     {
       "episode_key": "geopolitical_escalation_iran",

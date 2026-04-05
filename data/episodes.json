@@ -1,29 +1,5 @@
 [
   {
-    "id": "iran_global_general",
-    "episode_key": "iran_global_general",
-    "latest_alert_at": "2026-04-05T09:31:58.327697+00:00",
-    "latest_event_at": "2026-04-05T10:31:50.930487+00:00",
-    "status": "confirmed_material",
-    "is_active": true,
-    "alert_count": 2,
-    "pending_count": 0,
-    "active_alerted_count": 1,
-    "short_summary": "",
-    "change_profile": {
-      "change_class": "unknown_change",
-      "evidence_level": "medium",
-      "impact_scope": "local",
-      "novelty_level": "medium"
-    },
-    "escalation_state": "stable",
-    "scenario": null,
-    "evidence_level": "medium",
-    "impact": "material",
-    "main_front_score": 93,
-    "is_main_front": true
-  },
-  {
     "id": "iran_war",
     "episode_key": "iran_war",
     "latest_alert_at": "2026-04-05T00:31:52.986128+00:00",
@@ -45,7 +21,7 @@
     "evidence_level": "low",
     "impact": "material",
     "main_front_score": 83,
-    "is_main_front": false
+    "is_main_front": true
   },
   {
     "id": "asia_pacific_seismic_activity",
@@ -69,6 +45,30 @@
     "evidence_level": "high",
     "impact": "material",
     "main_front_score": 68,
+    "is_main_front": false
+  },
+  {
+    "id": "iran_global_general",
+    "episode_key": "iran_global_general",
+    "latest_alert_at": "2026-04-05T09:31:58.327697+00:00",
+    "latest_event_at": "2026-04-05T11:01:54.146440+00:00",
+    "status": "partially_confirmed",
+    "is_active": true,
+    "alert_count": 2,
+    "pending_count": 0,
+    "active_alerted_count": 1,
+    "short_summary": "",
+    "change_profile": {
+      "change_class": "unknown_change",
+      "evidence_level": "low",
+      "impact_scope": "local",
+      "novelty_level": "medium"
+    },
+    "escalation_state": "degrading",
+    "scenario": null,
+    "evidence_level": "low",
+    "impact": "local",
+    "main_front_score": 55,
     "is_main_front": false
   },
   {
