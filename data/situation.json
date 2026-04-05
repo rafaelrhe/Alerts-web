@@ -1,12 +1,10 @@
 {
-  "generated_at": "2026-04-05T21:53:48.952125+00:00",
-  "headline": "Actividad reciente detectada",
-  "what_changed": [
-    "alerta en multi global general (unknown_change, evidencia low): sin detalle"
-  ],
+  "generated_at": "2026-04-05T22:12:26.523278+00:00",
+  "headline": "Situación estable",
+  "what_changed": [],
   "what_is_open": [
-    "multi global general: estado=insufficient_signal alertas=1 pendientes=0",
     "iran global general: estado=partially_confirmed alertas=0 pendientes=0",
+    "multi global general: estado=insufficient_signal alertas=0 pendientes=0",
     "china global general: estado=insufficient_signal alertas=0 pendientes=0"
   ],
   "what_to_watch_now": [
@@ -17,21 +15,21 @@
     "message": null
   },
   "main_front": {
-    "episode_key": "multi_global_general",
-    "title": "multi global general",
+    "episode_key": "iran_global_general",
+    "title": "iran global general",
     "why_now": "Frente más activo por estado y señales recientes.",
-    "status": "insufficient_signal",
-    "latest_signal": "",
-    "latest_signal_at": "2026-04-05T16:01:55.983042+00:00",
+    "status": "partially_confirmed",
+    "latest_signal": null,
+    "latest_signal_at": "2026-04-05T22:12:26.330813+00:00",
     "branches": [
       {
-        "episode_key": "iran_global_general",
-        "title": "iran global general",
-        "status": "partially_confirmed",
+        "episode_key": "multi_global_general",
+        "title": "multi global general",
+        "status": "insufficient_signal",
         "relationship": "vínculo temático",
         "summary": "Sin resumen reciente",
         "latest_signal": null,
-        "latest_signal_at": "2026-04-05T21:53:48.724949+00:00"
+        "latest_signal_at": "2026-04-05T22:12:21.212354+00:00"
       },
       {
         "episode_key": "china_global_general",
@@ -40,32 +38,31 @@
         "relationship": "vínculo temático",
         "summary": "Sin resumen reciente",
         "latest_signal": null,
-        "latest_signal_at": "2026-04-05T21:53:43.185006+00:00"
+        "latest_signal_at": "2026-04-05T22:12:21.211880+00:00"
       }
     ]
   },
   "recent_activity": [
     {
-      "type": "alert",
-      "episode_key": "multi_global_general",
-      "summary": "Sin detalle",
-      "timestamp": "2026-04-05T16:01:55.983042+00:00"
+      "type": "status",
+      "summary": "Sin actividad reciente relevante; seguimiento estable.",
+      "timestamp": "2026-04-05T22:12:26.523272+00:00"
     }
   ],
   "radar": [
     {
-      "episode_key": "iran_global_general",
-      "title": "iran global general",
-      "status": "partially_confirmed",
+      "episode_key": "multi_global_general",
+      "title": "multi global general",
+      "status": "insufficient_signal",
       "summary": "",
-      "latest_event_at": "2026-04-05T21:53:48.724949+00:00"
+      "latest_event_at": "2026-04-05T22:12:21.212354+00:00"
     },
     {
       "episode_key": "china_global_general",
       "title": "china global general",
       "status": "insufficient_signal",
       "summary": "",
-      "latest_event_at": "2026-04-05T21:53:43.185006+00:00"
+      "latest_event_at": "2026-04-05T22:12:21.211880+00:00"
     }
   ]
 }
