@@ -3,7 +3,7 @@
     "id": "iran_global_general",
     "episode_key": "iran_global_general",
     "latest_alert_at": null,
-    "latest_event_at": "2026-04-05T22:16:21.117026+00:00",
+    "latest_event_at": "2026-04-05T22:20:43.115882+00:00",
     "status": "partially_confirmed",
     "is_active": false,
     "alert_count": 0,
@@ -12,15 +12,15 @@
     "short_summary": "",
     "change_profile": {
       "change_class": "unknown_change",
-      "evidence_level": "medium",
+      "evidence_level": "low",
       "impact_scope": "local",
       "novelty_level": "medium"
     },
-    "escalation_state": "stable",
+    "escalation_state": "degrading",
     "scenario": null,
-    "evidence_level": "medium",
+    "evidence_level": "low",
     "impact": "local",
-    "main_front_score": 33,
+    "main_front_score": 25,
     "is_main_front": true
   },
   {

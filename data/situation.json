@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-05T22:16:21.313636+00:00",
+  "generated_at": "2026-04-05T22:20:43.331986+00:00",
   "headline": "Situación estable",
   "what_changed": [],
   "what_is_open": [
@@ -20,7 +20,7 @@
     "why_now": "Frente más activo por estado y señales recientes.",
     "status": "partially_confirmed",
     "latest_signal": null,
-    "latest_signal_at": "2026-04-05T22:16:21.117026+00:00",
+    "latest_signal_at": "2026-04-05T22:20:43.115882+00:00",
     "branches": [
       {
         "episode_key": "multi_global_general",
@@ -46,7 +46,7 @@
     {
       "type": "status",
       "summary": "Sin actividad reciente relevante; seguimiento estable.",
-      "timestamp": "2026-04-05T22:16:21.313628+00:00"
+      "timestamp": "2026-04-05T22:20:43.331972+00:00"
     }
   ],
   "radar": [
