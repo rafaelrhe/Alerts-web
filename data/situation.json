@@ -1,8 +1,7 @@
 {
-  "generated_at": "2026-04-05T12:01:35.944040+00:00",
+  "generated_at": "2026-04-05T15:01:24.455518+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
-    "alerta en iran global general (unknown_change, evidencia low): sin detalle",
     "alerta en iran global general (unknown_change, evidencia medium): sin detalle",
     "alerta en iran war (unknown_change, evidencia medium): sin detalle"
   ],
@@ -86,7 +85,7 @@
       "title": "iran global general",
       "status": "partially_confirmed",
       "summary": "",
-      "latest_event_at": "2026-04-05T11:01:54.146440+00:00"
+      "latest_event_at": "2026-04-05T14:02:13.897561+00:00"
     },
     {
       "episode_key": "geopolitical_escalation_iran",
