@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-05T15:53:59.638502+00:00",
+  "generated_at": "2026-04-05T16:01:56.193293+00:00",
   "headline": "Frentes materiales activos",
   "what_changed": [
     "alerta en multi global general (unknown_change, evidencia medium): sin detalle"
@@ -21,7 +21,7 @@
     "why_now": "Frente más activo por estado y señales recientes.",
     "status": "confirmed_material",
     "latest_signal": "",
-    "latest_signal_at": "2026-04-05T15:53:59.443869+00:00",
+    "latest_signal_at": "2026-04-05T16:01:55.983042+00:00",
     "branches": [
       {
         "episode_key": "iran_global_general",
@@ -30,7 +30,7 @@
         "relationship": "vínculo temático",
         "summary": "Sin resumen reciente",
         "latest_signal": null,
-        "latest_signal_at": "2026-04-05T15:53:59.444233+00:00"
+        "latest_signal_at": "2026-04-05T16:01:55.983421+00:00"
       }
     ]
   },
@@ -39,7 +39,7 @@
       "type": "alert",
       "episode_key": "multi_global_general",
       "summary": "Sin detalle",
-      "timestamp": "2026-04-05T15:53:59.443869+00:00"
+      "timestamp": "2026-04-05T16:01:55.983042+00:00"
     }
   ],
   "radar": [
@@ -48,7 +48,7 @@
       "title": "iran global general",
       "status": "confirmed_material",
       "summary": "",
-      "latest_event_at": "2026-04-05T15:53:59.444233+00:00"
+      "latest_event_at": "2026-04-05T16:01:55.983421+00:00"
     }
   ]
 }
