@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-05T22:12:26.523278+00:00",
+  "generated_at": "2026-04-05T22:16:21.313636+00:00",
   "headline": "Situación estable",
   "what_changed": [],
   "what_is_open": [
@@ -20,7 +20,7 @@
     "why_now": "Frente más activo por estado y señales recientes.",
     "status": "partially_confirmed",
     "latest_signal": null,
-    "latest_signal_at": "2026-04-05T22:12:26.330813+00:00",
+    "latest_signal_at": "2026-04-05T22:16:21.117026+00:00",
     "branches": [
       {
         "episode_key": "multi_global_general",
@@ -29,7 +29,7 @@
         "relationship": "vínculo temático",
         "summary": "Sin resumen reciente",
         "latest_signal": null,
-        "latest_signal_at": "2026-04-05T22:12:21.212354+00:00"
+        "latest_signal_at": "2026-04-05T22:16:17.005931+00:00"
       },
       {
         "episode_key": "china_global_general",
@@ -38,7 +38,7 @@
         "relationship": "vínculo temático",
         "summary": "Sin resumen reciente",
         "latest_signal": null,
-        "latest_signal_at": "2026-04-05T22:12:21.211880+00:00"
+        "latest_signal_at": "2026-04-05T22:16:17.004954+00:00"
       }
     ]
   },
@@ -46,7 +46,7 @@
     {
       "type": "status",
       "summary": "Sin actividad reciente relevante; seguimiento estable.",
-      "timestamp": "2026-04-05T22:12:26.523272+00:00"
+      "timestamp": "2026-04-05T22:16:21.313628+00:00"
     }
   ],
   "radar": [
@@ -55,14 +55,14 @@
       "title": "multi global general",
       "status": "insufficient_signal",
       "summary": "",
-      "latest_event_at": "2026-04-05T22:12:21.212354+00:00"
+      "latest_event_at": "2026-04-05T22:16:17.005931+00:00"
     },
     {
       "episode_key": "china_global_general",
       "title": "china global general",
       "status": "insufficient_signal",
       "summary": "",
-      "latest_event_at": "2026-04-05T22:12:21.211880+00:00"
+      "latest_event_at": "2026-04-05T22:16:17.004954+00:00"
     }
   ]
 }
