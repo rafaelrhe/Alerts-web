@@ -20,7 +20,7 @@
     "scenario": null,
     "evidence_level": "low",
     "impact": "local",
-    "main_front_score": 25,
+    "main_front_score": 23,
     "is_main_front": true
   },
   {
@@ -44,7 +44,7 @@
     "scenario": null,
     "evidence_level": "low",
     "impact": "local",
-    "main_front_score": 5,
+    "main_front_score": 3,
     "is_main_front": false
   },
   {
@@ -68,7 +68,7 @@
     "scenario": null,
     "evidence_level": "low",
     "impact": "local",
-    "main_front_score": 5,
+    "main_front_score": 3,
     "is_main_front": false
   }
 ]
